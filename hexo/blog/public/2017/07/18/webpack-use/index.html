@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="English">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了
+安装前提是安装好Node.js，全局安装：
+npm install -g webpack
+作为项目开发依赖安装：
+npm install --save-dev webpack
+使用这里以新建配置文件来执行，项目根目录下新建webpa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack2简单使用">
+<meta property="og:url" content="https://webharry.github.io/2017/07/18/webpack-use/index.html">
+<meta property="og:site_name" content="Harry的博客">
+<meta property="og:description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了
+安装前提是安装好Node.js，全局安装：
+npm install -g webpack
+作为项目开发依赖安装：
+npm install --save-dev webpack
+使用这里以新建配置文件来执行，项目根目录下新建webpa">
+<meta property="og:updated_time" content="2017-07-19T03:11:37.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack2简单使用">
+<meta name="twitter:description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了
+安装前提是安装好Node.js，全局安装：
+npm install -g webpack
+作为项目开发依赖安装：
+npm install --save-dev webpack
+使用这里以新建配置文件来执行，项目根目录下新建webpa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://webharry.github.io/2017/07/18/webpack-use/"/>
+
+
+
+
+
+  <title>webpack2简单使用 | Harry的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Harry的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/07/18/webpack-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack2简单使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是安装好<a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js</a>，<br>全局安装：</p>
+<pre><code>npm install -g webpack
+</code></pre><p>作为项目开发依赖安装：</p>
+<pre><code>npm install --save-dev webpack
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>这里以新建配置文件来执行，项目根目录下新建webpack.config.js文件，配置如下：</p>
+<pre><code>var webpack = require(&apos;webpack&apos;);
+var path = require(&apos;path&apos;);
+
+var config = {
+    entry:&quot;entry.js&quot;,//入口文件路径
+    output:{//输出文件
+        path:path.resolve(__dirname,&apos;build&apos;),
+        filename:&quot;[name].bundle.js&quot;
+    },
+    module:{//模块
+        ...
+    }
+}
+
+module.exports = config;
+</code></pre><p>配置文件的结构大致是以上的结构。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><pre><code>$ webpack
+</code></pre><h2 id="常用xxx-Loader的使用："><a href="#常用xxx-Loader的使用：" class="headerlink" title="常用xxx-Loader的使用："></a>常用xxx-Loader的使用：</h2><h2 id="style-loader和css-loader"><a href="#style-loader和css-loader" class="headerlink" title="style-loader和css-loader"></a>style-loader和css-loader</h2><p>style-loader把js字符串生成为style节点；css-loader是把css转换为js输出。两者经常一起使用。</p>
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev css-loader
+</code></pre><h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
+<pre><code>module:{
+    rules:[{
+        test:/\.css$/,
+        use:[
+          { loader:&quot;stycss-loader&quot; },
+          { loader:&quot;css-loader&quot; }
+        ]
+    }]
+}
+</code></pre><h2 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a>html-loader</h2><p>html-loader是把html文件转换为js.  </p>
+<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-loader
+</code></pre><h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>module:{
+    rules:[{
+        test:/\.html$/,
+        use:[
+            {
+                loader:&quot;html-loader&quot;,
+                option: {
+                    minimize:true
+                }
+            }
+        ]
+    }]
+}
+</code></pre><h2 id="less-loader"><a href="#less-loader" class="headerlink" title="less-loader"></a>less-loader</h2><p>less-loader是把less编译为css.  </p>
+<h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev less-loader
+</code></pre><h2 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
+<pre><code>module:{
+    rules:[
+        {
+            test:/\.less$/,
+            use:[
+                {
+                    loader:&quot;style-loader&quot;
+                },
+                {
+                    loader:&quot;css-loader&quot;
+                },
+                {
+                    loader:&quot;less-loader&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre><h2 id="sass-loader"><a href="#sass-loader" class="headerlink" title="sass-loader"></a>sass-loader</h2><p>sass-loader是将sass编译为css。</p>
+<h2 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev sass-loader
+</code></pre><h2 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>modu:{
+    rules:[
+        {
+            test:/.\scss$/,
+            use:[
+                {
+                    loader:&quot;style-loader&quot;
+                },
+                {
+                    loader:&quot;css-loader&quot;,
+                    option:{ sourceMap:true }
+                },
+                {
+                    loader:&quot;sass-loader&quot;,
+                    option:{ sourceMap:true }
+                }
+            ]
+        }
+    ]
+}
+</code></pre><p>sourceMap:true用于启用CSS的source map  </p>
+<h2 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h2><p>想要使用一个插件，你只需要require()它，然后把它添加到plugins数组中。  </p>
+<h2 id="BannerPlugin"><a href="#BannerPlugin" class="headerlink" title="BannerPlugin"></a>BannerPlugin</h2><p>内置插件BannerPlugin，用来给输出的文件头部添加注释信息。</p>
+<h2 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：   </p>
+<pre><code>plugins:[
+    new webpack.BannerPlugin(&apos;添加注释信息...&apos;)
+]
+</code></pre><h2 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h2><p>简化HTML文件的创建，为webpack包提供服务，可以用来生成HTML5文件。</p>
+<h2 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-webpack-plugin
+</code></pre><h2 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>var webpack = require(&apos;webpack&apos;);
+var path = require(&apos;path&apos;);
+var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);
+
+var config = {
+    entry:&quot;./entry.js&quot;,
+    output:{
+        path：path.resolve(__path,&apos;build&apos;),
+        filename:&quot;bundle.js&quot;
+    }
+    plugins:[
+        new HtmlWebpackPlugin()
+    ]
+}
+
+module.exports = config;
+</code></pre><p>这将会生成一个包含bundle.js引入信息的HTML文件。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/08/ng-option/" rel="next" title="设置select默认值-Angular">
+                <i class="fa fa-chevron-left"></i> 设置select默认值-Angular
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/20/gulp-use/" rel="prev" title="gulp使用">
+                gulp使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yangjie" />
+          <p class="site-author-name" itemprop="name">yangjie</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">3.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用xxx-Loader的使用："><span class="nav-number">4.</span> <span class="nav-text">常用xxx-Loader的使用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#style-loader和css-loader"><span class="nav-number">5.</span> <span class="nav-text">style-loader和css-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-number">6.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-1"><span class="nav-number">7.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-loader"><span class="nav-number">8.</span> <span class="nav-text">html-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-2"><span class="nav-number">9.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-2"><span class="nav-number">10.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less-loader"><span class="nav-number">11.</span> <span class="nav-text">less-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-3"><span class="nav-number">12.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-3"><span class="nav-number">13.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sass-loader"><span class="nav-number">14.</span> <span class="nav-text">sass-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-4"><span class="nav-number">15.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-4"><span class="nav-number">16.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件使用"><span class="nav-number">17.</span> <span class="nav-text">插件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BannerPlugin"><span class="nav-number">18.</span> <span class="nav-text">BannerPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-5"><span class="nav-number">19.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HtmlWebpackPlugin"><span class="nav-number">20.</span> <span class="nav-text">HtmlWebpackPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-5"><span class="nav-number">21.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-6"><span class="nav-number">22.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangjie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Muse
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
