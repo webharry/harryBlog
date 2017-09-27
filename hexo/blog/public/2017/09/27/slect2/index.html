@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="English">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="frontend,plugin,jquery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:
+
+官网地址：https://select2.org/
+一、引入插件select2
+1.访问GitHub下载：
+https://github.com/select2/select2解压后将js和css文件引入你的html文件：
+
+1234//select2require(&apos;../select2/selec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular+select2">
+<meta property="og:url" content="https://webharry.github.io/2017/09/27/slect2/index.html">
+<meta property="og:site_name" content="Harry的博客">
+<meta property="og:description" content="select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:
+
+官网地址：https://select2.org/
+一、引入插件select2
+1.访问GitHub下载：
+https://github.com/select2/select2解压后将js和css文件引入你的html文件：
+
+1234//select2require(&apos;../select2/selec">
+<meta property="og:updated_time" content="2017-09-27T09:53:13.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular+select2">
+<meta name="twitter:description" content="select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:
+
+官网地址：https://select2.org/
+一、引入插件select2
+1.访问GitHub下载：
+https://github.com/select2/select2解压后将js和css文件引入你的html文件：
+
+1234//select2require(&apos;../select2/selec">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://webharry.github.io/2017/09/27/slect2/"/>
+
+
+
+
+
+  <title>angular+select2 | Harry的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="English">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Harry的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/27/slect2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">angular+select2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T15:50:45+08:00">
+                2017-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:</p>
+<blockquote>
+<p>官网地址：<a href="https://select2.org/" target="_blank" rel="external">https://select2.org/</a></p>
+<h3 id="一、引入插件select2"><a href="#一、引入插件select2" class="headerlink" title="一、引入插件select2"></a>一、引入插件select2</h3></blockquote>
+<h4 id="1-访问GitHub下载："><a href="#1-访问GitHub下载：" class="headerlink" title="1.访问GitHub下载："></a>1.访问GitHub下载：</h4><blockquote>
+<p><a href="https://github.com/select2/select2" target="_blank" rel="external">https://github.com/select2/select2</a><br>解压后将js和css文件引入你的html文件：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//select2</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.js'</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.css'</span>);</div></pre></td></tr></table></figure>
+<h4 id="2-或者通过远程动访问引入文件，在你的html文件引入js和css文件："><a href="#2-或者通过远程动访问引入文件，在你的html文件引入js和css文件：" class="headerlink" title="2.或者通过远程动访问引入文件，在你的html文件引入js和css文件："></a>2.或者通过远程动访问引入文件，在你的html文件引入js和css文件：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h3><p>例子1：给select添加类名:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"tags"</span> <span class="attr">class</span>=<span class="string">"js-example-basic-single"</span> <span class="attr">ng-model</span>=<span class="string">"someValue"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">ng-repeat</span>=<span class="string">"s in arr"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;s.id&#125;&#125;"</span> <span class="attr">on-finish-render-filters</span>&gt;</span>&#123;&#123;s.value&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在js文件中调用select2的API：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//select2插件实现下拉框的模糊搜索匹配功能</span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'.js-example-basic-multiple'</span>).select2();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="三、select2初始化"><a href="#三、select2初始化" class="headerlink" title="三、select2初始化"></a>三、select2初始化</h3><p>通过在.select2()方法中添加一个对象实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'.js-example-basic-multiple'</span>).select2(&#123;</div><div class="line">  <span class="attr">width</span>:<span class="number">200</span>px,<span class="comment">//设置默认宽度</span></div><div class="line">  <span class="comment">//width: 'resolve', // 需要在html用行内样式重新定义宽度</span></div><div class="line">  multiple: <span class="string">'multiple'</span>,     <span class="comment">// 多选</span></div><div class="line"></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="四、select2事件"><a href="#四、select2事件" class="headerlink" title="四、select2事件"></a>四、select2事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'#tags'</span>).on(<span class="string">'select2:select'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="comment">//获取select当前选中值得一些信息</span></div><div class="line">      <span class="keyword">var</span> data = e.params.data;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">      $scope.someValue = data.id;</div><div class="line">      </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="五、Data-sources"><a href="#五、Data-sources" class="headerlink" title="五、Data sources"></a>五、Data sources</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"js-data-example-ajax"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'.js-example-data-ajax'</span>).select2(&#123;</div><div class="line">  <span class="attr">ajax</span>: &#123;</div><div class="line">    <span class="attr">url</span>: <span class="string">'https://api.github.com/search/repositories'</span>,</div><div class="line">    <span class="comment">//dataType: 'json'</span></div><div class="line">    <span class="comment">// Additional AJAX parameters go here; see the end of this chapter for the full code of this example</span></div><div class="line">    data: <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> query = &#123;</div><div class="line">        <span class="attr">search</span>: params.term,</div><div class="line">        <span class="attr">type</span>: <span class="string">'public'</span></div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// Query parameters will be ?search=[term]&amp;type=public</span></div><div class="line">      <span class="keyword">return</span> query;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="六、select2提供的event"><a href="#六、select2提供的event" class="headerlink" title="六、select2提供的event"></a>六、select2提供的event</h3><p>摘自网友博客：</p>
+<blockquote>
+<p>$(“#txt_tag”)<br> .on(“change”, function(e) {​})​ // 当 select2 值被改变的時候 ( 改变后触发 )​<br>.on(“select2-opening”,function(){}) // ​当下拉出现时 ( 开启选项下拉前触发)<br>  .on(“select2-open”, function() {}) //当下拉出现时(开启选项下拉后触发)​<br>.on(“select2-close”,function(){}) // 当选项关闭的时候<br>.on(“select2-highlight”,function(e){})// hover 到下拉时<br>.on(“select2-selecting”,function(e){})// 选中选项的时候 (选中前触发 ) ​​<br>.on(“select2-removing”,function(e){}) // 移除选项的时候 ( 选中前触发) ​​<br>.on(“select2-removed”,function(e){}) //移除选项的时候 ( 选中后触发 ) ​​​<br>.on(“select2-loaded”,function(e){}) // load资料的时候 ( Loaded 完成后触发)<br>.on(“select2-focus”,function(e){}) // input 获得焦点的触发<br>.on(“select2-blur”,function(e) {}) // input 失去焦点触发  </p>
+</blockquote>
+<h3 id="七、踩过的坑"><a href="#七、踩过的坑" class="headerlink" title="七、踩过的坑"></a>七、踩过的坑</h3><h4 id="1-在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。"><a href="#1-在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。" class="headerlink" title="1.在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。"></a>1.在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"tags"</span> <span class="attr">class</span>=<span class="string">"js-example-basic-single"</span> <span class="attr">ng-model</span>=<span class="string">"someValue"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">ng-repeat</span>=<span class="string">"s in arr"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;s.id&#125;&#125;"</span> <span class="attr">on-finish-render-filters</span>&gt;</span>&#123;&#123;s.value&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>解决办法：在调用插件时，添加一个事件，将选中值赋值给变量：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//获取select选中值，赋值给全局变量$scope.someValue</span></div><div class="line">  $(<span class="string">'#tags'</span>).on(<span class="string">'select2:select'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="comment">//获取select当前选中值得一些信息</span></div><div class="line">      <span class="keyword">var</span> data = e.params.data;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">      $scope.someValue = data.id;</div><div class="line">      </div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
+<p>总结：select2提供了很多配置参数，处理事件，可以更具业务需求进行设置。本文主要用到了select2的搜索功能，以及处理与angular同时使用时的问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+            <a href="/tags/plugin/" rel="tag"># plugin</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/26/BFC/" rel="next" title="BFC">
+                <i class="fa fa-chevron-left"></i> BFC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yangjie" />
+          <p class="site-author-name" itemprop="name">yangjie</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、引入插件select2"><span class="nav-number">1.</span> <span class="nav-text">一、引入插件select2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-访问GitHub下载："><span class="nav-number">1.1.</span> <span class="nav-text">1.访问GitHub下载：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-或者通过远程动访问引入文件，在你的html文件引入js和css文件："><span class="nav-number">1.2.</span> <span class="nav-text">2.或者通过远程动访问引入文件，在你的html文件引入js和css文件：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用"><span class="nav-number">2.</span> <span class="nav-text">二、使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、select2初始化"><span class="nav-number">3.</span> <span class="nav-text">三、select2初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、select2事件"><span class="nav-number">4.</span> <span class="nav-text">四、select2事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Data-sources"><span class="nav-number">5.</span> <span class="nav-text">五、Data sources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、select2提供的event"><span class="nav-number">6.</span> <span class="nav-text">六、select2提供的event</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、踩过的坑"><span class="nav-number">7.</span> <span class="nav-text">七、踩过的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。"><span class="nav-number">7.1.</span> <span class="nav-text">1.在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yangjie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Muse
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
