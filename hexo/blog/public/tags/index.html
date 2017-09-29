@@ -94,28 +94,13 @@
 
 
 
-<meta name="description" content="1.HTML代码
-&amp;lt;body ng-app=&amp;quot;MyModule&amp;quot;&amp;gt;
-&amp;lt;div ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
-&amp;lt;select ng-model=&amp;quot;mylabel&amp;quot;ng-options=&amp;quot;v.label for v in lists&amp;quot;&amp;gt;&amp;lt;/select&amp;gt;
-&amp;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设置select默认值-Angular">
-<meta property="og:url" content="https://webharry.github.io/2017/06/08/ng-option/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="https://webharry.github.io/tags/index.html">
 <meta property="og:site_name" content="Harry的博客">
-<meta property="og:description" content="1.HTML代码
-&amp;lt;body ng-app=&amp;quot;MyModule&amp;quot;&amp;gt;
-&amp;lt;div ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
-&amp;lt;select ng-model=&amp;quot;mylabel&amp;quot;ng-options=&amp;quot;v.label for v in lists&amp;quot;&amp;gt;&amp;lt;/select&amp;gt;
-&amp;">
-<meta property="og:updated_time" content="2017-06-08T15:29:35.076Z">
+<meta property="og:updated_time" content="2017-09-29T11:12:03.131Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设置select默认值-Angular">
-<meta name="twitter:description" content="1.HTML代码
-&amp;lt;body ng-app=&amp;quot;MyModule&amp;quot;&amp;gt;
-&amp;lt;div ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
-&amp;lt;select ng-model=&amp;quot;mylabel&amp;quot;ng-options=&amp;quot;v.label for v in lists&amp;quot;&amp;gt;&amp;lt;/select&amp;gt;
-&amp;">
+<meta name="twitter:title" content="tags">
 
 
 
@@ -144,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/2017/06/08/ng-option/"/>
+  <link rel="canonical" href="https://webharry.github.io/tags/"/>
 
 
 
 
 
-  <title>设置select默认值-Angular | Harry的博客</title>
+  <title>tags | Harry的博客</title>
   
 
 
@@ -255,169 +240,40 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/06/08/ng-option/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">设置select默认值-Angular</h1>
-        
+	<h1 class="post-title" itemprop="name headline">tags</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T23:25:27+08:00">
-                2017-06-08
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>1.HTML代码</p>
-<pre><code>&lt;body ng-app=&quot;MyModule&quot;&gt;
-&lt;div ng-controller=&quot;MyCtrl&quot;&gt;
-&lt;select ng-model=&quot;mylabel&quot;ng-options=&quot;v.label for v in lists&quot;&gt;&lt;/select&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p>2.JS代码</p>
-<pre><code>var myModule =angular.module(&quot;MyModule&quot;, []);
-myModule.controller(&apos;MyCtrl&apos;, [&apos;$scope&apos;,
-function($scope) {
-$scope.lists= [
-{&quot;label&quot;: &quot;步伐1&quot;,&quot;value&quot; :&quot;111&quot;},
-{&quot;label&quot;: &quot;步伐2&quot;,&quot;value&quot; :&quot;233&quot;}
-];
-$scope.mylabel= $scope.lists[0];//默认数组第一个作为option的值
-}
-]);
-</code></pre><p>3.执行结果：默认显示“步伐1”<br><a href="http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" target="_blank" rel="external">http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a></p>
-<p>4.延伸–ng-options用法[1]<br>ng-optins属性可以在表达式中使用数组或对象来自动生成一个select的option列表，与ng-repeat类似。</p>
-<p>一般用法：</p>
-<p>对于数组：</p>
-<pre><code>l v.value for v in array
-l v.value as v.label for v in array //将v.label值作为v.value
-</code></pre><p>对于对象：</p>
-<pre><code>l  label for (key , value) in object
-l  select as label for (key ,value) in object
-</code></pre><p>5.引用：更多用法参考链接</p>
-<p>[1].<a href="http://www.cnblogs.com/panda-zhang/p/5290694.html" target="_blank" rel="external">http://www.cnblogs.com/panda-zhang/p/5290694.html</a></p>
-
+      <div class="post-body">
+        
+        
+          <div class="tag-cloud">
+            <div class="tag-cloud-title">
+                Insgesamt 7 Tags
+            </div>
+            <div class="tag-cloud-tags">
+              <a href="/tags/CSS/" style="font-size: 12px; color: #ccc">CSS</a> <a href="/tags/JavaScript/" style="font-size: 30px; color: #111">JavaScript</a> <a href="/tags/RegExp/" style="font-size: 12px; color: #ccc">RegExp</a> <a href="/tags/angular/" style="font-size: 12px; color: #ccc">angular</a> <a href="/tags/frontend/" style="font-size: 30px; color: #111">frontend</a> <a href="/tags/jquery/" style="font-size: 12px; color: #ccc">jquery</a> <a href="/tags/plugin/" style="font-size: 12px; color: #ccc">plugin</a>
+            </div>
+          </div>
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/11/less快速入门/" rel="next" title="less">
-                <i class="fa fa-chevron-left"></i> less
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/18/webpack-use/" rel="prev" title="webpack2简单使用">
-                webpack2简单使用 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -627,10 +483,10 @@ l  select as label for (key ,value) in object
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
