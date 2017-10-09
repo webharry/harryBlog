@@ -73,7 +73,7 @@ deploy:
   branch: master
 
 # add post views
-leancloud_visitors:
-  enable: true
-  app_id: 3k1Xhe6u6reJAeGBrj5jTUuq-gzGzoHsz
-  app_key: 5rllstsdywyVbgl3FGbQID7d
+# leancloud_visitors:
+  # enable: true
+  # app_id: 3k1Xhe6u6reJAeGBrj5jTUuq-gzGzoHsz
+  # app_key: 5rllstsdywyVbgl3FGbQID7d
