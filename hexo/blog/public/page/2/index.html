@@ -196,7 +196,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -206,7 +206,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -263,6 +263,477 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/14/plugins-browsersync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/plugins-browsersync/" itemprop="url">plugins-browsersync</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:25:02+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/14/plugins-browsersync/" class="leancloud_visitors" data-flag-title="plugins-browsersync">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Browsersync浏览器同步测试工具的使用"><a href="#Browsersync浏览器同步测试工具的使用" class="headerlink" title="Browsersync浏览器同步测试工具的使用"></a>Browsersync浏览器同步测试工具的使用</h2><p>Browsersync能够快速响应文件(html、css、js、less、sass等)的更改，试想当你敲代码的同时，浏览器能够快速响应文件更改，免去手动刷新浏览器，对于开发者来说无疑会提高开发效率。</p>
+<p>下面是分别是在gulp和webpack中的安装及使用方法。  </p>
+<h2 id="一、gulp-browser-sync安装"><a href="#一、gulp-browser-sync安装" class="headerlink" title="一、gulp + browser-sync安装"></a>一、gulp + browser-sync安装</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是你已<a href="https://webharry.github.io/2017/07/20/gulp-use/">安装gulp</a><br>这里用Node.js的包管理安装，前提是你已安装<a href="">node.js</a>。<br>全局安装：</p>
+<pre><code>npm install -g browser-sync
+</code></pre><p>作为项目开发依赖安装：</p>
+<pre><code>npm install --save-dev browser-sync
+</code></pre><h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>在gulpfile.js文件配置如下：  </p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var browserSync = require(&apos;browser-sync&apos;).create();
+var reload = browserSync.reload;
+
+gulp.task(&apos;server&apos;,function() {
+    browserSync.init({
+        server: &quot;./dist&quot;//生产目录
+    });
+
+    gulp.watch(&quot;./src/**/*.less&quot;,[&apos;less&apos;]);
+    gulp.watch(&quot;./src/**/*.html&quot;,[&apos;htmlmin&apos;]);
+    gulp.watch(&quot;./dist/**/*.css&quot;).on(&apos;change&apos;,reload);
+    gulp.watch(&quot;./dist/**/*.html&quot;).on(&apos;change&apos;,reload);
+});
+
+gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
+
+});
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/14/angular-file-upload/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/angular-file-upload/" itemprop="url">angular-file-upload</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:14:25+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/14/angular-file-upload/" class="leancloud_visitors" data-flag-title="angular-file-upload">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>今天做项目遇到文件上传问题，于是找到了一个很强大的文件上传插件angular-file-upload,便做了下使用总结，方便给为老铁查阅啊。  </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev angularFileUpload  
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>demo1:多文件上传-html文件：</p>
+<pre><code>&lt;input type=&quot;file&quot; id=&quot;file&quot; name=&quot;file&quot; nv-file-select uploader=&quot;uploader&quot; ng-click=&quot;clearItems()&quot; multiple&gt; 上传
+</code></pre><p>更酷的界面效果可以这样用，在htm文件加入官网的例子：</p>
+<pre><code>&lt;div class=&quot;col-md-9&quot; style=&quot;margin-bottom: 40px&quot;&gt;
+            &lt;h2&gt;Uploads only images (with canvas preview)&lt;/h2&gt;
+            &lt;h3&gt;The queue&lt;/h3&gt;
+            &lt;p&gt;Queue length: {{ uploader.queue.length }}&lt;/p&gt;
+
+            &lt;table class=&quot;table&quot;&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th width=&quot;50%&quot;&gt;Name&lt;/th&gt;
+                        &lt;th ng-show=&quot;uploader.isHTML5&quot;&gt;Size&lt;/th&gt;
+                        &lt;th ng-show=&quot;uploader.isHTML5&quot;&gt;Progress&lt;/th&gt;
+                        &lt;th&gt;Status&lt;/th&gt;
+                        &lt;th&gt;Actions&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr ng-repeat=&quot;item in uploader.queue&quot;&gt;
+                        &lt;td&gt;
+                            &lt;strong&gt;{{ item.file.name }}&lt;/strong&gt;
+                            &lt;!-- Image preview --&gt;
+                            &lt;!--auto height--&gt;
+                            &lt;!--&lt;div ng-thumb=&quot;{ file: item.file, width: 100 }&quot;&gt;&lt;/div&gt;--&gt;
+                            &lt;!--auto width--&gt;
+                            &lt;div ng-show=&quot;uploader.isHTML5&quot; ng-thumb=&quot;{ file: item._file, height: 100 }&quot;&gt;&lt;/div&gt;
+                            &lt;!--fixed width and height --&gt;
+                            &lt;!--&lt;div ng-thumb=&quot;{ file: item.file, width: 100, height: 100 }&quot;&gt;&lt;/div&gt;--&gt;
+                        &lt;/td&gt;
+                        &lt;td ng-show=&quot;uploader.isHTML5&quot; nowrap&gt;{{ item.file.size/1024/1024|number:2 }} MB&lt;/td&gt;
+                        &lt;td ng-show=&quot;uploader.isHTML5&quot;&gt;
+                            &lt;div class=&quot;progress&quot; style=&quot;margin-bottom: 0;&quot;&gt;
+                                &lt;div class=&quot;progress-bar&quot; role=&quot;progressbar&quot; ng-style=&quot;{ &apos;width&apos;: item.progress + &apos;%&apos; }&quot;&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/td&gt;
+                        &lt;td class=&quot;text-center&quot;&gt;
+                            &lt;span ng-show=&quot;item.isSuccess&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-ok&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                            &lt;span ng-show=&quot;item.isCancel&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-ban-circle&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                            &lt;span ng-show=&quot;item.isError&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-remove&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                        &lt;/td&gt;
+                        &lt;td nowrap&gt;
+                            &lt;button type=&quot;button&quot; class=&quot;btn btn-success btn-xs&quot; ng-click=&quot;item.upload()&quot; ng-disabled=&quot;item.isReady || item.isUploading || item.isSuccess&quot;&gt;
+                                &lt;span class=&quot;glyphicon glyphicon-upload&quot;&gt;&lt;/span&gt; Upload
+                            &lt;/button&gt;
+                            &lt;button type=&quot;button&quot; class=&quot;btn btn-warning btn-xs&quot; ng-click=&quot;item.cancel()&quot; ng-disabled=&quot;!item.isUploading&quot;&gt;
+                                &lt;span class=&quot;glyphicon glyphicon-ban-circle&quot;&gt;&lt;/span&gt; Cancel
+                            &lt;/button&gt;
+                            &lt;button type=&quot;button&quot; class=&quot;btn btn-danger btn-xs&quot; ng-click=&quot;item.remove()&quot;&gt;
+                                &lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt; Remove
+                            &lt;/button&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+
+            &lt;div&gt;
+                &lt;div&gt;
+                    Queue progress:
+                    &lt;div class=&quot;progress&quot; style=&quot;&quot;&gt;
+                        &lt;div class=&quot;progress-bar&quot; role=&quot;progressbar&quot; ng-style=&quot;{ &apos;width&apos;: uploader.progress + &apos;%&apos; }&quot;&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;button&quot; class=&quot;btn btn-success btn-s&quot; ng-click=&quot;uploader.uploadAll()&quot; ng-disabled=&quot;!uploader.getNotUploadedItems().length&quot;&gt;
+                    &lt;span class=&quot;glyphicon glyphicon-upload&quot;&gt;&lt;/span&gt; Upload all
+                &lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;btn btn-warning btn-s&quot; ng-click=&quot;uploader.cancelAll()&quot; ng-disabled=&quot;!uploader.isUploading&quot;&gt;
+                    &lt;span class=&quot;glyphicon glyphicon-ban-circle&quot;&gt;&lt;/span&gt; Cancel all
+                &lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;btn btn-danger btn-s&quot; ng-click=&quot;uploader.clearQueue()&quot; ng-disabled=&quot;!uploader.queue.length&quot;&gt;
+                    &lt;span class=&quot;glyphicon glyphicon-trash&quot;&gt;&lt;/span&gt; Remove all
+                &lt;/button&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+</code></pre><p>在项目中引入依赖：</p>
+<pre><code>import angularFileUpload from &apos;angular-file-upload&apos;;
+
+var app = angular
+    .module(&apos;app&apos;,[
+      &apos;angularFileUpload&apos;
+    ])
+    .controller(&apos;myController&apos;,[&apos;FileUploader&apos;],controller);
+
+function controller(FileUploader) {
+    var uploader = $scope.uploader = new FileUploader({
+        url: &apos;api/portName&apos;,
+        queueAfterUpload: 1,   //文件个数
+        removeAfterUpload: true  //上传后删除文件
+    });
+
+    $scope.clearItems = function(){ //重新选择文件时，清空队列，达到覆盖文件的效果
+        uploader.clearQueue();
+    };
+
+    //FILTERS
+    uploader.filters.push({
+        name: &apos;imageFilter&apos;,
+        fn: function(item /*{File|FileLikeObject}*/,options) {
+            var type = &apos;|&apos; + item.type.slice(item.type.lastIndexOf(&apos;/&apos;) + 1) + &apos;|&apos;;
+            return &apos;|jpg|png|jpeg|bmp|gif|&apos;.indexOf(type) !==-1;
+        }
+    });
+
+    //CALLBACKS
+    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+        alert(&apos;只支持图片上传！&apos;);
+    };
+    uploader.onAfterAddingFile = function(fileItem) {
+        console.info(&apos;onAfterAddingFile&apos;,fileItem);
+        $scope.fileItem = fileItem._file;   //添加文件之后，把文件信息赋给scope
+        //在这里可以判断添加的文件名后缀，文件大小限制
+        if($scope.fileItem.size &gt; MaxSize) {
+            alert(&apos;文件大小超限!&apos;);
+            uploader.removeFromQueue(fileItem);//超过大小移出队列
+        }else {
+            uploader.uploadAll();
+        }
+
+    };
+    uploader.onAfterAddingAll = function(addedFileItems) {
+        console.info(&apos;onAfterAddingAll&apos;, addedFileItems);
+    };
+    uploader.onBeforeUploadItem = function(item) {
+        console.info(&apos;onBeforeUploadItem&apos;, item);
+    };
+    uploader.onProgressItem = function(fileItem, progress) {
+        console.info(&apos;onProgressItem&apos;, fileItem, progress);
+    };
+    uploader.onProgressAll = function(progress) {
+        console.info(&apos;onProgressAll&apos;, progress);
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        console.info(&apos;onSuccessItem&apos;, fileItem, response, status, headers);
+        //判断是否上传成功
+        if(response.status == 1) {
+            alert(&apos;上传成功！&apos;)
+        }
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+        console.info(&apos;onErrorItem&apos;, fileItem, response, status, headers);
+    };
+    uploader.onCancelItem = function(fileItem, response, status, headers) {
+        console.info(&apos;onCancelItem&apos;, fileItem, response, status, headers);
+    };
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info(&apos;onCompleteItem&apos;, fileItem, response, status, headers);
+    };
+    uploader.onCompleteAll = function() {
+        console.info(&apos;onCompleteAll&apos;);
+    };
+}
+</code></pre><p>demo2:过滤器的使用<br>例子中过滤|doc|docx|jpg|png|pdf|多种文件格式。<br>html:</p>
+<pre><code>&lt;input type=&quot;file&quot; id=&quot;file&quot; name=&quot;file&quot; nv-file-select uploader=&quot;uploader&quot; ng-click=&quot;clearItems()&quot; filters=&quot;nameFilter&quot;&gt; 上传
+</code></pre><p>controller.js:</p>
+<pre><code>// FILTERS
+uploader.filters.push({
+    name: &apos;nameFilter&apos;,
+    fn: function(item /*{File|FileLikeObject}*/, options) {
+        var type = &apos;|&apos; + item.name.slice(item.name.lastIndexOf(&apos;.&apos;) + 1) + &apos;|&apos;;
+        return &apos;|doc|docx|jpg|png|pdf|&apos;.indexOf(type) !== -1;
+    }
+});
+</code></pre><p>多个过滤器使用<br>html:</p>
+<pre><code>&lt;input type=&quot;file&quot; id=&quot;file&quot; name=&quot;file&quot; nv-file-select uploader=&quot;uploader&quot; ng-click=&quot;clearItems()&quot; filters=&quot;filtername1,filtername2&quot;&gt; 上传
+
+// FILTERS
+uploader.filters.push({
+    name: &apos;filtername1&apos;,
+    fn: function(item /*{File|FileLikeObject}*/, options) {
+        ...
+    }
+},{
+    name: &apos;filtername2&apos;,
+    fn: function(item /*{File|FileLikeObject}*/, options) {
+        ...
+    }
+});
+</code></pre><p>注意：filtername1和filtername2两个过滤器之间是逻辑与关系（即&amp;&amp;），所以使用的时候避免出现逻辑或。做项目写了个坑，filtername1过滤器校验图片，filtername2校验word，html使用filters=”filtername1,filtername2”就出现图片和word都不允许上传问题。解决方法是用</p>
+<pre><code>item.name.slice(item.name.lastIndexOf(&apos;/&apos;) + 1) + &apos;|&apos;;
+return &apos;|doc|docx|jpg|png|pdf|&apos;.indexOf(type) !== -1;
+</code></pre><p>小结：angular-file-uplo插件支持多文件上传，限制文件大小，将文件上传用队列queue管理，有很多API可供调用，完成业务逻辑需求，如果浏览器支持H5的话，界面效果也很酷，可以增加进度条展示等等。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/07/20/gulp-use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -292,7 +763,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-20T10:05:20+08:00">
                 2017-07-20
@@ -318,7 +789,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -495,7 +966,7 @@ gulp.task(&apos;sass&apos;,function(){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
                 2017-07-18
@@ -521,7 +992,7 @@ gulp.task(&apos;sass&apos;,function(){
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -747,7 +1218,7 @@ module.exports = config;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T23:25:27+08:00">
                 2017-06-08
@@ -773,7 +1244,7 @@ module.exports = config;
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -905,7 +1376,7 @@ l  select as label for (key ,value) in object
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T14:50:17+08:00">
                 2017-03-11
@@ -931,7 +1402,7 @@ l  select as label for (key ,value) in object
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1148,7 +1619,7 @@ div {
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T07:34:13+08:00">
                 2017-03-05
@@ -1174,7 +1645,7 @@ div {
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1341,8 +1812,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1354,8 +1825,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1414,7 +1885,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
 
 
   <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

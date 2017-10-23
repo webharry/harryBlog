@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="frontend,构建生态,gulp," />
 
 
 
@@ -94,12 +94,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Harry的博客">
-<meta property="og:url" content="https://webharry.github.io/tags/RegExp/index.html">
+<meta name="description" content="今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  
+跨域解决方法-proxyhttp-proxy-middleware下面在本地开发中复现AJAX跨域请求。本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：12345678910$(document).ready(function() &amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨域解决方法-proxy">
+<meta property="og:url" content="https://webharry.github.io/2017/10/23/proxy/index.html">
 <meta property="og:site_name" content="Harry的博客">
+<meta property="og:description" content="今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  
+跨域解决方法-proxyhttp-proxy-middleware下面在本地开发中复现AJAX跨域请求。本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：12345678910$(document).ready(function() &amp;#1">
+<meta property="og:updated_time" content="2017-10-23T08:17:05.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Harry的博客">
+<meta name="twitter:title" content="跨域解决方法-proxy">
+<meta name="twitter:description" content="今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  
+跨域解决方法-proxyhttp-proxy-middleware下面在本地开发中复现AJAX跨域请求。本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：12345678910$(document).ready(function() &amp;#1">
 
 
 
@@ -128,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/tags/RegExp/"/>
+  <link rel="canonical" href="https://webharry.github.io/2017/10/23/proxy/"/>
 
 
 
 
 
-  <title>Tag: RegExp | Harry的博客</title>
+  <title>跨域解决方法-proxy | Harry的博客</title>
   
 
 
@@ -153,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,54 +254,166 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>RegExp<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/23/proxy/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/08/30/RegExp/" itemprop="url">
-              
-                <span itemprop="name">正则表达式学习总结</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">跨域解决方法-proxy</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T19:57:31+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-23T15:34:57+08:00">
+                2017-10-23
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/23/proxy/" class="leancloud_visitors" data-flag-title="跨域解决方法-proxy">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  </p>
+<h4 id="跨域解决方法-proxy"><a href="#跨域解决方法-proxy" class="headerlink" title="跨域解决方法-proxy"></a>跨域解决方法-proxy</h4><h5 id="http-proxy-middleware"><a href="#http-proxy-middleware" class="headerlink" title="http-proxy-middleware"></a>http-proxy-middleware</h5><p>下面在本地开发中复现AJAX跨域请求。<br>本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $.ajax(&#123;</div><div class="line">    <span class="attr">type</span>:<span class="string">"GET"</span>,</div><div class="line">    <span class="attr">url</span>:<span class="string">"./api/....."</span>,<span class="comment">//远程地址</span></div><div class="line">    dataType:<span class="string">"json"</span>,</div><div class="line">    <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>此时浏览器会报错，跨域问题。<br>意思是出现跨域请求错误。</p>
+<h4 id="解决方法一：browser-sync-http-proxy-middleware做代理"><a href="#解决方法一：browser-sync-http-proxy-middleware做代理" class="headerlink" title="解决方法一：browser-sync+http-proxy-middleware做代理"></a>解决方法一：browser-sync+http-proxy-middleware做代理</h4><p>在gulpfile.js文件中做配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).creat();</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> proxy = (<span class="string">'./api'</span>,&#123;</div><div class="line">  <span class="attr">target</span>:<span class="string">"http://echo.websocket.org"</span>,<span class="comment">//远程地址url</span></div><div class="line">  changeOrigin:<span class="literal">true</span>,<span class="comment">//虚拟主机站点需要</span></div><div class="line">  pathRewrite:&#123;</div><div class="line">    <span class="string">'^/api/(.*)'</span>:<span class="string">'/$1'</span>  <span class="comment">//正则匹配，替换api起始的路径</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  browserSync.init(&#123;</div><div class="line">    <span class="attr">server</span>:<span class="string">'./dist'</span>,</div><div class="line">    <span class="attr">notify</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">middleware</span>:[proxy]</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>其他解决方法参看如下：  </p>
+<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a>2.JSONP</h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+            <a href="/tags/构建生态/" rel="tag"># 构建生态</a>
+          
+            <a href="/tags/gulp/" rel="tag"># gulp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/CORS/" rel="next" title="CORS（cross-origin resourse sharing)跨域资源共享">
+                <i class="fa fa-chevron-left"></i> CORS（cross-origin resourse sharing)跨域资源共享
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -302,6 +421,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -322,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -376,6 +508,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域解决方法-proxy"><span class="nav-number">1.</span> <span class="nav-text">跨域解决方法-proxy</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#http-proxy-middleware"><span class="nav-number">1.1.</span> <span class="nav-text">http-proxy-middleware</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方法一：browser-sync-http-proxy-middleware做代理"><span class="nav-number">2.</span> <span class="nav-text">解决方法一：browser-sync+http-proxy-middleware做代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域解决方法"><span class="nav-number">3.</span> <span class="nav-text">跨域解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享"><span class="nav-number">3.1.</span> <span class="nav-text">1.CORS（cross-origin resourse sharing)跨域资源共享</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-JSONP"><span class="nav-number">3.2.</span> <span class="nav-text">2.JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-document-domain-iframe"><span class="nav-number">3.3.</span> <span class="nav-text">3.document.domain + iframe</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-window-name-iframe"><span class="nav-number">3.4.</span> <span class="nav-text">4.window.name + iframe</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-postMessage"><span class="nav-number">3.5.</span> <span class="nav-text">5.postMessage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-proxy"><span class="nav-number">3.6.</span> <span class="nav-text">6.proxy</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -506,10 +654,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
