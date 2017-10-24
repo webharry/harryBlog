@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js,frontend,构建生态," />
+  <meta name="keywords" content="JavaScript,frontend,构建生态," />
 
 
 
@@ -106,7 +106,7 @@
 同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。
 
 根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
-<meta property="og:updated_time" content="2017-10-23T08:17:34.276Z">
+<meta property="og:updated_time" content="2017-10-24T12:50:35.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CORS（cross-origin resourse sharing)跨域资源共享">
 <meta name="twitter:description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -217,7 +217,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -301,7 +301,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T10:30:14+08:00">
                 2017-10-12
@@ -327,7 +327,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -355,10 +355,44 @@
         <p>今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。</p>
 <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。</p>
 <blockquote>
-<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="external">http://store.company.com/dir/page.html同源检测的示例</a>:</p>
+<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="external">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
 </blockquote>
-<table class="standard-table"><br> <tbody><br>  <tr><br>   <th>URL</th><br>   <th>结果</th><br>   <th>原因</th><br>  </tr><br>  <tr><br>   <td><code><span class="nowiki"><a href="http://store.company.com/dir2/other.html" target="_blank" rel="external">http://store.company.com/dir2/other.html</a></span></code></td><br>   <td>成功</td><br>   <td><font face="consolas, Liberation Mono, courier, monospace"> </font></td><br>  </tr><br>  <tr><br>   <td><code><span class="nowiki"><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="external">http://store.company.com/dir/inner/another.html</a></span></code></td><br>   <td>成功</td><br>   <td><font face="consolas, Liberation Mono, courier, monospace"> </font></td><br>  </tr><br>  <tr><br>   <td><code><span class="nowiki"><a href="https://store.company.com/secure.html" target="_blank" rel="external">https://store.company.com/secure.html</a></span></code></td><br>   <td>失败</td><br>   <td>不同协议 ( https和http )</td><br>  </tr><br>  <tr><br>   <td><code><span class="nowiki"><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="external">http://store.company.com:81/dir/etc.html</a></span></code></td><br>   <td>失败</td><br>   <td>不同端口 ( 81和80)</td><br>  </tr><br>  <tr><br>   <td><code><span class="nowiki"><a href="http://news.company.com/dir/other.html" target="_blank" rel="external">http://news.company.com/dir/other.html</a></span></code></td><br>   <td>失败</td><br>   <td>不同域名 ( news和store )</td><br>  </tr><br> </tbody><br></table>
-
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th style="text-align:center">结果</th>
+<th style="text-align:right">原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="external">http://store.company.com/dir2/other.html</a></td>
+<td style="text-align:center">成功</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="external">http://store.company.com/dir/inner/another.html</a></td>
+<td style="text-align:center">成功</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td><a href="https://store.company.com/secure.html" target="_blank" rel="external">https://store.company.com/secure.html</a></td>
+<td style="text-align:center">失败</td>
+<td style="text-align:right">不同协议 ( https和http )</td>
+</tr>
+<tr>
+<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="external">http://store.company.com:81/dir/etc.html</a></td>
+<td style="text-align:center">失败</td>
+<td style="text-align:right">不同端口 ( 81和80)</td>
+</tr>
+<tr>
+<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="external">http://news.company.com/dir/other.html</a></td>
+<td style="text-align:center">失败</td>
+<td style="text-align:right">不同域名 ( news和store )</td>
+</tr>
+</tbody>
+</table>
 <h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>浏览器为了保证信息安全，规定了资源访问使用同源策略。所以，当浏览器访问的资源来自不同源，就会出现跨源资源访问，即跨域问题。 </p>
 <h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a>1.CORS（cross-origin resourse sharing)跨域资源共享</h5><p>CORS是浏览器解决跨域问题的一种策略，在CORS中，浏览器把ajax发起的请求分为简单请求和非简单请求，分别对两种请求进行处理，再将ajax请求发往服务器。</p>
 <h5 id="①简单请求就是满足以下条件的："><a href="#①简单请求就是满足以下条件的：" class="headerlink" title="①简单请求就是满足以下条件的："></a>①简单请求就是满足以下条件的：</h5><p>请求方式为这几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET,POST,HEAD</div></pre></td></tr></table></figure></p>
@@ -378,7 +412,7 @@
 <p>非简单请求例子中，我设置了特殊头信息“X-Custom-Header”，告知服务器接受这个参数信息。  </p>
 <p>在服务器设置接受信息：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> test = express();</div><div class="line"></div><div class="line"><span class="keyword">var</span> responsePort = <span class="number">3001</span>;<span class="comment">//服务器端口</span></div><div class="line">test.all(<span class="string">'*'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.set(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://localhost:3000'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PUT'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Custom-Header'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">  res.send(<span class="string">"hello CORS."</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>至此，对于两种请求方式，都可以实现跨域访问了。<br>其他解决方法参看如下：  </p>
-<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享-1"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享-1" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a>2.JSONP</h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
+<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享-1"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享-1" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a><a href="https://webharry.github.io/2017/10/24/JSONP/">2.JSONP</a></h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
       
     </div>
     
@@ -395,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag"># js</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
             <a href="/tags/frontend/" rel="tag"># frontend</a>
           
@@ -478,10 +512,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -501,8 +535,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -514,8 +548,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -590,7 +624,7 @@
 
 
   <div class="powered-by">
-    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

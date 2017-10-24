@@ -55,7 +55,7 @@ gulp.task('server',function(){
 
 #### 跨域解决方法
 ##### [1.CORS（cross-origin resourse sharing)跨域资源共享](https://webharry.github.io/2017/10/23/CORS/)
-##### 2.JSONP
+##### [2.JSONP](https://webharry.github.io/2017/10/24/JSONP/)
 ##### 3.document.domain + iframe
 ##### 4.window.name + iframe
 ##### 5.postMessage

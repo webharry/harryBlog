@@ -2,7 +2,7 @@
 title: CORS（cross-origin resourse sharing)跨域资源共享
 date: 2017-10-12 10:30:14
 tags:
-    - js
+    - JavaScript
     - frontend
     - '构建生态'
 ---
@@ -11,42 +11,16 @@ tags:
 ### 同源策略
 所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。
 >根据MDN给出的例子：
->下表给出了相对http://store.company.com/dir/page.html同源检测的示例:
+>下表给出了相对http://store.company.com/dir/page.html同源检测的示例:  
 
-<table class="standard-table">
- <tbody>
-  <tr>
-   <th>URL</th>
-   <th>结果</th>
-   <th>原因</th>
-  </tr>
-  <tr>
-   <td><code><span class="nowiki">http://store.company.com/dir2/other.html</span></code></td>
-   <td>成功</td>
-   <td><font face="consolas, Liberation Mono, courier, monospace"> </font></td>
-  </tr>
-  <tr>
-   <td><code><span class="nowiki">http://store.company.com/dir/inner/another.html</span></code></td>
-   <td>成功</td>
-   <td><font face="consolas, Liberation Mono, courier, monospace"> </font></td>
-  </tr>
-  <tr>
-   <td><code><span class="nowiki">https://store.company.com/secure.html</span></code></td>
-   <td>失败</td>
-   <td>不同协议 ( https和http )</td>
-  </tr>
-  <tr>
-   <td><code><span class="nowiki">http://store.company.com:81/dir/etc.html</span></code></td>
-   <td>失败</td>
-   <td>不同端口 ( 81和80)</td>
-  </tr>
-  <tr>
-   <td><code><span class="nowiki">http://news.company.com/dir/other.html</span></code></td>
-   <td>失败</td>
-   <td>不同域名 ( news和store )</td>
-  </tr>
- </tbody>
-</table>
+| URL       | 结果           | 原因  |
+| ------------- |:-------------:| -----:|
+| http://store.company.com/dir2/other.html     | 成功 | |
+| http://store.company.com/dir/inner/another.html    | 成功      |    |
+| https://store.company.com/secure.html | 失败     |    不同协议 ( https和http ) |
+| http://store.company.com:81/dir/etc.html      | 失败 | 不同端口 ( 81和80) |
+| http://news.company.com/dir/other.html      | 失败      |  不同域名 ( news和store ) |  
+
 
 ### 跨域问题
 浏览器为了保证信息安全，规定了资源访问使用同源策略。所以，当浏览器访问的资源来自不同源，就会出现跨源资源访问，即跨域问题。 
@@ -165,7 +139,7 @@ test.all('*', (req, res) => {
 
 #### 跨域解决方法
 ##### [1.CORS（cross-origin resourse sharing)跨域资源共享](https://webharry.github.io/2017/10/23/CORS/)
-##### 2.JSONP
+##### [2.JSONP](https://webharry.github.io/2017/10/24/JSONP/)
 ##### 3.document.domain + iframe
 ##### 4.window.name + iframe
 ##### 5.postMessage
