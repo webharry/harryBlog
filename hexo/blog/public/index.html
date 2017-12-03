@@ -98,6 +98,7 @@
 <meta property="og:title" content="Harry的博客">
 <meta property="og:url" content="https://webharry.github.io/index.html">
 <meta property="og:site_name" content="Harry的博客">
+<meta property="og:locale" content="English">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Harry的博客">
 
@@ -249,6 +250,288 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/03/create-npm-plug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/03/create-npm-plug/" itemprop="url">如何在npm上发布一个插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T16:04:53+08:00">
+                2017-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/03/create-npm-plug/" class="leancloud_visitors" data-flag-title="如何在npm上发布一个插件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天尝试在在npm上发布一个插件，做下笔记给大家分享。</p>
+<h3 id="1-在GitHub新建一个项目"><a href="#1-在GitHub新建一个项目" class="headerlink" title="1.在GitHub新建一个项目"></a>1.在GitHub新建一个项目</h3><p>这次用我自己写的一个gulp插件来做例子，演示下如何一步一步在npm上发布自己的插件。  </p>
+<p>首先，在GitHub上新建一个项目，我的插件取名叫gulp-px-to-rem,如图:<br><img src="https://upload.cc/i/UqKSsB.jpg" alt="图3"><br>新建成功后，将gulp-px-to-rem项目克隆到本地。这就是即将发布到npm的插件项目:<br><img src="https://upload.cc/i/9bi6o1.jpg" alt="图片2"></p>
+<h3 id="2-在npm注册一个账号"><a href="#2-在npm注册一个账号" class="headerlink" title="2.在npm注册一个账号"></a>2.在npm注册一个账号</h3><p>访问npm官网注册一个账号：<a href="https://www.npmjs.com。" target="_blank" rel="noopener">https://www.npmjs.com。</a><br>用命令行登录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm login</div></pre></td></tr></table></figure></p>
+<h3 id="3-发布插件"><a href="#3-发布插件" class="headerlink" title="3.发布插件"></a>3.发布插件</h3><p>进入本地项目gulp-px-to-rem的根目录下:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm publish</div></pre></td></tr></table></figure>
+<p>发布完成后，在npm官网下搜索我们刚发布的插件：<br><img src="https://upload.cc/i/08il1d.jpg" alt="图1"><br>如上，搜搜到插件gulp-px-to-rem,表示已经发布成功！  </p>
+<h3 id="发布常见问题"><a href="#发布常见问题" class="headerlink" title="发布常见问题"></a>发布常见问题</h3><p>小坑：注意每次再发布的时候，到package.json文件改下版本号再发布，否则会报错。  </p>
+<p>备注：<br>为了在GitHub同步代码，可以把每次发布更新到GitHub。只需三步命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git ci -m &apos;备注&apos;</div><div class="line">git push</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/11/24/数组交集-并集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/24/数组交集-并集/" itemprop="url">数组交集/并集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-24T18:11:04+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/24/数组交集-并集/" class="leancloud_visitors" data-flag-title="数组交集/并集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天用到处理数组交集的问题，顺手总结一下用原生API处理数组交集/并集的方法。</p>
+<p>首先介绍连个原生js方法：</p>
+<h3 id="1-Array-prototype-filter-方法"><a href="#1-Array-prototype-filter-方法" class="headerlink" title="1.Array.prototype.filter()方法"></a>1.Array.prototype.filter()方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array.filter(<span class="function"><span class="keyword">function</span>(<span class="params">currentValue,index,arr</span>), <span class="title">thisValue</span>)</span></div></pre></td></tr></table></figure>
+<p>currentValuex是当前元素，<br>index,当前元素下标，<br>arr当当期数组对象。  </p>
+<p>filter()方法接收一个函数，和一个可选值thisValue，返回符合条件的一个新数组。  </p>
+<p>实例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = [<span class="number">345</span>,<span class="number">23</span>,<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> b = o.filter(<span class="function"><span class="keyword">function</span>(<span class="params">cur</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> cur &gt; <span class="number">40</span>;</div><div class="line">&#125;)<span class="comment">//b = [345]</span></div></pre></td></tr></table></figure></p>
+<h3 id="2-Array-prototype-reduce-方法"><a href="#2-Array-prototype-reduce-方法" class="headerlink" title="2.Array.prototype.reduce()方法"></a>2.Array.prototype.reduce()方法</h3><p>array.reduce(function(total, currentValue, currentIndex, arr), initialValue)</p>
+<p>reduce()方法接收一个计数器函数和initialValue初始值（可选）  </p>
+<p>其中，函数的参数<br>total结果值, currentValue当前元素, currentIndex当前元素索引值, arr当期数组对象<br>实例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> sum = a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res,cur,index</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> res + cur</div><div class="line">&#125;)<span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<h3 id="多数组交集"><a href="#多数组交集" class="headerlink" title="多数组交集"></a>多数组交集</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/* 求多个数组交集</span></div><div class="line">* @param arr [[1,,,],[b,,,],,,] 数组集合</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">intersection</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = arr[<span class="number">0</span>];</div><div class="line">    arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">res,cur,index</span>)</span>&#123;</div><div class="line">        result = result.filter(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> cur.indexOf(n)!=<span class="number">-1</span>;</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> result；</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">11</span>],[<span class="number">11</span>,<span class="number">11</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">3</span>]];</div><div class="line"><span class="keyword">var</span> res = intersection(a);</div><div class="line"><span class="built_in">console</span>.log(res);<span class="comment">//[1,2,11]</span></div></pre></td></tr></table></figure>
+<h3 id="多数组并集"><a href="#多数组并集" class="headerlink" title="多数组并集"></a>多数组并集</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.concat.apply([], <span class="built_in">arguments</span>)</div><div class="line">&#125;</div><div class="line">merge(arr1,arr2,arr3,...)</div><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>],</div><div class="line">arr2 = [<span class="number">3</span>],</div><div class="line">arr3 = [<span class="number">2</span>];</div><div class="line"><span class="keyword">var</span> union = merge(arr1,arr2,arr3)<span class="comment">//[1,2,3,2]</span></div></pre></td></tr></table></figure>
+<h3 id="ES7有更简洁的方法"><a href="#ES7有更简洁的方法" class="headerlink" title="ES7有更简洁的方法"></a>ES7有更简洁的方法</h3><h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>]</div><div class="line"><span class="keyword">let</span> b = [<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="keyword">let</span> intersection = a.filter(<span class="function"><span class="params">v</span> =&gt;</span> b.includes(v))<span class="built_in">console</span>.log(intersection)<span class="comment">//[2]</span></div></pre></td></tr></table></figure>
+<h3 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = [<span class="number">1</span>]</div><div class="line"><span class="keyword">let</span> b = [<span class="number">2</span>]</div><div class="line"><span class="keyword">let</span> union = a.concat(b.filter(<span class="function"><span class="params">v</span> =&gt;</span> !a.includes(v)))</div><div class="line"><span class="built_in">console</span>.log(union)<span class="comment">//[1,2]</span></div></pre></td></tr></table></figure>
+<h3 id="判断元素是否在数组中"><a href="#判断元素是否在数组中" class="headerlink" title="判断元素是否在数组中"></a>判断元素是否在数组中</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** 判断参数值是否在数组中</span></div><div class="line">   * @param id 参数值</div><div class="line">   * @param source 源数组</div><div class="line">   */</div><div class="line">  <span class="keyword">var</span> inArray = <span class="function"><span class="keyword">function</span> (<span class="params">id, source</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> inFlag = <span class="literal">false</span>;</div><div class="line">    source.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">      <span class="keyword">if</span> (id == item) &#123;</div><div class="line">        inFlag = <span class="literal">true</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> inFlag;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">//使用</span></div><div class="line">  <span class="keyword">var</span> id = <span class="number">1</span>;</div><div class="line">  <span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">  <span class="keyword">var</span> isInArray = inArray(id,arr);<span class="comment">//true</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -618,7 +901,7 @@
             <p>今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。</p>
 <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。</p>
 <blockquote>
-<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="external">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
+<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="noopener">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
 </blockquote>
 <table>
 <thead>
@@ -630,27 +913,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="external">http://store.company.com/dir2/other.html</a></td>
+<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a></td>
 <td style="text-align:center">成功</td>
 <td style="text-align:right"></td>
 </tr>
 <tr>
-<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="external">http://store.company.com/dir/inner/another.html</a></td>
+<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a></td>
 <td style="text-align:center">成功</td>
 <td style="text-align:right"></td>
 </tr>
 <tr>
-<td><a href="https://store.company.com/secure.html" target="_blank" rel="external">https://store.company.com/secure.html</a></td>
+<td><a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同协议 ( https和http )</td>
 </tr>
 <tr>
-<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="external">http://store.company.com:81/dir/etc.html</a></td>
+<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同端口 ( 81和80)</td>
 </tr>
 <tr>
-<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="external">http://news.company.com/dir/other.html</a></td>
+<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同域名 ( news和store )</td>
 </tr>
@@ -662,12 +945,12 @@
 <p>HTTP头信息不超出以下几种：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Accept</div><div class="line">Accept-Language</div><div class="line">Content-Language</div><div class="line">Last-Event-ID</div><div class="line">content-type只限于三种：text/plain，multipart/form-data，application/x-www-form-urlencoded</div></pre></td></tr></table></figure>
 <p>对于简单请求，浏览器直接发出CORS请求，在头信息中增加一个字段：Origin,表示请求源域名。例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Accept:*<span class="comment">/*</span></div><div class="line">Accept-Encoding:gzip, deflate, br</div><div class="line">Accept-Language:zh-CN,zh;q=0.8</div><div class="line">Connection:keep-alive</div><div class="line">Host:localhost:3001</div><div class="line">Origin:http://localhost:3000</div></pre></td></tr></table></figure></p>
-<p>Origin:<a href="http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。" target="_blank" rel="external">http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。</a> </p>
+<p>Origin:<a href="http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。" target="_blank" rel="noopener">http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。</a> </p>
 <p>如果服务器发现Oringin字段的源不在接受范围，就会发送一个正常HTTP回应，浏览器发现这个回应的头信息中没有包含Accsess-Control-Allow-Origin字段，就抛出一个错误，被XMLHttpRequest的onerror捕获，即跨域问题出现了。</p>
 <p>好了，知道报错原因，我们就可以从以下方法解决跨域问题了：<br>概括为一句话：在服务器设置接受的源信息。</p>
 <h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>客户端请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://localhost:3000'</span>;</div><div class="line"></div><div class="line">xhr.open(<span class="string">'GET'</span>,url);</div><div class="line">xhr.send(<span class="literal">null</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123; <span class="comment">// 如果请求成功</span></div><div class="line">      text.innerHTML = xhr.response;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>服务器设置（例子用的express）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> test = express();</div><div class="line"></div><div class="line">test.get(<span class="string">'/'</span>,(req,res) =&gt; &#123;</div><div class="line">  res.set(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'http://localhost:3000'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PUT'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Custom-Header'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">  res.send(<span class="string">"hello CORS."</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>如上，服务器对请求的头信息进行设置，<br>Access-Control-Allow-Origin字段表示接受的源，表示接受来自<a href="http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。" target="_blank" rel="external">http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。</a></p>
+<p>如上，服务器对请求的头信息进行设置，<br>Access-Control-Allow-Origin字段表示接受的源，表示接受来自<a href="http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。" target="_blank" rel="noopener">http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。</a></p>
 <p>Access-Control-Allow-Methods列举出服务器接受的请求方式。<br>Access-Control-Allow-Headers可以设置允许请求源的header特殊参数。<br>Access-Control-Allow-Credentials该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。  </p>
 <p>如此，就可以实现跨域访问了。</p>
 <h5 id="②非简单请求"><a href="#②非简单请求" class="headerlink" title="②非简单请求"></a>②非简单请求</h5><p>非简单请求，我的理解是排除了以上简单请求的，比如PUT请求。  </p>
@@ -807,10 +1090,10 @@
           
             <p>select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:</p>
 <blockquote>
-<p>官网地址：<a href="https://select2.org/" target="_blank" rel="external">https://select2.org/</a></p>
+<p>官网地址：<a href="https://select2.org/" target="_blank" rel="noopener">https://select2.org/</a></p>
 <h3 id="一、引入插件select2"><a href="#一、引入插件select2" class="headerlink" title="一、引入插件select2"></a>一、引入插件select2</h3></blockquote>
 <h4 id="1-访问GitHub下载："><a href="#1-访问GitHub下载：" class="headerlink" title="1.访问GitHub下载："></a>1.访问GitHub下载：</h4><blockquote>
-<p><a href="https://github.com/select2/select2" target="_blank" rel="external">https://github.com/select2/select2</a><br>解压后将js和css文件引入你的html文件：</p>
+<p><a href="https://github.com/select2/select2" target="_blank" rel="noopener">https://github.com/select2/select2</a><br>解压后将js和css文件引入你的html文件：</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//select2</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.js'</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.css'</span>);</div></pre></td></tr></table></figure>
 <h4 id="2-或者通过远程动访问引入文件，在你的html文件引入js和css文件："><a href="#2-或者通过远程动访问引入文件，在你的html文件引入js和css文件：" class="headerlink" title="2.或者通过远程动访问引入文件，在你的html文件引入js和css文件："></a>2.或者通过远程动访问引入文件，在你的html文件引入js和css文件：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -1379,438 +1662,9 @@
 <p>遇到的一个问题是，使用Object.prototype.toString.call()方法不能判断foo是Foo类的实例。只能用instanceof来判断。</p>
 <h4 id="instanceof判断数据类型"><a href="#instanceof判断数据类型" class="headerlink" title="instanceof判断数据类型"></a>instanceof判断数据类型</h4><p>instanceof作用是判断原型与实例之间的关系。用法是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">实例 <span class="keyword">instanceof</span> 原型</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>instanceof操作符会在实例的原型链上查找，直到找到右边构造函数的prototype属性，或者为null的时候停止。<br>引用自<br><a href="http://blog.xieluping.cn/2017/08/18/instanceof/" target="_blank" rel="external">http://blog.xieluping.cn/2017/08/18/instanceof/</a></p>
+<p>instanceof操作符会在实例的原型链上查找，直到找到右边构造函数的prototype属性，或者为null的时候停止。<br>引用自<br><a href="http://blog.xieluping.cn/2017/08/18/instanceof/" target="_blank" rel="noopener">http://blog.xieluping.cn/2017/08/18/instanceof/</a></p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo);<span class="comment">//true</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/30/RegExp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/30/RegExp/" itemprop="url">正则表达式学习总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-30T19:57:31+08:00">
-                2017-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/30/RegExp/" class="leancloud_visitors" data-flag-title="正则表达式学习总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>正则表达式的基本语法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/pattern(模式)/</span>flags(标识符);</div></pre></td></tr></table></figure></p>
-<p>pattern(模式)可以是由字符类、限定符、分组、向前查找以及反向引用。flags(标识符)取值为：i(不区分大小写)，g(全局匹配)，m(多行匹配),同一个正则表达式可以带有一个或多个flags。</p>
-<h3 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h3><h4 id="字面量创建"><a href="#字面量创建" class="headerlink" title="字面量创建"></a>字面量创建</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配字符串中所有“at”的实例</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/at/g</span>;</div><div class="line"><span class="comment">//匹配第一个“bat”或“cat”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/[bc]at/i</span>;</div></pre></td></tr></table></figure>
-<h4 id="RegExp构造函数创建"><a href="#RegExp构造函数创建" class="headerlink" title="RegExp构造函数创建"></a>RegExp构造函数创建</h4><p>RegExp构造函数接收两个参数，第一个参数是要匹配的字符串模式，第二个是可选的标识符字符串。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配第一个“bat”或“cat”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"[bc]at"</span>,<span class="string">"i"</span>);</div></pre></td></tr></table></figure></p>
-<p>两种创建方式的比较：</p>
-<blockquote>
-<p>在ECMAScript3中，字面量创建和RegExp对象创建区别是：字面量创建始终会共享同一个RegExp实例，而构造函数创建的每一个RegExp实例都是一个新实例<br>ECMAScript5明确规定：使用正则表达式字面量必须像直接调用RegExp构造函数一样，每次都创建新的RegExp实例。IE9+、Firefox 4+和Chrome都做出了修改。</p>
-</blockquote>
-<p>正则表达式中的元字符必须转义。元字符有：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">( [ &#123; \ ^ $ | ) ? * + . ] &#125;</div></pre></td></tr></table></figure></p>
-<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配第一个“[bc]at”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/\[bc\]at/i</span>;</div><div class="line"><span class="comment">//在RegExp构造函数创建时，元字符需要双重on转义</span></div><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>,<span class="string">"i"</span>);</div></pre></td></tr></table></figure></p>
-<h3 id="RegExp实例的属性和方法"><a href="#RegExp实例的属性和方法" class="headerlink" title="RegExp实例的属性和方法"></a>RegExp实例的属性和方法</h3><h4 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ignoreCase 返回布尔值，表示RegExp对象是否具有标志 i</div><div class="line">global 返回布尔值，表示RegExp对象是否具有表示 g</div><div class="line">multiline 返回布尔值，表示RegExp对象是否具有表示 m</div><div class="line">lastIndex 一个整数，标识开始下一次匹配的字符位置</div><div class="line">soure 返回正则表达式的原文本 （不包括反斜杠）</div><div class="line">i 执行对大小写不敏感的匹配</div><div class="line">g 执行全局匹配 （查找所有匹配而非在找到第一个匹配后停止）</div><div class="line">m 执行多行匹配</div></pre></td></tr></table></figure>
-<h4 id="字符类匹配"><a href="#字符类匹配" class="headerlink" title="字符类匹配"></a>字符类匹配</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[...]查找方括号之间的任何字符</div><div class="line">[^..]查找任何不在方括号之间的字符</div><div class="line">[a-z]查找任何从小写a到小写z的字符</div><div class="line">[A-Z]查找任何从大写A到大写Z的字符</div><div class="line">[A-z]查找任何从大写A到小写z的字符</div><div class="line">. 查找单个字符，除了换行和行结束符</div><div class="line">\w 查找单词字符，等价于 [a-zA-Z0-9]</div><div class="line">\W 查找非单词字符，等价于 [^a-zA-Z0-9]</div><div class="line">\s 查找空白字符</div><div class="line">\S 查找非空白字符</div><div class="line">\d 查找数字，等价于[0-9]</div><div class="line">\D 查找非数字字符，等价于[^0-9]</div><div class="line">\b 匹配单词边界</div><div class="line">\r 查找回车符</div><div class="line">\t 查找制表符</div><div class="line">\0 查找NULL字符</div><div class="line">\n 查找换行符</div></pre></td></tr></table></figure>
-<h4 id="重复字符匹配"><a href="#重复字符匹配" class="headerlink" title="重复字符匹配"></a>重复字符匹配</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;n,m&#125;匹配前一项至少n次，但不能超过m次</div><div class="line">&#123;n,&#125;匹配前一项n次或更多次</div><div class="line">&#123;n&#125;匹配前一项n次</div><div class="line">n?匹配前一项0次或者1次，也就是说前一项是可选的，等价于&#123;0,1&#125;</div><div class="line">n+匹配前一项一次或多次，等价于&#123;1,&#125;</div><div class="line">n*匹配前一项0次或多次，等价于&#123;0，&#125;</div><div class="line">n$匹配任何结尾为n的字符串</div><div class="line">^n匹配任何开头为n的字符串</div><div class="line">？=n匹配任何其后紧接指定字符串n的字符串</div><div class="line">?!n匹配任何其后没有紧接指定字符串n的字符串</div></pre></td></tr></table></figure>
-<h4 id="匹配特定数字"><a href="#匹配特定数字" class="headerlink" title="匹配特定数字"></a>匹配特定数字</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">^[1-9]\d*$ 匹配正整数</div><div class="line">^-[1-9]\d*$ 匹配负整数</div><div class="line">^-?[0-9]\d*$ 匹配整数</div><div class="line">^[1-9]\d*|0$ 匹配非负整数（正整数 + 0）</div><div class="line">^-[1-9]\d*|0$ 匹配非正整数（负整数 + 0）</div><div class="line">^[1-9]\d*.\d*|0.\d*[1-9]\d*$ 匹配正浮点数</div><div class="line">^-([1-9]\d*.\d*|0.\d*[1-9]\d*)$ 匹配负浮点数</div><div class="line">^-?([1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0)$ 匹配浮点数</div><div class="line">^[1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0$ 匹配非负浮点数（正浮点数 + 0）</div><div class="line">^(-([1-9]\d*.\d*|0.\d*[1-9]\d*))|0?.0+|0$ 匹配非正浮点数（负浮点数 + 0）</div></pre></td></tr></table></figure>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><h5 id="exec-方法"><a href="#exec-方法" class="headerlink" title="exec()方法"></a>exec()方法</h5><p>exec()方法为模式的捕获组而设计的，该方法接收一个参数，即要匹配的字符串，该方法返回一个包含捕获组的数组Array,如果没有捕获组匹配返回null。返回的数组Array中，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配到的字符串。数组Array中还有两个参数input(返回要匹配的字符串)，index(返回匹配项在字符串中的位置)<br>模式中的捕获组就是指圆括号中的字符串。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)(d)?/</span>;</div><div class="line">e.exec(<span class="string">"ssdoesdo"</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line">array[0]:"doesd",</div><div class="line">array[1]:"es",</div><div class="line">array[2]:"d",</div><div class="line">index:2,</div><div class="line">input:"ssdoesdo"</div><div class="line">**/</div></pre></td></tr></table></figure></p>
-<p>例子中，模式中包含两个捕获组”es”、”d”，即圆括号中的字符串。</p>
-<h5 id="test-方法"><a href="#test-方法" class="headerlink" title="test()方法"></a>test()方法</h5><p>test()方法检索字符串中指定的值，该方法接收一个参数，如果字符串中含有与模式匹配的文本则返回true，否则返回false。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/</span>;</div><div class="line">e.test(<span class="string">"doesdo"</span>);</div><div class="line"><span class="comment">//true</span></div></pre></td></tr></table></figure></p>
-<p>如果正则表达式中带有g标识符,则每一次调用test方法和exec方法都从上一次匹配结束位置开始匹配；如果正则表达式中没有g标识符，则每次调用方法都从字符串起始位置开始匹配。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/g</span>;</div><div class="line">e.exec(<span class="string">"ssdoesdoesdoes"</span>);</div><div class="line"><span class="comment">/*</span></div><div class="line">array[0]:"does",</div><div class="line">array[1]:"es",</div><div class="line">index:2,</div><div class="line">input:"ssdoesdoesdoes"</div><div class="line">*/</div><div class="line">e.exec(<span class="string">"ssdoesdoesdoes"</span>);</div><div class="line"><span class="comment">/*</span></div><div class="line">array[0]:"does",</div><div class="line">array[1]:"es",</div><div class="line">index:6,</div><div class="line">input:"ssdoesdoesdoes"</div><div class="line">*/</div></pre></td></tr></table></figure></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/g</span>;</div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//6</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//10</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//14</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/</span>;</div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//0</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//0</span></div></pre></td></tr></table></figure>
-<h3 id="常用的正则校验"><a href="#常用的正则校验" class="headerlink" title="常用的正则校验"></a>常用的正则校验</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/^<span class="number">1</span>[<span class="number">34578</span>]\d&#123;<span class="number">9</span>&#125;$/ <span class="comment">//匹配手机号</span></div><div class="line">/^(([<span class="number">0</span>\+]\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;-)?(<span class="number">0</span>\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;)-)(\d&#123;<span class="number">7</span>,<span class="number">8</span>&#125;)(-(\d&#123;<span class="number">3</span>,&#125;))?$/ <span class="comment">//匹配座机号</span></div><div class="line">/^[<span class="number">0</span><span class="number">-9</span>]\d*$/  <span class="comment">//匹配正整数</span></div><div class="line">/^\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;$/ <span class="comment">//匹配ip地址</span></div><div class="line">/^(\w-*\.*)+@(\w-?)+(\.\w&#123;<span class="number">2</span>,&#125;)+$/  <span class="comment">//匹配邮箱</span></div><div class="line">/^(\d&#123;<span class="number">14</span>&#125;|\d&#123;<span class="number">17</span>&#125;)(\d|[xX])$/  <span class="comment">//匹配身份证</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/23/gulp-dev/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/23/gulp-dev/" itemprop="url">gulp构建一个项目</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-23T14:02:00+08:00">
-                2017-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/23/gulp-dev/" class="leancloud_visitors" data-flag-title="gulp构建一个项目">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>介绍：这篇文章总结了使用gulp构建一个项目的详细过程。包括开发环境搭建，构建项目并用于生产部署。  </p>
-<p>gulp自动化构建工具具备以下特点：<br>基于流、任务化<br>常用API：src、dest、watch、task、pipe</p>
-<h2 id="一．安装"><a href="#一．安装" class="headerlink" title="一．安装"></a>一．安装</h2><p>1.安装gulp：(注意这里默认大家已经安装了npm和nodejs)<br>新建项目文件，cmd切换到项目目录下，这里我新建了项目文件webapp  </p>
-<p>安装全局gulp：</p>
-<pre><code>npm i -g gulp
-</code></pre><p>2.接下来安装node依赖文件<br>首先用npm初始化项目配置文件：</p>
-<pre><code>npm init
-</code></pre><p>然后命令行一直回车就行，配置文件之后可以更改</p>
-<p>3.作为项目的开发依赖（devDependencies）安装：在当前目录安装gulp<br>在当前目录安装gulp:</p>
-<pre><code>npm i --save-dev gulp
-</code></pre><p>–save-dev的意思是将当前文件保存到配置文件当中，nodejs模块保存到packge.json文件当中，当我们需要项目保存到git仓库的时候，只需要保存packge.json文件到git仓库就行。当别人需要编译你的项目，只要npm i就可以拿到你的项目配置信息。</p>
-<p>我们可以看下package.json文件：在依赖模块添加了gulp信息</p>
-<p>然后我们看项目文件夹webapp的node_modules文件下多了个gulp文件夹，这个就是我们刚添加的gulp模块</p>
-<p>4.扩展插件–在当前项目文件webapp目录下，安装gulp依赖文件。<br>安装命令：</p>
-<pre><code>npm i --save--dev 插件名称
-</code></pre><p>需要安装的gulp插件：</p>
-<pre><code>gulp-clean  
-gulp-concat（文件合并）  
-gulp-connect  
-gulp-minify-html（html压缩）  
-gulp-minify-css（CSS压缩）
-gulp-cssmin（CSS压缩）（任选一个）  
-gulp-jshint（JS代码检查）
-gulp-imagemin（压缩图片）  
-gulp-less（编译Less）    
-gulp-sass（编译Sass）
-gulp-load-plugins  
-gulp-uglify （JS压缩）
-gulp-livereload（自动刷新）
-open
-</code></pre><p>比如说：</p>
-<pre><code>npm i --save--dev gulp-clean
-</code></pre><p>如果你不想一个个安装，有个批量安装的小窍门：</p>
-<pre><code>npm i --save--dev gulp-clean gulp-concat gulp-connect ...
-</code></pre><p>各个模块之间以空格隔开。<br>安装好之后呢，我们在package.json文件里可以看到这些依赖插件</p>
-<p>5.进行配置<br>在webapp项目根目录下，新建gulpfile.js文件，在文件中写入如下配置代码：</p>
-<pre><code>var gulp = require(&apos;gulp&apos;);          //引入模块
-var $ = require(&apos;gulp-load-plugins&apos;);  //有了这个模块，其他的模块可以以$符号引入
-var open = require(&apos;open&apos;);         //引入open
-
-var app = {//声明一个全局变量，定义项目的路径
-    srcPath : &apos;src/&apos;,      //源文件
-    devPath : &apos;build/&apos;,   //开发环境--整合之后的路径
-    prdPath : &apos;dist/&apos;     //生成部署
-};
-</code></pre><p>6.拷贝命令<br>定义任务的API，第二个参数是一个回调函数，在回调函数里我们写入逻辑操作代码</p>
-<pre><code>gulp.task(&apos;任务名&apos;,function () {
-    gulp.路径(路径)        //读取文件
-    .pipe(...操作文件)
-    .pipe(gulp.dest(目录))    //生成文件
-})
-</code></pre><h2 id="二．使用"><a href="#二．使用" class="headerlink" title="二．使用"></a>二．使用</h2><p>应用实例：<br>1.拷贝HTML：<br>a.新建文件夹src存放源代码</p>
-<p>b.新建完之后，我们在gulpfile.js文件下敲入如下代码进行拷贝html：（前提之前已配置好各个路径）</p>
-<pre><code>gulp.task(&apos;html&apos;,function () {
-    gulp.src(app.srcPath + &apos;**/*.html&apos;)
-    .pipe(gulp.dest(app.devPath))  //pipe是一个API  写文件的API--dest 拷贝到app.devPath + &apos;vendeor&apos;
-    .pipe(gulp.dest(app.prdPath))     //生成
-    .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
-})
-</code></pre><p>c.可以测试下，命令行打开，在项目路径下，输入</p>
-<pre><code>gulp html
-</code></pre><p>d.执行成功后可以看到项目文件下生成了新的文件夹build</p>
-<p>2.拷贝第三方依赖库lib：前提是安装好bower并且用bower安装了第三方依赖文件（本例使用Bower安装了Angular，在bower_componets文件下）<br>题外话：全局安装bower：</p>
-<pre><code>npm install bower -g
-</code></pre><p>Bower安装第三方依赖Angular:</p>
-<pre><code>bower install --save angular
-</code></pre><p>开始拷贝JS：<br>a.在gulpfile.js文件下敲入如下代码进行拷贝js：（前提之前已配置好各个路径）</p>
-<pre><code>gulp.task(&apos;lib&apos;,function () {
-    gulp.src(&apos;bower_components/**/*.js&apos;)
-    .pipe(gulp.dest(app.devPath + &apos;vendor&apos;))
-    .pipe(gulp.dest(app.prdPath + &apos;vendor&apos;))
-    .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
-})
-</code></pre><p>b.命令行进入项目路径，执行命令：</p>
-<pre><code>gulp lib
-</code></pre><p>c.如果在build目录下生成vendor文件夹及其angular文件，表示成功。</p>
-<p>3.拷贝CSS<br>a.src目录新建目录style，新建文件index.less和1.less，在两个文件编写测试代码。</p>
-<p>b.然后在gulpfile.js文件新建任务：</p>
-<pre><code>gulp.task(&apos;less&apos;,function () {
-    gulp.src(app.srcPath + &apos;style/index.less&apos;)
-        .pipe($.less())                     //别忘了less后的括号
-        .pipe(gulp.dest(app.devPath + &apos;css&apos;))
-        .pipe($.cssmin())                  //压缩
-        .pipe(gulp.dest(app.prdPath + &apos;css&apos;))
-        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
-});
-</code></pre><p>c.运行，在命令行输入</p>
-<pre><code>gulp less
-</code></pre><p>4.拷贝JS<br>同样的套路：<br>a.src下新建目录script，在script里新建文件1.js和2.js，随便写点测试代码。</p>
-<p>b.新建gulp任务：<br>在gulpfile.js文件下添加如下一段代码即可：</p>
-<pre><code>gulp.task(&apos;js&apos;,function () {
-    gulp.src(app.srcPath + &apos;script/**/*.js&apos;)
-        .pipe($.concat(&apos;index.js&apos;))            //生成
-        .pipe(gulp.dest(app.devPath + &apos;js&apos;))    //写入开发环境
-        .pipe($.uglify())                    //压缩
-        .pipe(gulp.dest(app.prdPath + &apos;js&apos;))    //部署到生产环境
-        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
-});
-</code></pre><p>c.运行<br>在命令行输入：</p>
-<pre><code>gulp js
-</code></pre><p>d.查看运行结果，在生产环境dist目录下生成js文件夹及其index.js文件。</p>
-<p>5.拷贝image<br>套路是一样的啊，<br>a.在src里新建image目录，在该目录里新建一张图片，比如1.png<br>b.新建gulp任务，在gulpfile.js文件下添加如下代码：</p>
-<pre><code>gulp.task(&apos;image&apos;,function () {
-    gulp.src(app.srcPath + &apos;image/**/*&apos;)           //读取文件
-        .pipe(gulp.dest(app.devPath + &apos;image&apos;))        //拷贝到开发环境
-        .pipe($.imagemin())                     //压缩图片
-        .pipe(gulp.dest(app.prdPath + &apos;image&apos;))    //部署到生产环境
-        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
-});
-</code></pre><p>c.项目路径下运行下：</p>
-<pre><code>gulp image
-</code></pre><p>d.查看运行结果，在生产环境目录dist里生产image目录及其文件</p>
-<p>6.在我们部署到生产环境之后，往往需要清除build和dist 目录，避免出现旧的影响新的。这时候就需要新建一个清除任务：<br>在gulpfile.js文件下添加如下代码块：</p>
-<pre><code>gulp.task(&apos;clean&apos;,function () {  //清除
-    gulp.src([app.devPath,app.prdPath]) //要删除目录
-    .pipe($.clean());
-});
-</code></pre><p>运行：</p>
-<pre><code>gulp clean
-</code></pre><p>7新建gulp总任务。在我们真正部署的时候，往往通过新建一个gulp总任务来执行之前的所有打包压缩任务，减少繁琐操作，代码如下：</p>
-<pre><code>gulp.task(&apos;build&apos;,[&apos;image&apos;,&apos;js&apos;,&apos;less&apos;,&apos;lib&apos;,&apos;html&apos;,&apos;json&apos;]);  //总任务  执行gulp build即可
-</code></pre><p>运行：</p>
-<pre><code>gulp build
-</code></pre><p>8新建服务—-自动化启动总任务build和服务器<br>在gulpfile.js文件下，敲入如下新建服务代码：</p>
-<pre><code>//新建服务
-gulp.task(&apos;serve&apos;,[&apos;build&apos;],function () {
-    $.connect.server({        //启动一个服务器
-        root:[app.devPath],   //从开发目录下读取
-        livereload:true,      //自动刷新浏览器，ie不支持
-        port:1234           //端口
-    });
-    open(&apos;http://localhost:1234&apos;);   //自动打开网址，打开浏览器
-
-    //监听
-    gulp.watch(&apos;bower_components/**/*&apos;,[&apos;lib&apos;]);
-    gulp.watch(app.srcPath + &apos;**/*.html&apos;,[&apos;html&apos;]);
-    gulp.watch(app.srcPath + &apos;data/**/*.json&apos;,[&apos;json&apos;]);
-    gulp.watch(app.srcPath + &apos;style/**/*.less&apos;,[&apos;less&apos;]);
-    gulp.watch(app.srcPath + &apos;script/**/*.js&apos;,[&apos;js&apos;]);
-    gulp.watch(app.srcPath + &apos;image/**/*&apos;,[&apos;image&apos;]);
-});
-</code></pre><p>8.1有一个小技能，我们可以新建一个gulp默认任务，让它运行gulp的时候自动启动服务serve：</p>
-<pre><code>//建立默认启动任务
-gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
-</code></pre><p>可以测试一下，命令行敲入：</p>
-<pre><code>gulp
-</code></pre><p>然后等待运行结束，浏览器会自动打开网址：<a href="http://localhost:1234/" target="_blank" rel="external">http://localhost:1234/</a><br>你可以在src目录下的index.html页面敲入代码：hello world!<br>此时你会发现网页自动刷新了</p>
-<p>当一个程序员打出hello world时就像中乐透一样哈哈:)</p>
 
           
         
@@ -1896,7 +1750,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1909,7 +1763,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

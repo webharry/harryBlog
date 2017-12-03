@@ -98,6 +98,7 @@
 <meta property="og:title" content="Harry的博客">
 <meta property="og:url" content="https://webharry.github.io/page/2/index.html">
 <meta property="og:site_name" content="Harry的博客">
+<meta property="og:locale" content="English">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Harry的博客">
 
@@ -263,6 +264,435 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/30/RegExp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/30/RegExp/" itemprop="url">正则表达式学习总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-30T19:57:31+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/30/RegExp/" class="leancloud_visitors" data-flag-title="正则表达式学习总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>正则表达式的基本语法：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/pattern(模式)/</span>flags(标识符);</div></pre></td></tr></table></figure></p>
+<p>pattern(模式)可以是由字符类、限定符、分组、向前查找以及反向引用。flags(标识符)取值为：i(不区分大小写)，g(全局匹配)，m(多行匹配),同一个正则表达式可以带有一个或多个flags。</p>
+<h3 id="创建正则表达式"><a href="#创建正则表达式" class="headerlink" title="创建正则表达式"></a>创建正则表达式</h3><h4 id="字面量创建"><a href="#字面量创建" class="headerlink" title="字面量创建"></a>字面量创建</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配字符串中所有“at”的实例</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/at/g</span>;</div><div class="line"><span class="comment">//匹配第一个“bat”或“cat”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/[bc]at/i</span>;</div></pre></td></tr></table></figure>
+<h4 id="RegExp构造函数创建"><a href="#RegExp构造函数创建" class="headerlink" title="RegExp构造函数创建"></a>RegExp构造函数创建</h4><p>RegExp构造函数接收两个参数，第一个参数是要匹配的字符串模式，第二个是可选的标识符字符串。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配第一个“bat”或“cat”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"[bc]at"</span>,<span class="string">"i"</span>);</div></pre></td></tr></table></figure></p>
+<p>两种创建方式的比较：</p>
+<blockquote>
+<p>在ECMAScript3中，字面量创建和RegExp对象创建区别是：字面量创建始终会共享同一个RegExp实例，而构造函数创建的每一个RegExp实例都是一个新实例<br>ECMAScript5明确规定：使用正则表达式字面量必须像直接调用RegExp构造函数一样，每次都创建新的RegExp实例。IE9+、Firefox 4+和Chrome都做出了修改。</p>
+</blockquote>
+<p>正则表达式中的元字符必须转义。元字符有：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">( [ &#123; \ ^ $ | ) ? * + . ] &#125;</div></pre></td></tr></table></figure></p>
+<p>例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//匹配第一个“[bc]at”,不区分大小写</span></div><div class="line"><span class="keyword">var</span> e = <span class="regexp">/\[bc\]at/i</span>;</div><div class="line"><span class="comment">//在RegExp构造函数创建时，元字符需要双重on转义</span></div><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[bc\\]at"</span>,<span class="string">"i"</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="RegExp实例的属性和方法"><a href="#RegExp实例的属性和方法" class="headerlink" title="RegExp实例的属性和方法"></a>RegExp实例的属性和方法</h3><h4 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ignoreCase 返回布尔值，表示RegExp对象是否具有标志 i</div><div class="line">global 返回布尔值，表示RegExp对象是否具有表示 g</div><div class="line">multiline 返回布尔值，表示RegExp对象是否具有表示 m</div><div class="line">lastIndex 一个整数，标识开始下一次匹配的字符位置</div><div class="line">soure 返回正则表达式的原文本 （不包括反斜杠）</div><div class="line">i 执行对大小写不敏感的匹配</div><div class="line">g 执行全局匹配 （查找所有匹配而非在找到第一个匹配后停止）</div><div class="line">m 执行多行匹配</div></pre></td></tr></table></figure>
+<h4 id="字符类匹配"><a href="#字符类匹配" class="headerlink" title="字符类匹配"></a>字符类匹配</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[...]查找方括号之间的任何字符</div><div class="line">[^..]查找任何不在方括号之间的字符</div><div class="line">[a-z]查找任何从小写a到小写z的字符</div><div class="line">[A-Z]查找任何从大写A到大写Z的字符</div><div class="line">[A-z]查找任何从大写A到小写z的字符</div><div class="line">. 查找单个字符，除了换行和行结束符</div><div class="line">\w 查找单词字符，等价于 [a-zA-Z0-9]</div><div class="line">\W 查找非单词字符，等价于 [^a-zA-Z0-9]</div><div class="line">\s 查找空白字符</div><div class="line">\S 查找非空白字符</div><div class="line">\d 查找数字，等价于[0-9]</div><div class="line">\D 查找非数字字符，等价于[^0-9]</div><div class="line">\b 匹配单词边界</div><div class="line">\r 查找回车符</div><div class="line">\t 查找制表符</div><div class="line">\0 查找NULL字符</div><div class="line">\n 查找换行符</div></pre></td></tr></table></figure>
+<h4 id="重复字符匹配"><a href="#重复字符匹配" class="headerlink" title="重复字符匹配"></a>重复字符匹配</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;n,m&#125;匹配前一项至少n次，但不能超过m次</div><div class="line">&#123;n,&#125;匹配前一项n次或更多次</div><div class="line">&#123;n&#125;匹配前一项n次</div><div class="line">n?匹配前一项0次或者1次，也就是说前一项是可选的，等价于&#123;0,1&#125;</div><div class="line">n+匹配前一项一次或多次，等价于&#123;1,&#125;</div><div class="line">n*匹配前一项0次或多次，等价于&#123;0，&#125;</div><div class="line">n$匹配任何结尾为n的字符串</div><div class="line">^n匹配任何开头为n的字符串</div><div class="line">？=n匹配任何其后紧接指定字符串n的字符串</div><div class="line">?!n匹配任何其后没有紧接指定字符串n的字符串</div></pre></td></tr></table></figure>
+<h4 id="匹配特定数字"><a href="#匹配特定数字" class="headerlink" title="匹配特定数字"></a>匹配特定数字</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">^[1-9]\d*$ 匹配正整数</div><div class="line">^-[1-9]\d*$ 匹配负整数</div><div class="line">^-?[0-9]\d*$ 匹配整数</div><div class="line">^[1-9]\d*|0$ 匹配非负整数（正整数 + 0）</div><div class="line">^-[1-9]\d*|0$ 匹配非正整数（负整数 + 0）</div><div class="line">^[1-9]\d*.\d*|0.\d*[1-9]\d*$ 匹配正浮点数</div><div class="line">^-([1-9]\d*.\d*|0.\d*[1-9]\d*)$ 匹配负浮点数</div><div class="line">^-?([1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0)$ 匹配浮点数</div><div class="line">^[1-9]\d*.\d*|0.\d*[1-9]\d*|0?.0+|0$ 匹配非负浮点数（正浮点数 + 0）</div><div class="line">^(-([1-9]\d*.\d*|0.\d*[1-9]\d*))|0?.0+|0$ 匹配非正浮点数（负浮点数 + 0）</div></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><h5 id="exec-方法"><a href="#exec-方法" class="headerlink" title="exec()方法"></a>exec()方法</h5><p>exec()方法为模式的捕获组而设计的，该方法接收一个参数，即要匹配的字符串，该方法返回一个包含捕获组的数组Array,如果没有捕获组匹配返回null。返回的数组Array中，第一项是与整个模式匹配的字符串，其他项是与模式中的捕获组匹配到的字符串。数组Array中还有两个参数input(返回要匹配的字符串)，index(返回匹配项在字符串中的位置)<br>模式中的捕获组就是指圆括号中的字符串。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)(d)?/</span>;</div><div class="line">e.exec(<span class="string">"ssdoesdo"</span>);</div><div class="line"><span class="comment">/**</span></div><div class="line">array[0]:"doesd",</div><div class="line">array[1]:"es",</div><div class="line">array[2]:"d",</div><div class="line">index:2,</div><div class="line">input:"ssdoesdo"</div><div class="line">**/</div></pre></td></tr></table></figure></p>
+<p>例子中，模式中包含两个捕获组”es”、”d”，即圆括号中的字符串。</p>
+<h5 id="test-方法"><a href="#test-方法" class="headerlink" title="test()方法"></a>test()方法</h5><p>test()方法检索字符串中指定的值，该方法接收一个参数，如果字符串中含有与模式匹配的文本则返回true，否则返回false。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/</span>;</div><div class="line">e.test(<span class="string">"doesdo"</span>);</div><div class="line"><span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>如果正则表达式中带有g标识符,则每一次调用test方法和exec方法都从上一次匹配结束位置开始匹配；如果正则表达式中没有g标识符，则每次调用方法都从字符串起始位置开始匹配。<br>exg:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/g</span>;</div><div class="line">e.exec(<span class="string">"ssdoesdoesdoes"</span>);</div><div class="line"><span class="comment">/*</span></div><div class="line">array[0]:"does",</div><div class="line">array[1]:"es",</div><div class="line">index:2,</div><div class="line">input:"ssdoesdoesdoes"</div><div class="line">*/</div><div class="line">e.exec(<span class="string">"ssdoesdoesdoes"</span>);</div><div class="line"><span class="comment">/*</span></div><div class="line">array[0]:"does",</div><div class="line">array[1]:"es",</div><div class="line">index:6,</div><div class="line">input:"ssdoesdoesdoes"</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/g</span>;</div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//6</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//10</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//14</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="regexp">/do(es)?/</span>;</div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//0</span></div><div class="line"><span class="built_in">console</span>.log(e.test(<span class="string">"ssdoesdoesdoes"</span>));</div><div class="line"><span class="built_in">console</span>.log(e.lastIndex);</div><div class="line"><span class="comment">//true</span></div><div class="line"><span class="comment">//0</span></div></pre></td></tr></table></figure>
+<h3 id="常用的正则校验"><a href="#常用的正则校验" class="headerlink" title="常用的正则校验"></a>常用的正则校验</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/^<span class="number">1</span>[<span class="number">34578</span>]\d&#123;<span class="number">9</span>&#125;$/ <span class="comment">//匹配手机号</span></div><div class="line">/^(([<span class="number">0</span>\+]\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;-)?(<span class="number">0</span>\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;)-)(\d&#123;<span class="number">7</span>,<span class="number">8</span>&#125;)(-(\d&#123;<span class="number">3</span>,&#125;))?$/ <span class="comment">//匹配座机号</span></div><div class="line">/^[<span class="number">0</span><span class="number">-9</span>]\d*$/  <span class="comment">//匹配正整数</span></div><div class="line">/^\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;\.\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;$/ <span class="comment">//匹配ip地址</span></div><div class="line">/^(\w-*\.*)+@(\w-?)+(\.\w&#123;<span class="number">2</span>,&#125;)+$/  <span class="comment">//匹配邮箱</span></div><div class="line">/^(\d&#123;<span class="number">14</span>&#125;|\d&#123;<span class="number">17</span>&#125;)(\d|[xX])$/  <span class="comment">//匹配身份证</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/23/gulp-dev/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/23/gulp-dev/" itemprop="url">gulp构建一个项目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-23T14:02:00+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/23/gulp-dev/" class="leancloud_visitors" data-flag-title="gulp构建一个项目">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>介绍：这篇文章总结了使用gulp构建一个项目的详细过程。包括开发环境搭建，构建项目并用于生产部署。  </p>
+<p>gulp自动化构建工具具备以下特点：<br>基于流、任务化<br>常用API：src、dest、watch、task、pipe</p>
+<h2 id="一．安装"><a href="#一．安装" class="headerlink" title="一．安装"></a>一．安装</h2><p>1.安装gulp：(注意这里默认大家已经安装了npm和nodejs)<br>新建项目文件，cmd切换到项目目录下，这里我新建了项目文件webapp  </p>
+<p>安装全局gulp：</p>
+<pre><code>npm i -g gulp
+</code></pre><p>2.接下来安装node依赖文件<br>首先用npm初始化项目配置文件：</p>
+<pre><code>npm init
+</code></pre><p>然后命令行一直回车就行，配置文件之后可以更改</p>
+<p>3.作为项目的开发依赖（devDependencies）安装：在当前目录安装gulp<br>在当前目录安装gulp:</p>
+<pre><code>npm i --save-dev gulp
+</code></pre><p>–save-dev的意思是将当前文件保存到配置文件当中，nodejs模块保存到packge.json文件当中，当我们需要项目保存到git仓库的时候，只需要保存packge.json文件到git仓库就行。当别人需要编译你的项目，只要npm i就可以拿到你的项目配置信息。</p>
+<p>我们可以看下package.json文件：在依赖模块添加了gulp信息</p>
+<p>然后我们看项目文件夹webapp的node_modules文件下多了个gulp文件夹，这个就是我们刚添加的gulp模块</p>
+<p>4.扩展插件–在当前项目文件webapp目录下，安装gulp依赖文件。<br>安装命令：</p>
+<pre><code>npm i --save--dev 插件名称
+</code></pre><p>需要安装的gulp插件：</p>
+<pre><code>gulp-clean  
+gulp-concat（文件合并）  
+gulp-connect  
+gulp-minify-html（html压缩）  
+gulp-minify-css（CSS压缩）
+gulp-cssmin（CSS压缩）（任选一个）  
+gulp-jshint（JS代码检查）
+gulp-imagemin（压缩图片）  
+gulp-less（编译Less）    
+gulp-sass（编译Sass）
+gulp-load-plugins  
+gulp-uglify （JS压缩）
+gulp-livereload（自动刷新）
+open
+</code></pre><p>比如说：</p>
+<pre><code>npm i --save--dev gulp-clean
+</code></pre><p>如果你不想一个个安装，有个批量安装的小窍门：</p>
+<pre><code>npm i --save--dev gulp-clean gulp-concat gulp-connect ...
+</code></pre><p>各个模块之间以空格隔开。<br>安装好之后呢，我们在package.json文件里可以看到这些依赖插件</p>
+<p>5.进行配置<br>在webapp项目根目录下，新建gulpfile.js文件，在文件中写入如下配置代码：</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);          //引入模块
+var $ = require(&apos;gulp-load-plugins&apos;);  //有了这个模块，其他的模块可以以$符号引入
+var open = require(&apos;open&apos;);         //引入open
+
+var app = {//声明一个全局变量，定义项目的路径
+    srcPath : &apos;src/&apos;,      //源文件
+    devPath : &apos;build/&apos;,   //开发环境--整合之后的路径
+    prdPath : &apos;dist/&apos;     //生成部署
+};
+</code></pre><p>6.拷贝命令<br>定义任务的API，第二个参数是一个回调函数，在回调函数里我们写入逻辑操作代码</p>
+<pre><code>gulp.task(&apos;任务名&apos;,function () {
+    gulp.路径(路径)        //读取文件
+    .pipe(...操作文件)
+    .pipe(gulp.dest(目录))    //生成文件
+})
+</code></pre><h2 id="二．使用"><a href="#二．使用" class="headerlink" title="二．使用"></a>二．使用</h2><p>应用实例：<br>1.拷贝HTML：<br>a.新建文件夹src存放源代码</p>
+<p>b.新建完之后，我们在gulpfile.js文件下敲入如下代码进行拷贝html：（前提之前已配置好各个路径）</p>
+<pre><code>gulp.task(&apos;html&apos;,function () {
+    gulp.src(app.srcPath + &apos;**/*.html&apos;)
+    .pipe(gulp.dest(app.devPath))  //pipe是一个API  写文件的API--dest 拷贝到app.devPath + &apos;vendeor&apos;
+    .pipe(gulp.dest(app.prdPath))     //生成
+    .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
+})
+</code></pre><p>c.可以测试下，命令行打开，在项目路径下，输入</p>
+<pre><code>gulp html
+</code></pre><p>d.执行成功后可以看到项目文件下生成了新的文件夹build</p>
+<p>2.拷贝第三方依赖库lib：前提是安装好bower并且用bower安装了第三方依赖文件（本例使用Bower安装了Angular，在bower_componets文件下）<br>题外话：全局安装bower：</p>
+<pre><code>npm install bower -g
+</code></pre><p>Bower安装第三方依赖Angular:</p>
+<pre><code>bower install --save angular
+</code></pre><p>开始拷贝JS：<br>a.在gulpfile.js文件下敲入如下代码进行拷贝js：（前提之前已配置好各个路径）</p>
+<pre><code>gulp.task(&apos;lib&apos;,function () {
+    gulp.src(&apos;bower_components/**/*.js&apos;)
+    .pipe(gulp.dest(app.devPath + &apos;vendor&apos;))
+    .pipe(gulp.dest(app.prdPath + &apos;vendor&apos;))
+    .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
+})
+</code></pre><p>b.命令行进入项目路径，执行命令：</p>
+<pre><code>gulp lib
+</code></pre><p>c.如果在build目录下生成vendor文件夹及其angular文件，表示成功。</p>
+<p>3.拷贝CSS<br>a.src目录新建目录style，新建文件index.less和1.less，在两个文件编写测试代码。</p>
+<p>b.然后在gulpfile.js文件新建任务：</p>
+<pre><code>gulp.task(&apos;less&apos;,function () {
+    gulp.src(app.srcPath + &apos;style/index.less&apos;)
+        .pipe($.less())                     //别忘了less后的括号
+        .pipe(gulp.dest(app.devPath + &apos;css&apos;))
+        .pipe($.cssmin())                  //压缩
+        .pipe(gulp.dest(app.prdPath + &apos;css&apos;))
+        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
+});
+</code></pre><p>c.运行，在命令行输入</p>
+<pre><code>gulp less
+</code></pre><p>4.拷贝JS<br>同样的套路：<br>a.src下新建目录script，在script里新建文件1.js和2.js，随便写点测试代码。</p>
+<p>b.新建gulp任务：<br>在gulpfile.js文件下添加如下一段代码即可：</p>
+<pre><code>gulp.task(&apos;js&apos;,function () {
+    gulp.src(app.srcPath + &apos;script/**/*.js&apos;)
+        .pipe($.concat(&apos;index.js&apos;))            //生成
+        .pipe(gulp.dest(app.devPath + &apos;js&apos;))    //写入开发环境
+        .pipe($.uglify())                    //压缩
+        .pipe(gulp.dest(app.prdPath + &apos;js&apos;))    //部署到生产环境
+        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
+});
+</code></pre><p>c.运行<br>在命令行输入：</p>
+<pre><code>gulp js
+</code></pre><p>d.查看运行结果，在生产环境dist目录下生成js文件夹及其index.js文件。</p>
+<p>5.拷贝image<br>套路是一样的啊，<br>a.在src里新建image目录，在该目录里新建一张图片，比如1.png<br>b.新建gulp任务，在gulpfile.js文件下添加如下代码：</p>
+<pre><code>gulp.task(&apos;image&apos;,function () {
+    gulp.src(app.srcPath + &apos;image/**/*&apos;)           //读取文件
+        .pipe(gulp.dest(app.devPath + &apos;image&apos;))        //拷贝到开发环境
+        .pipe($.imagemin())                     //压缩图片
+        .pipe(gulp.dest(app.prdPath + &apos;image&apos;))    //部署到生产环境
+        .pipe($.connect.reload());//通知服务器刷新浏览器，ie8不支持
+});
+</code></pre><p>c.项目路径下运行下：</p>
+<pre><code>gulp image
+</code></pre><p>d.查看运行结果，在生产环境目录dist里生产image目录及其文件</p>
+<p>6.在我们部署到生产环境之后，往往需要清除build和dist 目录，避免出现旧的影响新的。这时候就需要新建一个清除任务：<br>在gulpfile.js文件下添加如下代码块：</p>
+<pre><code>gulp.task(&apos;clean&apos;,function () {  //清除
+    gulp.src([app.devPath,app.prdPath]) //要删除目录
+    .pipe($.clean());
+});
+</code></pre><p>运行：</p>
+<pre><code>gulp clean
+</code></pre><p>7新建gulp总任务。在我们真正部署的时候，往往通过新建一个gulp总任务来执行之前的所有打包压缩任务，减少繁琐操作，代码如下：</p>
+<pre><code>gulp.task(&apos;build&apos;,[&apos;image&apos;,&apos;js&apos;,&apos;less&apos;,&apos;lib&apos;,&apos;html&apos;,&apos;json&apos;]);  //总任务  执行gulp build即可
+</code></pre><p>运行：</p>
+<pre><code>gulp build
+</code></pre><p>8新建服务—-自动化启动总任务build和服务器<br>在gulpfile.js文件下，敲入如下新建服务代码：</p>
+<pre><code>//新建服务
+gulp.task(&apos;serve&apos;,[&apos;build&apos;],function () {
+    $.connect.server({        //启动一个服务器
+        root:[app.devPath],   //从开发目录下读取
+        livereload:true,      //自动刷新浏览器，ie不支持
+        port:1234           //端口
+    });
+    open(&apos;http://localhost:1234&apos;);   //自动打开网址，打开浏览器
+
+    //监听
+    gulp.watch(&apos;bower_components/**/*&apos;,[&apos;lib&apos;]);
+    gulp.watch(app.srcPath + &apos;**/*.html&apos;,[&apos;html&apos;]);
+    gulp.watch(app.srcPath + &apos;data/**/*.json&apos;,[&apos;json&apos;]);
+    gulp.watch(app.srcPath + &apos;style/**/*.less&apos;,[&apos;less&apos;]);
+    gulp.watch(app.srcPath + &apos;script/**/*.js&apos;,[&apos;js&apos;]);
+    gulp.watch(app.srcPath + &apos;image/**/*&apos;,[&apos;image&apos;]);
+});
+</code></pre><p>8.1有一个小技能，我们可以新建一个gulp默认任务，让它运行gulp的时候自动启动服务serve：</p>
+<pre><code>//建立默认启动任务
+gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
+</code></pre><p>可以测试一下，命令行敲入：</p>
+<pre><code>gulp
+</code></pre><p>然后等待运行结束，浏览器会自动打开网址：<a href="http://localhost:1234/" target="_blank" rel="noopener">http://localhost:1234/</a><br>你可以在src目录下的index.html页面敲入代码：hello world!<br>此时你会发现网页自动刷新了</p>
+<p>当一个程序员打出hello world时就像中乐透一样哈哈:)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/22/CSS3-attribute/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -349,14 +779,14 @@
 </em>可以给一个对象应用一组或多组阴影效果，方式如前面的语法显示一样，用逗号隔开。<br><em>text-shadow: X-Offset Y-Offset Blur Color中
 </em>X-Offset表示阴影的水平偏移距离，其值为正值时阴影向右偏移，如果其值为负值时，阴影向左偏移；<br><em>Y-Offset是指阴影的垂直偏移距离，如果其值是正值时，阴影向下偏移反之其值是负值时阴影向顶部偏移；
 </em>Blur是指阴影的模糊程度，其值不能是负值，如果值越大，阴影越模糊，反之阴影越清晰，如果不需要阴影模糊可以将Blur值设置为0；<br><em>Color是指阴影的颜色，其可以使用rgba色。著作权归作者所有。
-</em>原文: <a href="https://www.w3cplus.com/blog/52.html" target="_blank" rel="external">https://www.w3cplus.com/blog/52.html</a> © w3cplus.com<br>*/</p>
+</em>原文: <a href="https://www.w3cplus.com/blog/52.html" target="_blank" rel="noopener">https://www.w3cplus.com/blog/52.html</a> © w3cplus.com<br>*/</p>
 <pre><code>h1 {
     text-shadow: 1px 1px 1px #FF0000, 0 0 0 #ccc, 2px 2px 2px #ff00de;
 }
 </code></pre><p>/<em>
 </em>transform-style<br><em>使转换的子元素保留其3D转换
 </em>transform-style 属性规定如何在 3D 空间中呈现被嵌套的元素。<br><em>语法：transform-style: flat|preserve-3d;
-</em>注释：该属性必须与 transform 属性一同使用。<br><em>transform :旋转 div 元素. <a href="http://www.w3school.com.cn/cssref/pr_transform.asp" target="_blank" rel="external">http://www.w3school.com.cn/cssref/pr_transform.asp</a>
+</em>注释：该属性必须与 transform 属性一同使用。<br><em>transform :旋转 div 元素. <a href="http://www.w3school.com.cn/cssref/pr_transform.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/cssref/pr_transform.asp</a>
 </em>rotateX(angle)定义沿着 X 轴的 3D 旋转<br><em>rotateY(angle)定义沿着 Y 轴的 3D 旋转
 </em>/</p>
 <pre><code>.box {
@@ -1252,7 +1682,7 @@ gulp.task(&apos;sass&apos;,function(){
         
           
             <p>webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是安装好<a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js</a>，<br>全局安装：</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是安装好<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js</a>，<br>全局安装：</p>
 <pre><code>npm install -g webpack
 </code></pre><p>作为项目开发依赖安装：</p>
 <pre><code>npm install --save-dev webpack
@@ -1520,7 +1950,7 @@ $scope.lists= [
 $scope.mylabel= $scope.lists[0];//默认数组第一个作为option的值
 }
 ]);
-</code></pre><p>3.执行结果：默认显示“步伐1”<br><a href="http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" target="_blank" rel="external">http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a></p>
+</code></pre><p>3.执行结果：默认显示“步伐1”<br><a href="http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" target="_blank" rel="noopener">http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a></p>
 <p>4.延伸–ng-options用法[1]<br>ng-optins属性可以在表达式中使用数组或对象来自动生成一个select的option列表，与ng-repeat类似。</p>
 <p>一般用法：</p>
 <p>对于数组：</p>
@@ -1530,7 +1960,7 @@ l v.value as v.label for v in array //将v.label值作为v.value
 <pre><code>l  label for (key , value) in object
 l  select as label for (key ,value) in object
 </code></pre><p>5.引用：更多用法参考链接</p>
-<p>[1].<a href="http://www.cnblogs.com/panda-zhang/p/5290694.html" target="_blank" rel="external">http://www.cnblogs.com/panda-zhang/p/5290694.html</a></p>
+<p>[1].<a href="http://www.cnblogs.com/panda-zhang/p/5290694.html" target="_blank" rel="noopener">http://www.cnblogs.com/panda-zhang/p/5290694.html</a></p>
 
           
         
@@ -2044,7 +2474,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -2057,7 +2487,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

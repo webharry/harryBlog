@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,frontend,构建生态," />
+  <meta name="keywords" content="frontend,JavaScript,构建生态," />
 
 
 
@@ -94,25 +94,18 @@
 
 
 
-<meta name="description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。
-同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。
-
-根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
+<meta name="description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。 同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。  根据MDN给出的例子：下表">
+<meta name="keywords" content="frontend,JavaScript,构建生态">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CORS（cross-origin resourse sharing)跨域资源共享">
 <meta property="og:url" content="https://webharry.github.io/2017/10/12/CORS/index.html">
 <meta property="og:site_name" content="Harry的博客">
-<meta property="og:description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。
-同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。
-
-根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
-<meta property="og:updated_time" content="2017-10-24T12:50:35.153Z">
+<meta property="og:description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。 同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。  根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2017-11-14T06:47:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CORS（cross-origin resourse sharing)跨域资源共享">
-<meta name="twitter:description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。
-同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。
-
-根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
+<meta name="twitter:description" content="今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。 同源策略所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。  根据MDN给出的例子：下表给出了相对http://store.company.com/dir/page.h">
 
 
 
@@ -355,7 +348,7 @@
         <p>今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。</p>
 <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。</p>
 <blockquote>
-<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="external">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
+<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="noopener">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
 </blockquote>
 <table>
 <thead>
@@ -367,27 +360,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="external">http://store.company.com/dir2/other.html</a></td>
+<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a></td>
 <td style="text-align:center">成功</td>
 <td style="text-align:right"></td>
 </tr>
 <tr>
-<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="external">http://store.company.com/dir/inner/another.html</a></td>
+<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a></td>
 <td style="text-align:center">成功</td>
 <td style="text-align:right"></td>
 </tr>
 <tr>
-<td><a href="https://store.company.com/secure.html" target="_blank" rel="external">https://store.company.com/secure.html</a></td>
+<td><a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同协议 ( https和http )</td>
 </tr>
 <tr>
-<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="external">http://store.company.com:81/dir/etc.html</a></td>
+<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同端口 ( 81和80)</td>
 </tr>
 <tr>
-<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="external">http://news.company.com/dir/other.html</a></td>
+<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a></td>
 <td style="text-align:center">失败</td>
 <td style="text-align:right">不同域名 ( news和store )</td>
 </tr>
@@ -399,12 +392,12 @@
 <p>HTTP头信息不超出以下几种：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Accept</div><div class="line">Accept-Language</div><div class="line">Content-Language</div><div class="line">Last-Event-ID</div><div class="line">content-type只限于三种：text/plain，multipart/form-data，application/x-www-form-urlencoded</div></pre></td></tr></table></figure>
 <p>对于简单请求，浏览器直接发出CORS请求，在头信息中增加一个字段：Origin,表示请求源域名。例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Accept:*<span class="comment">/*</span></div><div class="line">Accept-Encoding:gzip, deflate, br</div><div class="line">Accept-Language:zh-CN,zh;q=0.8</div><div class="line">Connection:keep-alive</div><div class="line">Host:localhost:3001</div><div class="line">Origin:http://localhost:3000</div></pre></td></tr></table></figure></p>
-<p>Origin:<a href="http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。" target="_blank" rel="external">http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。</a> </p>
+<p>Origin:<a href="http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。" target="_blank" rel="noopener">http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。</a> </p>
 <p>如果服务器发现Oringin字段的源不在接受范围，就会发送一个正常HTTP回应，浏览器发现这个回应的头信息中没有包含Accsess-Control-Allow-Origin字段，就抛出一个错误，被XMLHttpRequest的onerror捕获，即跨域问题出现了。</p>
 <p>好了，知道报错原因，我们就可以从以下方法解决跨域问题了：<br>概括为一句话：在服务器设置接受的源信息。</p>
 <h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>客户端请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://localhost:3000'</span>;</div><div class="line"></div><div class="line">xhr.open(<span class="string">'GET'</span>,url);</div><div class="line">xhr.send(<span class="literal">null</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123; <span class="comment">// 如果请求成功</span></div><div class="line">      text.innerHTML = xhr.response;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>服务器设置（例子用的express）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> test = express();</div><div class="line"></div><div class="line">test.get(<span class="string">'/'</span>,(req,res) =&gt; &#123;</div><div class="line">  res.set(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'http://localhost:3000'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PUT'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Custom-Header'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">  res.send(<span class="string">"hello CORS."</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>如上，服务器对请求的头信息进行设置，<br>Access-Control-Allow-Origin字段表示接受的源，表示接受来自<a href="http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。" target="_blank" rel="external">http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。</a></p>
+<p>如上，服务器对请求的头信息进行设置，<br>Access-Control-Allow-Origin字段表示接受的源，表示接受来自<a href="http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。" target="_blank" rel="noopener">http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。</a></p>
 <p>Access-Control-Allow-Methods列举出服务器接受的请求方式。<br>Access-Control-Allow-Headers可以设置允许请求源的header特殊参数。<br>Access-Control-Allow-Credentials该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。  </p>
 <p>如此，就可以实现跨域访问了。</p>
 <h5 id="②非简单请求"><a href="#②非简单请求" class="headerlink" title="②非简单请求"></a>②非简单请求</h5><p>非简单请求，我的理解是排除了以上简单请求的，比如PUT请求。  </p>
@@ -429,9 +422,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
             <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
             <a href="/tags/构建生态/" rel="tag"># 构建生态</a>
           
@@ -535,7 +528,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -548,7 +541,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
