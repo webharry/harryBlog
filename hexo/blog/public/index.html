@@ -264,6 +264,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/07/ui-select/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/07/ui-select/" itemprop="url">angular+ui-select+select2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T11:23:56+08:00">
+                2017-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/07/ui-select/" class="leancloud_visitors" data-flag-title="angular+ui-select+select2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天项目需求，增加一个下拉搜索框，找来了ui-selet插件,就插件的使用做一下总结分享。</p>
+<h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h3><p>npm：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install ui-select</div></pre></td></tr></table></figure></p>
+<p>在angular项目的文件引入模块：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">impprt <span class="string">'ui-select'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = angular.module(<span class="string">'myapp'</span>, [<span class="string">'ui.select'</span>, <span class="string">'ngSanitize'</span>]);</div></pre></td></tr></table></figure></p>
+<p>小坑：</p>
+<ul>
+<li><p>这个ui-select版本还不完善，需要自己手动引入下css文件，在node_module中找到ui-slect的主文件index.js，将css文件导出一下，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'./dist/select.js'</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">'./dist/select.css'</span>);</div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'ui.select'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>此外需要引入angular依赖文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2.基本使用"></a>2.基本使用</h3><p>在html文件中写入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ui-select</span> <span class="attr">ng-disabled</span>=<span class="string">"disabled"</span> <span class="attr">ng-model</span>=<span class="string">"arr.selected"</span> <span class="attr">style</span>=<span class="string">"min-width: 300px;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-match</span> <span class="attr">placeholder</span>=<span class="string">"请选择"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"$select.selected.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-match</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-choices</span> <span class="attr">repeat</span>=<span class="string">"item in arr | filter:   $select.search"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"item.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-choices</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ui-select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>js文件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'demo'</span>, [<span class="string">'ngSanitize'</span>, <span class="string">'ui.select'</span>]);</div><div class="line">app.controller(<span class="string">'DemoCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, $http, $timeout, $interval</span>) </span>&#123;</div><div class="line">    $scope.arr = [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">name</span>:<span class="string">'slecet1'</span></div><div class="line">            id:<span class="number">1</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">name</span>:<span class="string">'slecet2'</span></div><div class="line">            id:<span class="number">2</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-增加event事件"><a href="#3-增加event事件" class="headerlink" title="3.增加event事件"></a>3.增加event事件</h3><p>在使用select2插件时，发觉事件ng-click和ng-change并不会触发执行。这个问题在ui-select插件的event事件中可以解决。on-selsect=”expression”：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ui-select</span> <span class="attr">ng-disabled</span>=<span class="string">"disabled"</span> <span class="attr">ng-model</span>=<span class="string">"arr.selected"</span> <span class="attr">on-select</span>=<span class="string">"change($item, $model)"</span> <span class="attr">style</span>=<span class="string">"min-width: 300px;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-match</span> <span class="attr">placeholder</span>=<span class="string">"请选择"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"$select.selected.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-match</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-choices</span> <span class="attr">repeat</span>=<span class="string">"item in arr | filter:   $select.search"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"item.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-choices</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ui-select</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在js文件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//change()函数可以取到当前选中的选项信息$item, $model</span></div><div class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params">$item, $model</span>) </span>&#123;</div><div class="line">        <span class="comment">//这里写入业务逻辑代码</span></div><div class="line">        $scope.id = $item.id;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-设置ui-select默认值"><a href="#4-设置ui-select默认值" class="headerlink" title="4.设置ui-select默认值"></a>4.设置ui-select默认值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$scope.arr.selected = &#123;<span class="comment">//ui-select 赋初值</span></div><div class="line">    id: <span class="string">'1'</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'111'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为在给ui-select组件绑定的是对象，所以在设置默认值的时候也必须保持类型一致。</p>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>小结：更多使用方法参看官网例子：<a href="https://github.com/angular-ui/ui-select" target="_blank" rel="noopener">https://github.com/angular-ui/ui-select</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/03/create-npm-plug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1554,157 +1704,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/01/Object-prototype-toString-call/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/01/Object-prototype-toString-call/" itemprop="url">JS中判断数据类型的几种方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-01T11:31:38+08:00">
-                2017-09-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/01/Object-prototype-toString-call/" class="leancloud_visitors" data-flag-title="JS中判断数据类型的几种方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在搬砖途中看到一大神的代码，用Object.prototype.toString.call()判断数据类型，在这里学习总结下，在js中，判断数据类型除了用typeof运算符之外，还可以用Object.prototype.toString.call()方法、instanceof操作符。  </p>
-<h3 id="几种判断方法的区别"><a href="#几种判断方法的区别" class="headerlink" title="几种判断方法的区别"></a>几种判断方法的区别</h3><h4 id="typeof判断数据类型"><a href="#typeof判断数据类型" class="headerlink" title="typeof判断数据类型"></a>typeof判断数据类型</h4><p>使用typeof操作符，判断数据类型返回值如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="number">1</span><span class="comment">//"number"</span></div><div class="line"><span class="keyword">typeof</span> <span class="string">"a"</span><span class="comment">//"string"</span></div><div class="line"><span class="keyword">typeof</span> <span class="literal">true</span><span class="comment">//"boolean"</span></div><div class="line"><span class="keyword">typeof</span> &#123;&#125;<span class="comment">//"object"</span></div><div class="line"><span class="keyword">typeof</span> []<span class="comment">//"object"</span></div><div class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;<span class="comment">//"function"</span></div></pre></td></tr></table></figure></p>
-<p>使用时的一个问题是，在判断数组和对象存储值时，都返回”object”。</p>
-<h4 id="Object-prototype上的原生toString-方法判断数据类型"><a href="#Object-prototype上的原生toString-方法判断数据类型" class="headerlink" title="Object.prototype上的原生toString()方法判断数据类型"></a>Object.prototype上的原生toString()方法判断数据类型</h4><p>Object.prototype.toString.call()方法既可以判断基本类型，也可以判断原生引用类型，还可以判断原生JSON对象。  </p>
-<h5 id="判断基本类型"><a href="#判断基本类型" class="headerlink" title="判断基本类型"></a>判断基本类型</h5><p>数字number、字符串string、布尔值boolean。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">2</span>);<span class="comment">//"[object Number]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="string">"s"</span>);<span class="comment">//"[object String]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>);<span class="comment">//"[object Boolean]"</span></div></pre></td></tr></table></figure></p>
-<h5 id="判断空类型"><a href="#判断空类型" class="headerlink" title="判断空类型"></a>判断空类型</h5><p>null和undefined。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>);<span class="comment">//"[object Null]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>);<span class="comment">//"[object Undefined]"</span></div></pre></td></tr></table></figure></p>
-<h5 id="判断复合类型"><a href="#判断复合类型" class="headerlink" title="判断复合类型"></a>判断复合类型</h5><p>对象Object、数组Array、方法Function、日期Date、布尔Boolean、数字Number、字符串String、正则RegExp、Math。<br>例如上面例子中的引用类型存储值就可以使用Object.prototype.toString()方法区别出来：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;);<span class="comment">//"[object Object]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call([]);<span class="comment">//"[object Array]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);<span class="comment">//"[object Function]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">String</span>);<span class="comment">//"[object Function]"</span></div><div class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(t);<span class="comment">//"[object Date]"</span></div><div class="line"><span class="keyword">var</span> bb = <span class="keyword">new</span> <span class="built_in">Boolean</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(bb);<span class="comment">//"[object Boolean]"</span></div><div class="line"><span class="keyword">var</span> bb = <span class="keyword">new</span> <span class="built_in">Number</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(bb);<span class="comment">//"[object Number]"</span></div><div class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(str);<span class="comment">//"[object String]"</span></div><div class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^1[34578][0-9]&#123;9&#125;$"</span>,<span class="string">"g"</span>);</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(reg);<span class="comment">//"[object RegExp]"</span></div><div class="line"><span class="keyword">var</span> reg = <span class="built_in">Math</span>.valueOf();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(reg);<span class="comment">//"[object Math]"</span></div></pre></td></tr></table></figure></p>
-<h5 id="判断原生JSON对象"><a href="#判断原生JSON对象" class="headerlink" title="判断原生JSON对象"></a>判断原生JSON对象</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isNativeJSON = <span class="built_in">window</span>.JSON &amp;&amp; <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>);</div><div class="line"><span class="built_in">console</span>.log(isNativeJSON);<span class="comment">//[object JSON]</span></div></pre></td></tr></table></figure>
-<p>输出为</p>
-<h5 id="判断自定义类型"><a href="#判断自定义类型" class="headerlink" title="判断自定义类型"></a>判断自定义类型</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name,age</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> foo =<span class="keyword">new</span> Foo(<span class="string">"harry"</span>,<span class="number">20</span>);</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(foo);<span class="comment">//"[object Object]"</span></div></pre></td></tr></table></figure>
-<p>遇到的一个问题是，使用Object.prototype.toString.call()方法不能判断foo是Foo类的实例。只能用instanceof来判断。</p>
-<h4 id="instanceof判断数据类型"><a href="#instanceof判断数据类型" class="headerlink" title="instanceof判断数据类型"></a>instanceof判断数据类型</h4><p>instanceof作用是判断原型与实例之间的关系。用法是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">实例 <span class="keyword">instanceof</span> 原型</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>instanceof操作符会在实例的原型链上查找，直到找到右边构造函数的prototype属性，或者为null的时候停止。<br>引用自<br><a href="http://blog.xieluping.cn/2017/08/18/instanceof/" target="_blank" rel="noopener">http://blog.xieluping.cn/2017/08/18/instanceof/</a></p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo);<span class="comment">//true</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1750,7 +1754,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>

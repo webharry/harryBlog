@@ -264,6 +264,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/01/Object-prototype-toString-call/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/01/Object-prototype-toString-call/" itemprop="url">JS中判断数据类型的几种方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-01T11:31:38+08:00">
+                2017-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/01/Object-prototype-toString-call/" class="leancloud_visitors" data-flag-title="JS中判断数据类型的几种方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在搬砖途中看到一大神的代码，用Object.prototype.toString.call()判断数据类型，在这里学习总结下，在js中，判断数据类型除了用typeof运算符之外，还可以用Object.prototype.toString.call()方法、instanceof操作符。  </p>
+<h3 id="几种判断方法的区别"><a href="#几种判断方法的区别" class="headerlink" title="几种判断方法的区别"></a>几种判断方法的区别</h3><h4 id="typeof判断数据类型"><a href="#typeof判断数据类型" class="headerlink" title="typeof判断数据类型"></a>typeof判断数据类型</h4><p>使用typeof操作符，判断数据类型返回值如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="number">1</span><span class="comment">//"number"</span></div><div class="line"><span class="keyword">typeof</span> <span class="string">"a"</span><span class="comment">//"string"</span></div><div class="line"><span class="keyword">typeof</span> <span class="literal">true</span><span class="comment">//"boolean"</span></div><div class="line"><span class="keyword">typeof</span> &#123;&#125;<span class="comment">//"object"</span></div><div class="line"><span class="keyword">typeof</span> []<span class="comment">//"object"</span></div><div class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;<span class="comment">//"function"</span></div></pre></td></tr></table></figure></p>
+<p>使用时的一个问题是，在判断数组和对象存储值时，都返回”object”。</p>
+<h4 id="Object-prototype上的原生toString-方法判断数据类型"><a href="#Object-prototype上的原生toString-方法判断数据类型" class="headerlink" title="Object.prototype上的原生toString()方法判断数据类型"></a>Object.prototype上的原生toString()方法判断数据类型</h4><p>Object.prototype.toString.call()方法既可以判断基本类型，也可以判断原生引用类型，还可以判断原生JSON对象。  </p>
+<h5 id="判断基本类型"><a href="#判断基本类型" class="headerlink" title="判断基本类型"></a>判断基本类型</h5><p>数字number、字符串string、布尔值boolean。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">2</span>);<span class="comment">//"[object Number]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="string">"s"</span>);<span class="comment">//"[object String]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>);<span class="comment">//"[object Boolean]"</span></div></pre></td></tr></table></figure></p>
+<h5 id="判断空类型"><a href="#判断空类型" class="headerlink" title="判断空类型"></a>判断空类型</h5><p>null和undefined。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>);<span class="comment">//"[object Null]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>);<span class="comment">//"[object Undefined]"</span></div></pre></td></tr></table></figure></p>
+<h5 id="判断复合类型"><a href="#判断复合类型" class="headerlink" title="判断复合类型"></a>判断复合类型</h5><p>对象Object、数组Array、方法Function、日期Date、布尔Boolean、数字Number、字符串String、正则RegExp、Math。<br>例如上面例子中的引用类型存储值就可以使用Object.prototype.toString()方法区别出来：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;);<span class="comment">//"[object Object]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call([]);<span class="comment">//"[object Array]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);<span class="comment">//"[object Function]"</span></div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">String</span>);<span class="comment">//"[object Function]"</span></div><div class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(t);<span class="comment">//"[object Date]"</span></div><div class="line"><span class="keyword">var</span> bb = <span class="keyword">new</span> <span class="built_in">Boolean</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(bb);<span class="comment">//"[object Boolean]"</span></div><div class="line"><span class="keyword">var</span> bb = <span class="keyword">new</span> <span class="built_in">Number</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(bb);<span class="comment">//"[object Number]"</span></div><div class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(str);<span class="comment">//"[object String]"</span></div><div class="line"><span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"^1[34578][0-9]&#123;9&#125;$"</span>,<span class="string">"g"</span>);</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(reg);<span class="comment">//"[object RegExp]"</span></div><div class="line"><span class="keyword">var</span> reg = <span class="built_in">Math</span>.valueOf();</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(reg);<span class="comment">//"[object Math]"</span></div></pre></td></tr></table></figure></p>
+<h5 id="判断原生JSON对象"><a href="#判断原生JSON对象" class="headerlink" title="判断原生JSON对象"></a>判断原生JSON对象</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isNativeJSON = <span class="built_in">window</span>.JSON &amp;&amp; <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>);</div><div class="line"><span class="built_in">console</span>.log(isNativeJSON);<span class="comment">//[object JSON]</span></div></pre></td></tr></table></figure>
+<p>输出为</p>
+<h5 id="判断自定义类型"><a href="#判断自定义类型" class="headerlink" title="判断自定义类型"></a>判断自定义类型</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name,age</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> foo =<span class="keyword">new</span> Foo(<span class="string">"harry"</span>,<span class="number">20</span>);</div><div class="line"><span class="built_in">Object</span>.prototype.toString.call(foo);<span class="comment">//"[object Object]"</span></div></pre></td></tr></table></figure>
+<p>遇到的一个问题是，使用Object.prototype.toString.call()方法不能判断foo是Foo类的实例。只能用instanceof来判断。</p>
+<h4 id="instanceof判断数据类型"><a href="#instanceof判断数据类型" class="headerlink" title="instanceof判断数据类型"></a>instanceof判断数据类型</h4><p>instanceof作用是判断原型与实例之间的关系。用法是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">实例 <span class="keyword">instanceof</span> 原型</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>instanceof操作符会在实例的原型链上查找，直到找到右边构造函数的prototype属性，或者为null的时候停止。<br>引用自<br><a href="http://blog.xieluping.cn/2017/08/18/instanceof/" target="_blank" rel="noopener">http://blog.xieluping.cn/2017/08/18/instanceof/</a></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> Foo);<span class="comment">//true</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/30/RegExp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2239,196 +2385,11 @@ div {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/03/05/angular-instruction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/05/angular-instruction/" itemprop="url">angular-instruction</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T07:34:13+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/05/angular-instruction/" class="leancloud_visitors" data-flag-title="angular-instruction">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Angular几个常用指令"><a href="#Angular几个常用指令" class="headerlink" title="Angular几个常用指令"></a>Angular几个常用指令</h1><h6 id="1-ng-if指令"><a href="#1-ng-if指令" class="headerlink" title="1.ng-if指令"></a>1.ng-if指令</h6><p><strong>定义：</strong>指令用于表达式值为false时移除 HTML 元素；如果if语句的执行结果为true，会添加移除元素，并显示。ng-if 指令不同于 ng-hide， ng-hide 隐藏元素，而 ng-if 是从 DOM 中移除元素。</p>
-<p><strong>用法实例：</strong>通过ng-if控制元素隐藏/显示，达到点击隐藏和显示的效果也是常见的用法。推荐这种方法，简单快捷有木有。</p>
-<pre><code>&lt;div ng-click=&quot;a!=a&quot; ng-if=&quot;aa&quot;&gt;
-    &lt;!--每当点击div元素，改变a的值，达到隐藏显示div元素的目的--&gt;
-    ...
-&lt;/div&gt;
-&lt;script&gt;
-       var a=true;
-&lt;/script&gt;
-</code></pre><h6 id="2-ng-show指令"><a href="#2-ng-show指令" class="headerlink" title="2.ng-show指令"></a>2.ng-show指令</h6><p><strong>定义：</strong>ng-show 指令在表达式为 true 时显示指定的 HTML 元素，否则隐藏指定的 HTML 元素</p>
-<p><strong>用法:</strong><br><code>&lt;div ng-show=&quot;expression&quot;&gt;
-    ...
-&lt;/div&gt;</code></p>
-<p>Expression是表达式，你可以自己定义。</p>
-<h6 id="3-ng-hide指令"><a href="#3-ng-hide指令" class="headerlink" title="3.ng-hide指令"></a>3.ng-hide指令</h6><p><strong>定义：</strong>指令在表达式为 true 时隐藏 HTML 元素</p>
-<p><strong>用法:</strong></p>
-<pre><code>&lt;div ng-hide=&quot;expression&quot;&gt;
-    ...
-&lt;/div&gt;
-</code></pre><h6 id="4-ng-repeat指令"><a href="#4-ng-repeat指令" class="headerlink" title="4.ng-repeat指令"></a>4.ng-repeat指令</h6><p><strong>定义：</strong>指令用于循环输出指定次数的 HTML 元素<br>集合必须是数组或对象</p>
-<p><strong>用法：</strong></p>
-<pre><code>&lt;body ng-app=&quot;moduleName&quot; ng-controller=&quot;CtrlName&quot;&gt;
-
-    &lt;h1 ng-repeat=&quot;item in group&quot;&gt;{{item}}&lt;/h1&gt;
-
-&lt;script&gt;
-var app = angular.module(&quot;moduleName&quot;, []);
-app.controller(&quot;CtrlName&quot;, function($scope) {
-    $scope.group = [
-        &quot;RMB&quot;,
-        &quot;Doller&quot;,
-        &quot;Chnia&quot;,
-        &quot;Beijing&quot;
-    ]
-});
-&lt;/script&gt;
-
-&lt;/body&gt;
-</code></pre><p>渲染出的DOM：</p>
-<pre><code>&lt;body ng-app=&quot;moduleName&quot; ng-controller=&quot;CtrlName&quot;&gt;
-    &lt;h1&gt;RMB&lt;/h1&gt;
-    &lt;h1&gt;Doller&lt;/h1&gt;
-    &lt;h1&gt;Chnia&lt;/h1&gt;
-    &lt;h1&gt;Beijing&lt;/h1&gt;
-&lt;/body&gt;
-</code></pre><p>Ng-reapt在处理后台数据时经常用到，后台返回的数据往往比这要复杂，可能是数组里包含了对象，比如在上面group里加一个List对象：</p>
-<pre><code>$scope.group = [
-     &quot;RMB&quot;,
-     &quot;Doller&quot;,
-     &quot;Chnia&quot;,
-     &quot;List&quot;:{a:1,b:2}
-]
-</code></pre><p>要取得a的值，就要这么写：</p>
-<pre><code>&lt;h1 ng-repeat=&quot;item in group&quot;&gt;{{item.List.a}}&lt;/h1&gt;
-</code></pre><p>更多内容敬请关注博客，欢迎和我交流哦<em>~</em></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2474,7 +2435,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
