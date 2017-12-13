@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="frontend,svn,版本控制," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了 安装前提是安装好Node.js，全局安装： npm install -g webpack 作为项目开发依赖安装： npm install --save-">
+<meta name="description" content="常用命令总结svn add 将未版本化文件/新建文件提交到版本库. 1svn add 文件名/目录名  提交文件： 1svn add a.js  提交目录： 1svn add dist  或者进入到待提交目录下： 1svn add .   svn add *会忽略已经在版本控制之下的目录，需要提交工作副本中的所有未版本">
+<meta name="keywords" content="frontend,svn,版本控制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack2简单使用">
-<meta property="og:url" content="https://webharry.github.io/2017/07/18/webpack-use/index.html">
+<meta property="og:title" content="svn常用指令总结">
+<meta property="og:url" content="https://webharry.github.io/2017/12/13/svn/index.html">
 <meta property="og:site_name" content="Harry的博客">
-<meta property="og:description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了 安装前提是安装好Node.js，全局安装： npm install -g webpack 作为项目开发依赖安装： npm install --save-dev webpack 使用这里以新建配置文件来执行，项目根目录下新建webpa">
+<meta property="og:description" content="常用命令总结svn add 将未版本化文件/新建文件提交到版本库. 1svn add 文件名/目录名  提交文件： 1svn add a.js  提交目录： 1svn add dist  或者进入到待提交目录下： 1svn add .   svn add *会忽略已经在版本控制之下的目录，需要提交工作副本中的所有未版本化文件，使用svn add –force命令，可以递归的提交未版本化文件，包括忽">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2017-11-14T06:47:34.000Z">
+<meta property="og:updated_time" content="2017-12-13T09:44:09.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack2简单使用">
-<meta name="twitter:description" content="webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了 安装前提是安装好Node.js，全局安装： npm install -g webpack 作为项目开发依赖安装： npm install --save-dev webpack 使用这里以新建配置文件来执行，项目根目录下新建webpa">
+<meta name="twitter:title" content="svn常用指令总结">
+<meta name="twitter:description" content="常用命令总结svn add 将未版本化文件/新建文件提交到版本库. 1svn add 文件名/目录名  提交文件： 1svn add a.js  提交目录： 1svn add dist  或者进入到待提交目录下： 1svn add .   svn add *会忽略已经在版本控制之下的目录，需要提交工作副本中的所有未版本化文件，使用svn add –force命令，可以递归的提交未版本化文件，包括忽">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/2017/07/18/webpack-use/"/>
+  <link rel="canonical" href="https://webharry.github.io/2017/12/13/svn/"/>
 
 
 
 
 
-  <title>webpack2简单使用 | Harry的博客</title>
+  <title>svn常用指令总结 | Harry的博客</title>
   
 
 
@@ -266,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/07/18/webpack-use/">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/13/svn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yangjie">
@@ -283,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">webpack2简单使用</h1>
+          <h1 class="post-title" itemprop="name headline">svn常用指令总结</h1>
         
 
         <div class="post-meta">
@@ -295,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
-                2017-07-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-13T17:33:18+08:00">
+                2017-12-13
               </time>
             
 
@@ -313,7 +314,7 @@
 
           
           
-             <span id="/2017/07/18/webpack-use/" class="leancloud_visitors" data-flag-title="webpack2简单使用">
+             <span id="/2017/12/13/svn/" class="leancloud_visitors" data-flag-title="svn常用指令总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -344,128 +345,89 @@
       
 
       
-        <p>webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是安装好<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js</a>，<br>全局安装：</p>
-<pre><code>npm install -g webpack
-</code></pre><p>作为项目开发依赖安装：</p>
-<pre><code>npm install --save-dev webpack
-</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>这里以新建配置文件来执行，项目根目录下新建webpack.config.js文件，配置如下：</p>
-<pre><code>var webpack = require(&apos;webpack&apos;);
-var path = require(&apos;path&apos;);
-
-var config = {
-    entry:&quot;entry.js&quot;,//入口文件路径
-    output:{//输出文件
-        path:path.resolve(__dirname,&apos;build&apos;),
-        filename:&quot;[name].bundle.js&quot;
-    },
-    module:{//模块
-        ...
-    }
-}
-
-module.exports = config;
-</code></pre><p>配置文件的结构大致是以上的结构。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><pre><code>$ webpack
-</code></pre><h2 id="常用xxx-Loader的使用："><a href="#常用xxx-Loader的使用：" class="headerlink" title="常用xxx-Loader的使用："></a>常用xxx-Loader的使用：</h2><h2 id="style-loader和css-loader"><a href="#style-loader和css-loader" class="headerlink" title="style-loader和css-loader"></a>style-loader和css-loader</h2><p>style-loader把js字符串生成为style节点；css-loader是把css转换为js输出。两者经常一起使用。</p>
-<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev css-loader
-</code></pre><h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
-<pre><code>module:{
-    rules:[{
-        test:/\.css$/,
-        use:[
-          { loader:&quot;stycss-loader&quot; },
-          { loader:&quot;css-loader&quot; }
-        ]
-    }]
-}
-</code></pre><h2 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a>html-loader</h2><p>html-loader是把html文件转换为js.  </p>
-<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-loader
-</code></pre><h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
-<pre><code>module:{
-    rules:[{
-        test:/\.html$/,
-        use:[
-            {
-                loader:&quot;html-loader&quot;,
-                option: {
-                    minimize:true
-                }
-            }
-        ]
-    }]
-}
-</code></pre><h2 id="less-loader"><a href="#less-loader" class="headerlink" title="less-loader"></a>less-loader</h2><p>less-loader是把less编译为css.  </p>
-<h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev less-loader
-</code></pre><h2 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
-<pre><code>module:{
-    rules:[
-        {
-            test:/\.less$/,
-            use:[
-                {
-                    loader:&quot;style-loader&quot;
-                },
-                {
-                    loader:&quot;css-loader&quot;
-                },
-                {
-                    loader:&quot;less-loader&quot;
-                }
-            ]
-        }
-    ]
-}
-</code></pre><h2 id="sass-loader"><a href="#sass-loader" class="headerlink" title="sass-loader"></a>sass-loader</h2><p>sass-loader是将sass编译为css。</p>
-<h2 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev sass-loader
-</code></pre><h2 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
-<pre><code>modu:{
-    rules:[
-        {
-            test:/.\scss$/,
-            use:[
-                {
-                    loader:&quot;style-loader&quot;
-                },
-                {
-                    loader:&quot;css-loader&quot;,
-                    option:{ sourceMap:true }
-                },
-                {
-                    loader:&quot;sass-loader&quot;,
-                    option:{ sourceMap:true }
-                }
-            ]
-        }
-    ]
-}
-</code></pre><p>sourceMap:true用于启用CSS的source map  </p>
-<h2 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h2><p>想要使用一个插件，你只需要require()它，然后把它添加到plugins数组中。  </p>
-<h2 id="BannerPlugin"><a href="#BannerPlugin" class="headerlink" title="BannerPlugin"></a>BannerPlugin</h2><p>内置插件BannerPlugin，用来给输出的文件头部添加注释信息。</p>
-<h2 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：   </p>
-<pre><code>plugins:[
-    new webpack.BannerPlugin(&apos;添加注释信息...&apos;)
-]
-</code></pre><h2 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h2><p>简化HTML文件的创建，为webpack包提供服务，可以用来生成HTML5文件。</p>
-<h2 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-webpack-plugin
-</code></pre><h2 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
-<pre><code>var webpack = require(&apos;webpack&apos;);
-var path = require(&apos;path&apos;);
-var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);
-
-var config = {
-    entry:&quot;./entry.js&quot;,
-    output:{
-        path：path.resolve(__path,&apos;build&apos;),
-        filename:&quot;bundle.js&quot;
-    }
-    plugins:[
-        new HtmlWebpackPlugin()
-    ]
-}
-
-module.exports = config;
-</code></pre><p>这将会生成一个包含bundle.js引入信息的HTML文件。</p>
+        <h3 id="常用命令总结"><a href="#常用命令总结" class="headerlink" title="常用命令总结"></a>常用命令总结</h3><h4 id="svn-add"><a href="#svn-add" class="headerlink" title="svn add"></a>svn add</h4><ul>
+<li><p>将未版本化文件/新建文件提交到版本库.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn add 文件名/目录名</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn add a.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>提交目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn add dist</div></pre></td></tr></table></figure>
+</li>
+<li><p>或者进入到待提交目录下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn add .</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>svn add *会忽略已经在版本控制之下的目录，需要提交工作副本中的所有未版本化文件，使用svn add –force命令，可以递归的提交未版本化文件，包括忽略文件，慎用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">svn add *</div><div class="line">svn add * --force</div></pre></td></tr></table></figure></p>
+<p>–force表示递归的提交目录下的所有文件。</p>
+<h4 id="svn-commit"><a href="#svn-commit" class="headerlink" title="svn commit"></a>svn commit</h4><ul>
+<li><p>提交命令.将工作副本中的更改提交到版本库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn commit -m &apos;备注&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>缩写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn ci -m &apos;备注&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="svn-update"><a href="#svn-update" class="headerlink" title="svn update"></a>svn update</h4><ul>
+<li><p>更新命令。将版本库的文件更新到工作副本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn update</div></pre></td></tr></table></figure>
+</li>
+<li><p>缩写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn up</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="svn-log"><a href="#svn-log" class="headerlink" title="svn log"></a>svn log</h4><ul>
+<li>查看提交日志。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn log</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="svn-revert"><a href="#svn-revert" class="headerlink" title="svn revert"></a>svn revert</h4><ul>
+<li>将文件回滚到提交前，如果有误操作，可以使用svn revert<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn revert</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="tag-branch"><a href="#tag-branch" class="headerlink" title="tag/branch"></a>tag/branch</h4><h5 id="创建tag"><a href="#创建tag" class="headerlink" title="创建tag"></a>创建tag</h5><ul>
+<li>在产品已经开发完准备上线时，就可以创建tag做版本标记，发布给客户用。<br>进入到工作副本的trunk目录下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">svn copy http://svn_server/xxx_repository/trunk http://svn_server/xxx_repository/tags/release-1.0 -m &quot;1.0 released&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="创建branch分支"><a href="#创建branch分支" class="headerlink" title="创建branch分支"></a>创建branch分支</h5><p>在本期开发中，遇到紧急需求需要临时上线，这时可以创建一个branch分支，进行紧急开发上线。  </p>
+<ul>
+<li>在工作副本中创建分支：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01# ls</div><div class="line">branches tags     trunk</div><div class="line">root@runoob:~/svn/runoob01# svn copy trunk/ branches/br_001</div><div class="line">回车：</div><div class="line">A         branches/br_001</div></pre></td></tr></table></figure>
+<ul>
+<li><p>提交新增的分支到版本库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01# svn ci -m &apos;add branches/br_001&apos;</div><div class="line">Adding         branches/br_001</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换到trunk,执行svn update,然后将br_001分支合并到trunk主干：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01/trunk# svn ../branches/br_001/</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看主干：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01/trunk# ll</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>提交到版本库后，</p>
+<ul>
+<li><p>删除branches分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01#  svn rm svn://191.111.111.11/xxx_repository/branches/br_001</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除tag:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01#  svn rm svn://191.111.111.11/xxx_repository/tags/release_001</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="svn-status"><a href="#svn-status" class="headerlink" title="svn status"></a>svn status</h3><p>查看工作副本中的文件状态，缩写svn st.</p>
+<ul>
+<li><p>我们新建文件index.html，演示下svn st的使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@runoob:~/svn/runoob01# svn st</div><div class="line">?        index.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>? 问号表示该文件没有在版本控制下,需要先使用svn add命令添加到版本控制中</p>
+</li>
+<li>A 表示文件已经成功添加到版本控制中，然后再svn up提交到版本库</li>
+<li>M 表示本地文件有修改</li>
+<li>C 表示从版本库更新时与本地工作副本有冲突，必须手动解决冲突</li>
+<li>！表示文件已在版本控制下，但已丢失，或文件不完整</li>
+<li>D 表示删除了工作副本中的文件，提交到版本库后才算删除成功</li>
+<li>I 表示文件不在版本控制下，在使用svn add,,svn ci命令时会忽略文件，不操作。</li>
+</ul>
 
       
     </div>
@@ -481,6 +443,16 @@ module.exports = config;
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+            <a href="/tags/svn/" rel="tag"># svn</a>
+          
+            <a href="/tags/版本控制/" rel="tag"># 版本控制</a>
+          
+        </div>
+      
 
       
       
@@ -490,8 +462,8 @@ module.exports = config;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/08/ng-option/" rel="next" title="设置select默认值-Angular">
-                <i class="fa fa-chevron-left"></i> 设置select默认值-Angular
+              <a href="/2017/12/07/ui-select/" rel="next" title="angular+ui-select+select2">
+                <i class="fa fa-chevron-left"></i> angular+ui-select+select2
               </a>
             
           </div>
@@ -499,10 +471,6 @@ module.exports = config;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/20/gulp-use/" rel="prev" title="gulp使用">
-                gulp使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -627,7 +595,7 @@ module.exports = config;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">3.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用xxx-Loader的使用："><span class="nav-number">4.</span> <span class="nav-text">常用xxx-Loader的使用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#style-loader和css-loader"><span class="nav-number">5.</span> <span class="nav-text">style-loader和css-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-number">6.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-1"><span class="nav-number">7.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html-loader"><span class="nav-number">8.</span> <span class="nav-text">html-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-2"><span class="nav-number">9.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-2"><span class="nav-number">10.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less-loader"><span class="nav-number">11.</span> <span class="nav-text">less-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-3"><span class="nav-number">12.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-3"><span class="nav-number">13.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sass-loader"><span class="nav-number">14.</span> <span class="nav-text">sass-loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-4"><span class="nav-number">15.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-4"><span class="nav-number">16.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件使用"><span class="nav-number">17.</span> <span class="nav-text">插件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BannerPlugin"><span class="nav-number">18.</span> <span class="nav-text">BannerPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-5"><span class="nav-number">19.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HtmlWebpackPlugin"><span class="nav-number">20.</span> <span class="nav-text">HtmlWebpackPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-5"><span class="nav-number">21.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-6"><span class="nav-number">22.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令总结"><span class="nav-number">1.</span> <span class="nav-text">常用命令总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#svn-add"><span class="nav-number">1.1.</span> <span class="nav-text">svn add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#svn-commit"><span class="nav-number">1.2.</span> <span class="nav-text">svn commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#svn-update"><span class="nav-number">1.3.</span> <span class="nav-text">svn update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#svn-log"><span class="nav-number">1.4.</span> <span class="nav-text">svn log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#svn-revert"><span class="nav-number">1.5.</span> <span class="nav-text">svn revert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tag-branch"><span class="nav-number">1.6.</span> <span class="nav-text">tag/branch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建tag"><span class="nav-number">1.6.1.</span> <span class="nav-text">创建tag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建branch分支"><span class="nav-number">1.6.2.</span> <span class="nav-text">创建branch分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#svn-status"><span class="nav-number">2.</span> <span class="nav-text">svn status</span></a></li></ol></div>
             
 
           </div>

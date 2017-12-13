@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -264,6 +264,249 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/03/11/less快速入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/11/less快速入门/" itemprop="url">less</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T14:50:17+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/11/less快速入门/" class="leancloud_visitors" data-flag-title="less">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Less语言快速入门</strong></p>
+<p><strong>介绍：</strong>Less是一门CSS预处理语言，它扩充了CSS语言，重点来了：它增加了诸如变量、混合（Mixins)、函数等功能，这让静态的CSS语言强大了有木有，方便制作主题（比如换肤）、扩充，更易维护。</p>
+<p><strong>使用：</strong></p>
+<p><strong>1.变量</strong></p>
+<p>Less允许使用变量事先定义一些通用样式，在需要的时候引入，特点就是按需自取，自助餐有木有。<br>看下面栗子：</p>
+<pre><code>//这里是一些简单的LESS语法
+@width:400px;
+@height:300px;
+@font_size:12px;
+@color:#ccc;
+@font-size:14px;
+textarea {
+    width:@width;
+    height:@height;
+    font-size:@font_size;
+}
+.test {
+  color:@color;
+  background-color:@color;
+  font-size:@font-size;
+}
+</code></pre><p>Less编译后的对应CSS：</p>
+<pre><code>textarea {
+  width: 400px;
+  height: 300px;
+  font-size: 12px;
+}
+.test {
+  color: #cccccc;
+  font-size: 14px;
+  background-color: #cccccc;
+}
+</code></pre><p>这里要注意，Less以‘@’符号作为开头来定义变量，就像JS里以var定义变量一样，且变量的值只能是属性值，不能是变量，比如说，我这样定义一个变量：</p>
+<pre><code>@font:font-size;
+.test{
+@font:14px;  //这样做是不行的，less不会编译成功！
+}
+</code></pre><p><strong>2.后代选择器—可以嵌套</strong></p>
+<pre><code>@color:#ccc;
+
+
+div {
+  color:@color;
+    p{   //添加嵌套样式
+        color:@color;
+     }
+  &amp;:after{   //通过&amp;添加伪类
+    color:#ddd;
+  }
+}
+</code></pre><p>Less编译后的CSS:</p>
+<pre><code>div {
+  color: #cccccc;
+}
+div p {
+  color: #cccccc;
+}
+div:after {
+  color: #ddd;
+}
+</code></pre><p>这种方法也是比较常用的啦~小编我学会后就来推荐啦</p>
+<p><strong>3.文件引用</strong></p>
+<pre><code>@import “文件名”;   //文件名可以是相对路径
+</code></pre><p>文件引用有两个常用方法：</p>
+<p>①将全局变量引入到样式类文件时，使用’@import “文件名.less”;‘语句引入即可</p>
+<p>②另一种常见用法是将初始化的Less文件引入，当需要样式类时，引入初始化Less文件即可。</p>
+<p><strong>4.混合（Mixins)</strong></p>
+<p>混合可以将已经写好的样式A引入到样式B,从而实现样式B对样式A所有属性的继承。</p>
+<pre><code>.border-radius(@radius: 4px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+#form-box {
+  .border-radius;
+  div{
+    .border-radius(14px);
+  }
+}
+</code></pre><p>Less编译后的CSS：</p>
+<pre><code>#form-box {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#form-box div {
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  border-radius: 14px;
+}
+</code></pre><p>这里提一个比较有意思的变量@arguments，它包含了所有传递进来的参数，如果不想一个个写参数就可以使用它。</p>
+<pre><code>.margin (@top:0, @right:0, @bottom:0, @left:0) {
+  margin:@arguments;
+}
+div {
+  .margin(2px,5px);
+}
+</code></pre><p>Less编译后的CSS：</p>
+<pre><code>div {
+  margin: 2px 5px 0 0;
+}
+</code></pre><p><strong>5.函数</strong></p>
+<pre><code>div {
+  .fun(100px);  //引用函数
+}
+.fun(@px){  //函数声明和JS里的很像，括号加参数
+  width:@px;
+}
+Less编译成CSS：
+div {
+  width: 100px;
+}
+</code></pre><p>注意到没有，函数是不编译的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/03/05/angular-instruction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +536,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T07:34:13+08:00">
                 2017-03-05
@@ -486,8 +729,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -499,8 +742,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -559,7 +802,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
 
 
   <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

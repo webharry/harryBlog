@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -264,6 +264,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/11/angular-copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/11/angular-copy/" itemprop="url">angular.copy()方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-11T20:01:11+08:00">
+                2017-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/11/angular-copy/" class="leancloud_visitors" data-flag-title="angular.copy()方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="angular-copy-方法的定义"><a href="#angular-copy-方法的定义" class="headerlink" title="angular.copy()方法的定义"></a>angular.copy()方法的定义</h3><p>angular.copy()方法实现对象属性的深度拷贝，返回一个新创建的对象。</p>
+<h3 id="用法实例"><a href="#用法实例" class="headerlink" title="用法实例"></a>用法实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">        <span class="attr">name</span>: <span class="string">'lucy'</span>,</div><div class="line">        <span class="attr">age</span>: <span class="number">20</span></div><div class="line">    &#125;</div><div class="line"><span class="keyword">var</span> b = angular.copy(a);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a='</span>,a);</div><div class="line"><span class="comment">//&#123;name: "lucy", age: 20&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b='</span>,b);</div><div class="line"><span class="comment">//&#123;name: "lucy", age: 20&#125;</span></div></pre></td></tr></table></figure>
+<p>当我们改变a对象的属性，b对象属性并不会随之改变：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a.name = <span class="string">'angular'</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'a='</span>,a);</div><div class="line"><span class="comment">//&#123;name: "angular", age: 20&#125;</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'b='</span>,b);</div><div class="line"><span class="comment">//&#123;name: "lucy", age: 20&#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="angular-copy-源码"><a href="#angular-copy-源码" class="headerlink" title="angular.copy()源码"></a>angular.copy()源码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * @ngdoc function</div><div class="line"> * @name angular.copy</div><div class="line"> * @module ng</div><div class="line"> * @kind function</div><div class="line"> *</div><div class="line"> * @description</div><div class="line"> * Creates a deep copy of `source`, which should be an object or an array.</div><div class="line"> *</div><div class="line"> * * If no destination is supplied, a copy of the object or array is created.</div><div class="line"> * * If a destination is provided, all of its elements (for arrays) or properties (for objects)</div><div class="line"> *   are deleted and then all elements/properties from the source are copied to it.</div><div class="line"> * * If `source` is not an object or array (inc. `null` and `undefined`), `source` is returned.</div><div class="line"> * * If `source` is identical to `destination` an exception will be thrown.</div><div class="line"> *</div><div class="line"> * &lt;br /&gt;</div><div class="line"> * &lt;div class="alert alert-warning"&gt;</div><div class="line"> *   Only enumerable properties are taken into account. Non-enumerable properties (both on `source`</div><div class="line"> *   and on `destination`) will be ignored.</div><div class="line"> * &lt;/div&gt;</div><div class="line"> *</div><div class="line"> * @param &#123;*&#125; source The source that will be used to make a copy.</div><div class="line"> *                   Can be any type, including primitives, `null`, and `undefined`.</div><div class="line"> * @param &#123;(Object|Array)=&#125; destination Destination into which the source is copied. If</div><div class="line"> *     provided, must be of the same type as `source`.</div><div class="line"> * @returns &#123;*&#125; The copy or updated `destination`, if `destination` was specified.</div><div class="line"> *</div><div class="line"> * @example</div><div class="line">  &lt;example module="copyExample"&gt;</div><div class="line">    &lt;file name="index.html"&gt;</div><div class="line">      &lt;div ng-controller="ExampleController"&gt;</div><div class="line">        &lt;form novalidate class="simple-form"&gt;</div><div class="line">          &lt;label&gt;Name: &lt;input type="text" ng-model="user.name" /&gt;&lt;/label&gt;&lt;br /&gt;</div><div class="line">          &lt;label&gt;Age:  &lt;input type="number" ng-model="user.age" /&gt;&lt;/label&gt;&lt;br /&gt;</div><div class="line">          Gender: &lt;label&gt;&lt;input type="radio" ng-model="user.gender" value="male" /&gt;male&lt;/label&gt;</div><div class="line">                  &lt;label&gt;&lt;input type="radio" ng-model="user.gender" value="female" /&gt;female&lt;/label&gt;&lt;br /&gt;</div><div class="line">          &lt;button ng-click="reset()"&gt;RESET&lt;/button&gt;</div><div class="line">          &lt;button ng-click="update(user)"&gt;SAVE&lt;/button&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">        &lt;pre&gt;form = &#123;&#123;user | json&#125;&#125;&lt;/pre&gt;</div><div class="line">        &lt;pre&gt;master = &#123;&#123;master | json&#125;&#125;&lt;/pre&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/file&gt;</div><div class="line">    &lt;file name="script.js"&gt;</div><div class="line">      // Module: copyExample</div><div class="line">      angular.</div><div class="line">        module('copyExample', []).</div><div class="line">        controller('ExampleController', ['$scope', function($scope) &#123;</div><div class="line">          $scope.master = &#123;&#125;;</div><div class="line"></div><div class="line">          $scope.reset = function() &#123;</div><div class="line">            // Example with 1 argument</div><div class="line">            $scope.user = angular.copy($scope.master);</div><div class="line">          &#125;;</div><div class="line"></div><div class="line">          $scope.update = function(user) &#123;</div><div class="line">            // Example with 2 arguments</div><div class="line">            angular.copy(user, $scope.master);</div><div class="line">          &#125;;</div><div class="line"></div><div class="line">          $scope.reset();</div><div class="line">        &#125;]);</div><div class="line">    &lt;/file&gt;</div><div class="line">  &lt;/example&gt;</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">copy</span>(<span class="params">source, destination</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> stackSource = [];</div><div class="line">  <span class="keyword">var</span> stackDest = [];</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (destination) &#123;</div><div class="line">    <span class="keyword">if</span> (isTypedArray(destination) || isArrayBuffer(destination)) &#123;</div><div class="line">      <span class="keyword">throw</span> ngMinErr(<span class="string">'cpta'</span>, <span class="string">"Can't copy! TypedArray destination cannot be mutated."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (source === destination) &#123;</div><div class="line">      <span class="keyword">throw</span> ngMinErr(<span class="string">'cpi'</span>, <span class="string">"Can't copy! Source and destination are identical."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Empty the destination object</span></div><div class="line">    <span class="keyword">if</span> (isArray(destination)) &#123;</div><div class="line">      destination.length = <span class="number">0</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      forEach(destination, <span class="function"><span class="keyword">function</span>(<span class="params">value, key</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (key !== <span class="string">'$$hashKey'</span>) &#123;</div><div class="line">          <span class="keyword">delete</span> destination[key];</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    stackSource.push(source);</div><div class="line">    stackDest.push(destination);</div><div class="line">    <span class="keyword">return</span> copyRecurse(source, destination);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> copyElement(source);</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">copyRecurse</span>(<span class="params">source, destination</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> h = destination.$$hashKey;</div><div class="line">    <span class="keyword">var</span> key;</div><div class="line">    <span class="keyword">if</span> (isArray(source)) &#123;</div><div class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = source.length; i &lt; ii; i++) &#123;</div><div class="line">        destination.push(copyElement(source[i]));</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isBlankObject(source)) &#123;</div><div class="line">      <span class="comment">// createMap() fast path --- Safe to avoid hasOwnProperty check because prototype chain is empty</span></div><div class="line">      <span class="keyword">for</span> (key <span class="keyword">in</span> source) &#123;</div><div class="line">        destination[key] = copyElement(source[key]);</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (source &amp;&amp; <span class="keyword">typeof</span> source.hasOwnProperty === <span class="string">'function'</span>) &#123;</div><div class="line">      <span class="comment">// Slow path, which must rely on hasOwnProperty</span></div><div class="line">      <span class="keyword">for</span> (key <span class="keyword">in</span> source) &#123;</div><div class="line">        <span class="keyword">if</span> (source.hasOwnProperty(key)) &#123;</div><div class="line">          destination[key] = copyElement(source[key]);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// Slowest path --- hasOwnProperty can't be called as a method</span></div><div class="line">      <span class="keyword">for</span> (key <span class="keyword">in</span> source) &#123;</div><div class="line">        <span class="keyword">if</span> (hasOwnProperty.call(source, key)) &#123;</div><div class="line">          destination[key] = copyElement(source[key]);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    setHashKey(destination, h);</div><div class="line">    <span class="keyword">return</span> destination;</div><div class="line">  &#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">拷贝source的属性，并返回</div><div class="line">*/</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">copyElement</span>(<span class="params">source</span>) </span>&#123;</div><div class="line">    <span class="comment">// Simple values</span></div><div class="line">    <span class="keyword">if</span> (!isObject(source)) &#123;</div><div class="line">      <span class="keyword">return</span> source;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Already copied values</span></div><div class="line">    <span class="keyword">var</span> index = stackSource.indexOf(source);</div><div class="line">    <span class="keyword">if</span> (index !== <span class="number">-1</span>) &#123;</div><div class="line">      <span class="keyword">return</span> stackDest[index];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isWindow(source) || isScope(source)) &#123;</div><div class="line">      <span class="keyword">throw</span> ngMinErr(<span class="string">'cpws'</span>,</div><div class="line">        <span class="string">"Can't copy! Making copies of Window or Scope instances is not supported."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> needsRecurse = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">var</span> destination = copyType(source);</div><div class="line"><span class="comment">//创建数组或对象实例--destination</span></div><div class="line">    <span class="keyword">if</span> (destination === <span class="literal">undefined</span>) &#123;</div><div class="line">      destination = isArray(source) ? [] : <span class="built_in">Object</span>.create(getPrototypeOf(source));</div><div class="line">      needsRecurse = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    stackSource.push(source);</div><div class="line">    stackDest.push(destination);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> needsRecurse</div><div class="line">      ? copyRecurse(source, destination)</div><div class="line">      : destination;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">copyType</span>(<span class="params">source</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (toString.call(source)) &#123;</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Int8Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Int16Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Int32Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Float32Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Float64Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Uint8Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Uint8ClampedArray]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Uint16Array]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Uint32Array]'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> source.constructor(copyElement(source.buffer), source.byteOffset, source.length);</div><div class="line"></div><div class="line">      <span class="keyword">case</span> <span class="string">'[object ArrayBuffer]'</span>:</div><div class="line">        <span class="comment">//Support: IE10</span></div><div class="line">        <span class="keyword">if</span> (!source.slice) &#123;</div><div class="line">          <span class="keyword">var</span> copied = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(source.byteLength);</div><div class="line">          <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(copied).set(<span class="keyword">new</span> <span class="built_in">Uint8Array</span>(source));</div><div class="line">          <span class="keyword">return</span> copied;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> source.slice(<span class="number">0</span>);</div><div class="line"></div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Boolean]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Number]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object String]'</span>:</div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Date]'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> source.constructor(source.valueOf());</div><div class="line"></div><div class="line">      <span class="keyword">case</span> <span class="string">'[object RegExp]'</span>:</div><div class="line">        <span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(source.source, source.toString().match(<span class="regexp">/[^\/]*$/</span>)[<span class="number">0</span>]);</div><div class="line">        re.lastIndex = source.lastIndex;</div><div class="line">        <span class="keyword">return</span> re;</div><div class="line"></div><div class="line">      <span class="keyword">case</span> <span class="string">'[object Blob]'</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> source.constructor([source], &#123;<span class="attr">type</span>: source.type&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isFunction(source.cloneNode)) &#123;</div><div class="line">      <span class="keyword">return</span> source.cloneNode(<span class="literal">true</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源码中，copy()方法接收两个参数，第一个是源source，是一个对象或者数组，第二个参数destination可选，作为存储源source的对象，该方法返回一个和源source一样的对象，且该对象是新建的实例，使用时与源source不会相互影响。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/01/Object-prototype-toString-call/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +428,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-01T11:31:38+08:00">
                 2017-09-01
@@ -439,7 +574,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-30T19:57:31+08:00">
                 2017-08-30
@@ -590,7 +725,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-23T14:02:00+08:00">
                 2017-08-23
@@ -868,7 +1003,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T18:20:26+08:00">
                 2017-08-22
@@ -1100,7 +1235,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:25:02+08:00">
                 2017-08-14
@@ -1255,7 +1390,7 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:14:25+08:00">
                 2017-08-14
@@ -1571,7 +1706,7 @@ return &apos;|doc|docx|jpg|png|pdf|&apos;.indexOf(type) !== -1;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-20T10:05:20+08:00">
                 2017-07-20
@@ -1774,7 +1909,7 @@ gulp.task(&apos;sass&apos;,function(){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
                 2017-07-18
@@ -2026,7 +2161,7 @@ module.exports = config;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T23:25:27+08:00">
                 2017-06-08
@@ -2142,249 +2277,6 @@ l  select as label for (key ,value) in object
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/03/11/less快速入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/11/less快速入门/" itemprop="url">less</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T14:50:17+08:00">
-                2017-03-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/03/11/less快速入门/" class="leancloud_visitors" data-flag-title="less">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>Less语言快速入门</strong></p>
-<p><strong>介绍：</strong>Less是一门CSS预处理语言，它扩充了CSS语言，重点来了：它增加了诸如变量、混合（Mixins)、函数等功能，这让静态的CSS语言强大了有木有，方便制作主题（比如换肤）、扩充，更易维护。</p>
-<p><strong>使用：</strong></p>
-<p><strong>1.变量</strong></p>
-<p>Less允许使用变量事先定义一些通用样式，在需要的时候引入，特点就是按需自取，自助餐有木有。<br>看下面栗子：</p>
-<pre><code>//这里是一些简单的LESS语法
-@width:400px;
-@height:300px;
-@font_size:12px;
-@color:#ccc;
-@font-size:14px;
-textarea {
-    width:@width;
-    height:@height;
-    font-size:@font_size;
-}
-.test {
-  color:@color;
-  background-color:@color;
-  font-size:@font-size;
-}
-</code></pre><p>Less编译后的对应CSS：</p>
-<pre><code>textarea {
-  width: 400px;
-  height: 300px;
-  font-size: 12px;
-}
-.test {
-  color: #cccccc;
-  font-size: 14px;
-  background-color: #cccccc;
-}
-</code></pre><p>这里要注意，Less以‘@’符号作为开头来定义变量，就像JS里以var定义变量一样，且变量的值只能是属性值，不能是变量，比如说，我这样定义一个变量：</p>
-<pre><code>@font:font-size;
-.test{
-@font:14px;  //这样做是不行的，less不会编译成功！
-}
-</code></pre><p><strong>2.后代选择器—可以嵌套</strong></p>
-<pre><code>@color:#ccc;
-
-
-div {
-  color:@color;
-    p{   //添加嵌套样式
-        color:@color;
-     }
-  &amp;:after{   //通过&amp;添加伪类
-    color:#ddd;
-  }
-}
-</code></pre><p>Less编译后的CSS:</p>
-<pre><code>div {
-  color: #cccccc;
-}
-div p {
-  color: #cccccc;
-}
-div:after {
-  color: #ddd;
-}
-</code></pre><p>这种方法也是比较常用的啦~小编我学会后就来推荐啦</p>
-<p><strong>3.文件引用</strong></p>
-<pre><code>@import “文件名”;   //文件名可以是相对路径
-</code></pre><p>文件引用有两个常用方法：</p>
-<p>①将全局变量引入到样式类文件时，使用’@import “文件名.less”;‘语句引入即可</p>
-<p>②另一种常见用法是将初始化的Less文件引入，当需要样式类时，引入初始化Less文件即可。</p>
-<p><strong>4.混合（Mixins)</strong></p>
-<p>混合可以将已经写好的样式A引入到样式B,从而实现样式B对样式A所有属性的继承。</p>
-<pre><code>.border-radius(@radius: 4px) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  border-radius: @radius;
-}
-#form-box {
-  .border-radius;
-  div{
-    .border-radius(14px);
-  }
-}
-</code></pre><p>Less编译后的CSS：</p>
-<pre><code>#form-box {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-#form-box div {
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  border-radius: 14px;
-}
-</code></pre><p>这里提一个比较有意思的变量@arguments，它包含了所有传递进来的参数，如果不想一个个写参数就可以使用它。</p>
-<pre><code>.margin (@top:0, @right:0, @bottom:0, @left:0) {
-  margin:@arguments;
-}
-div {
-  .margin(2px,5px);
-}
-</code></pre><p>Less编译后的CSS：</p>
-<pre><code>div {
-  margin: 2px 5px 0 0;
-}
-</code></pre><p><strong>5.函数</strong></p>
-<pre><code>div {
-  .fun(100px);  //引用函数
-}
-.fun(@px){  //函数声明和JS里的很像，括号加参数
-  width:@px;
-}
-Less编译成CSS：
-div {
-  width: 100px;
-}
-</code></pre><p>注意到没有，函数是不编译的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2435,8 +2327,8 @@ div {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -2448,8 +2340,8 @@ div {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -2508,7 +2400,7 @@ div {
 
 
   <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>
