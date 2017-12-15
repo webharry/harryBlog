@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="frontend,angular,plugin," />
+  <meta name="keywords" content="frontend,构建生态,git," />
 
 
 
@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="今天项目需求，增加一个下拉搜索框，找来了ui-selet插件,就插件的使用做一下总结分享。 1.引入npm：1npm install ui-select 在angular项目的文件引入模块：123impprt &apos;ui-select&apos;;var module = angular.module(&a">
-<meta name="keywords" content="frontend,angular,plugin">
+<meta name="description" content="git工作流程区别svn的集中式，git是分布式的，工作流程见图：gitgit工作区、版本库、暂存区关系：   这里有几个概念：  git有工作区和版本库两个概念。而暂存区index（或者stage）属于版本库的一块。 执行git commit操作时，暂存区的目录树写到版本库（对象库）中，master分支也会做">
+<meta name="keywords" content="frontend,构建生态,git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular+ui-select+select2">
-<meta property="og:url" content="https://webharry.github.io/2017/12/07/ui-select/index.html">
+<meta property="og:title" content="git">
+<meta property="og:url" content="https://webharry.github.io/2017/12/15/git/index.html">
 <meta property="og:site_name" content="Harry的博客">
-<meta property="og:description" content="今天项目需求，增加一个下拉搜索框，找来了ui-selet插件,就插件的使用做一下总结分享。 1.引入npm：1npm install ui-select 在angular项目的文件引入模块：123impprt &apos;ui-select&apos;;var module = angular.module(&apos;myapp&apos;, [&apos;ui.select&apos;, &apos;ngSanitize&apos;]); 小坑：  这个ui-s">
+<meta property="og:description" content="git工作流程区别svn的集中式，git是分布式的，工作流程见图：gitgit工作区、版本库、暂存区关系：   这里有几个概念：  git有工作区和版本库两个概念。而暂存区index（或者stage）属于版本库的一块。 执行git commit操作时，暂存区的目录树写到版本库（对象库）中，master分支也会做相应更新。即master指向暂存区提交的目录树。   git push操作推送">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2017-12-07T06:40:37.629Z">
+<meta property="og:image" content="https://upload.cc/i/HUw2oj.jpeg">
+<meta property="og:image" content="https://upload.cc/i/tk4uTG.jpeg">
+<meta property="og:updated_time" content="2017-12-15T13:46:18.292Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular+ui-select+select2">
-<meta name="twitter:description" content="今天项目需求，增加一个下拉搜索框，找来了ui-selet插件,就插件的使用做一下总结分享。 1.引入npm：1npm install ui-select 在angular项目的文件引入模块：123impprt &apos;ui-select&apos;;var module = angular.module(&apos;myapp&apos;, [&apos;ui.select&apos;, &apos;ngSanitize&apos;]); 小坑：  这个ui-s">
+<meta name="twitter:title" content="git">
+<meta name="twitter:description" content="git工作流程区别svn的集中式，git是分布式的，工作流程见图：gitgit工作区、版本库、暂存区关系：   这里有几个概念：  git有工作区和版本库两个概念。而暂存区index（或者stage）属于版本库的一块。 执行git commit操作时，暂存区的目录树写到版本库（对象库）中，master分支也会做相应更新。即master指向暂存区提交的目录树。   git push操作推送">
+<meta name="twitter:image" content="https://upload.cc/i/HUw2oj.jpeg">
 
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/2017/12/07/ui-select/"/>
+  <link rel="canonical" href="https://webharry.github.io/2017/12/15/git/"/>
 
 
 
 
 
-  <title>angular+ui-select+select2 | Harry的博客</title>
+  <title>git | Harry的博客</title>
   
 
 
@@ -267,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/07/ui-select/">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/15/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yangjie">
@@ -284,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">angular+ui-select+select2</h1>
+          <h1 class="post-title" itemprop="name headline">git</h1>
         
 
         <div class="post-meta">
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T11:23:56+08:00">
-                2017-12-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T20:31:23+08:00">
+                2017-12-15
               </time>
             
 
@@ -314,7 +317,7 @@
 
           
           
-             <span id="/2017/12/07/ui-select/" class="leancloud_visitors" data-flag-title="angular+ui-select+select2">
+             <span id="/2017/12/15/git/" class="leancloud_visitors" data-flag-title="git">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -345,26 +348,25 @@
       
 
       
-        <p>今天项目需求，增加一个下拉搜索框，找来了ui-selet插件,就插件的使用做一下总结分享。</p>
-<h3 id="1-引入"><a href="#1-引入" class="headerlink" title="1.引入"></a>1.引入</h3><p>npm：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install ui-select</div></pre></td></tr></table></figure></p>
-<p>在angular项目的文件引入模块：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">impprt <span class="string">'ui-select'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = angular.module(<span class="string">'myapp'</span>, [<span class="string">'ui.select'</span>, <span class="string">'ngSanitize'</span>]);</div></pre></td></tr></table></figure></p>
-<p>小坑：</p>
+        <h3 id="git工作流程"><a href="#git工作流程" class="headerlink" title="git工作流程"></a>git工作流程</h3><p>区别svn的集中式，git是分布式的，<br>工作流程见图：<br><img src="https://upload.cc/i/HUw2oj.jpeg" alt="工作流程图2"><br>git<br>git工作区、版本库、暂存区关系：<br><img src="https://upload.cc/i/tk4uTG.jpeg" alt="工作原理图">  </p>
+<p>这里有几个概念：</p>
 <ul>
-<li><p>这个ui-select版本还不完善，需要自己手动引入下css文件，在node_module中找到ui-slect的主文件index.js，将css文件导出一下，如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'./dist/select.js'</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">'./dist/select.css'</span>);</div><div class="line"><span class="built_in">module</span>.exports = <span class="string">'ui.select'</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>此外需要引入angular依赖文件：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
+<li>git有工作区和版本库两个概念。而暂存区index（或者stage）属于版本库的一块。</li>
+<li>执行git commit操作时，暂存区的目录树写到版本库（对象库）中，master分支也会做相应更新。即master指向暂存区提交的目录树。  </li>
+<li>git push操作推送到共享版本库（对象库）。</li>
 </ul>
-<h3 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2.基本使用"></a>2.基本使用</h3><p>在html文件中写入：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ui-select</span> <span class="attr">ng-disabled</span>=<span class="string">"disabled"</span> <span class="attr">ng-model</span>=<span class="string">"arr.selected"</span> <span class="attr">style</span>=<span class="string">"min-width: 300px;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-match</span> <span class="attr">placeholder</span>=<span class="string">"请选择"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"$select.selected.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-match</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-choices</span> <span class="attr">repeat</span>=<span class="string">"item in arr | filter:   $select.search"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"item.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-choices</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ui-select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>js文件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'demo'</span>, [<span class="string">'ngSanitize'</span>, <span class="string">'ui.select'</span>]);</div><div class="line">app.controller(<span class="string">'DemoCtrl'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope, $http, $timeout, $interval</span>) </span>&#123;</div><div class="line">    $scope.arr = [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">name</span>:<span class="string">'slecet1'</span></div><div class="line">            id:<span class="number">1</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">name</span>:<span class="string">'slecet2'</span></div><div class="line">            id:<span class="number">2</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="3-增加event事件"><a href="#3-增加event事件" class="headerlink" title="3.增加event事件"></a>3.增加event事件</h3><p>在使用select2插件时，发觉事件ng-click和ng-change并不会触发执行。这个问题在ui-select插件的event事件中可以解决。on-selsect=”expression”：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ui-select</span> <span class="attr">ng-disabled</span>=<span class="string">"disabled"</span> <span class="attr">ng-model</span>=<span class="string">"arr.selected"</span> <span class="attr">on-select</span>=<span class="string">"change($item, $model)"</span> <span class="attr">style</span>=<span class="string">"min-width: 300px;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-match</span> <span class="attr">placeholder</span>=<span class="string">"请选择"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"$select.selected.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-match</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-select-choices</span> <span class="attr">repeat</span>=<span class="string">"item in arr | filter:   $select.search"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">ng-bind</span>=<span class="string">"item.name"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-select-choices</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ui-select</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>在js文件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//change()函数可以取到当前选中的选项信息$item, $model</span></div><div class="line">$scope.change = <span class="function"><span class="keyword">function</span>(<span class="params">$item, $model</span>) </span>&#123;</div><div class="line">        <span class="comment">//这里写入业务逻辑代码</span></div><div class="line">        $scope.id = $item.id;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="4-设置ui-select默认值"><a href="#4-设置ui-select默认值" class="headerlink" title="4.设置ui-select默认值"></a>4.设置ui-select默认值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$scope.arr.selected = &#123;<span class="comment">//ui-select 赋初值</span></div><div class="line">    id: <span class="string">'1'</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'111'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因为在给ui-select组件绑定的是对象，所以在设置默认值的时候也必须保持类型一致。</p>
-<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>小结：更多使用方法参看官网例子：<a href="https://github.com/angular-ui/ui-select" target="_blank" rel="noopener">https://github.com/angular-ui/ui-select</a></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h4><p>从版本库库（远程服务器）更新代码到本地工作副本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure></p>
+<h4 id="git-add"><a href="#git-add" class="headerlink" title="git add ."></a>git add .</h4><p>添加文件到暂存区<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git add .</div></pre></td></tr></table></figure></p>
+<h4 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h4><p>提交<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &apos;备注&apos;</div></pre></td></tr></table></figure></p>
+<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><p>将文件推到远程服务器的master主分支上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<h4 id="git-stutes"><a href="#git-stutes" class="headerlink" title="git stutes"></a>git stutes</h4><p>查看文件状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stutes</div></pre></td></tr></table></figure></p>
+<h4 id="git-checkout-branch"><a href="#git-checkout-branch" class="headerlink" title="git checkout branch"></a>git checkout branch</h4><p>切换到分支branch<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout branch</div></pre></td></tr></table></figure></p>
+<h4 id="git-merge-branch"><a href="#git-merge-branch" class="headerlink" title="git merge branch"></a>git merge branch</h4><p>将分支branch合并到master主干上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜  test git:(master)git merge branch</div></pre></td></tr></table></figure></p>
+<h4 id="gti-branch-D-branchNamed"><a href="#gti-branch-D-branchNamed" class="headerlink" title="gti branch -D branchNamed"></a>gti branch -D branchNamed</h4><p>删除分支branch1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gti branch -D branch1</div></pre></td></tr></table></figure></p>
+<p>### 总结</p>
+<ul>
+<li>与svn相比，git在分支上特别好用，svn 分支只是复制出另外一个文件，是多出一个目录，虽然最后也可以合并branch。而git可以在相同目录下切换分支，分支上开发互不影响，最后合并分支即可。</li>
+</ul>
 
       
     </div>
@@ -384,9 +386,9 @@
           
             <a href="/tags/frontend/" rel="tag"># frontend</a>
           
-            <a href="/tags/angular/" rel="tag"># angular</a>
+            <a href="/tags/构建生态/" rel="tag"># 构建生态</a>
           
-            <a href="/tags/plugin/" rel="tag"># plugin</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -399,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/03/create-npm-plug/" rel="next" title="如何在npm上发布一个插件">
-                <i class="fa fa-chevron-left"></i> 如何在npm上发布一个插件
+              <a href="/2017/12/13/svn/" rel="next" title="svn常用指令总结">
+                <i class="fa fa-chevron-left"></i> svn常用指令总结
               </a>
             
           </div>
@@ -408,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/13/svn/" rel="prev" title="svn常用指令总结">
-                svn常用指令总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -536,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-引入"><span class="nav-number">1.</span> <span class="nav-text">1.引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基本使用"><span class="nav-number">2.</span> <span class="nav-text">2.基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-增加event事件"><span class="nav-number">3.</span> <span class="nav-text">3.增加event事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-设置ui-select默认值"><span class="nav-number">4.</span> <span class="nav-text">4.设置ui-select默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-总结"><span class="nav-number">5.</span> <span class="nav-text">5.总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git工作流程"><span class="nav-number">1.</span> <span class="nav-text">git工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-pull"><span class="nav-number">2.1.</span> <span class="nav-text">git pull</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-add"><span class="nav-number">2.2.</span> <span class="nav-text">git add .</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit"><span class="nav-number">2.3.</span> <span class="nav-text">git commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-push"><span class="nav-number">2.4.</span> <span class="nav-text">git push</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-stutes"><span class="nav-number">2.5.</span> <span class="nav-text">git stutes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-checkout-branch"><span class="nav-number">2.6.</span> <span class="nav-text">git checkout branch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-merge-branch"><span class="nav-number">2.7.</span> <span class="nav-text">git merge branch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gti-branch-D-branchNamed"><span class="nav-number">2.8.</span> <span class="nav-text">gti branch -D branchNamed</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -264,6 +264,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/12/apply-call-bind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/12/apply-call-bind/" itemprop="url">Javascript中的apply、call和bind</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T20:53:40+08:00">
+                2017-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/12/apply-call-bind/" class="leancloud_visitors" data-flag-title="Javascript中的apply、call和bind">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这三种方法的作用是一样的，都能改变函数的执行作用域，区别只是在调用时传入的参数不同。</p>
+<h3 id="apply方法"><a href="#apply方法" class="headerlink" title="apply方法"></a>apply方法</h3><p>apply()方法接收两个参数，第一个参数是函数内this的作用域，第二个参数是一个数组对象或者arguments。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oo = &#123;</div><div class="line">    <span class="attr">a</span>:<span class="number">5</span>,</div><div class="line">    <span class="attr">b</span>:<span class="number">3</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a = <span class="number">9</span>,b=<span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a,b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a-<span class="keyword">this</span>.b;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(foo.apply(oo));<span class="comment">//2</span></div><div class="line"><span class="built_in">console</span>.log(foo.apply());<span class="comment">//8</span></div></pre></td></tr></table></figure></p>
+<h3 id="call方法"><a href="#call方法" class="headerlink" title="call方法"></a>call方法</h3><h3 id="bind方法"><a href="#bind方法" class="headerlink" title="bind方法"></a>bind方法</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/11/angular-copy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,7 +451,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -454,7 +586,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -600,7 +732,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -751,7 +883,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1029,7 +1161,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1261,7 +1393,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1416,7 +1548,7 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1732,7 +1864,7 @@ return &apos;|doc|docx|jpg|png|pdf|&apos;.indexOf(type) !== -1;
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1935,7 +2067,7 @@ gulp.task(&apos;sass&apos;,function(){
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -2119,164 +2251,6 @@ module.exports = config;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/06/08/ng-option/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/08/ng-option/" itemprop="url">设置select默认值-Angular</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T23:25:27+08:00">
-                2017-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/06/08/ng-option/" class="leancloud_visitors" data-flag-title="设置select默认值-Angular">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.HTML代码</p>
-<pre><code>&lt;body ng-app=&quot;MyModule&quot;&gt;
-&lt;div ng-controller=&quot;MyCtrl&quot;&gt;
-&lt;select ng-model=&quot;mylabel&quot;ng-options=&quot;v.label for v in lists&quot;&gt;&lt;/select&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-</code></pre><p>2.JS代码</p>
-<pre><code>var myModule =angular.module(&quot;MyModule&quot;, []);
-myModule.controller(&apos;MyCtrl&apos;, [&apos;$scope&apos;,
-function($scope) {
-$scope.lists= [
-{&quot;label&quot;: &quot;步伐1&quot;,&quot;value&quot; :&quot;111&quot;},
-{&quot;label&quot;: &quot;步伐2&quot;,&quot;value&quot; :&quot;233&quot;}
-];
-$scope.mylabel= $scope.lists[0];//默认数组第一个作为option的值
-}
-]);
-</code></pre><p>3.执行结果：默认显示“步伐1”<br><a href="http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" target="_blank" rel="noopener">http://img.blog.csdn.net/20170110204541116?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2ViX2hhcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center</a></p>
-<p>4.延伸–ng-options用法[1]<br>ng-optins属性可以在表达式中使用数组或对象来自动生成一个select的option列表，与ng-repeat类似。</p>
-<p>一般用法：</p>
-<p>对于数组：</p>
-<pre><code>l v.value for v in array
-l v.value as v.label for v in array //将v.label值作为v.value
-</code></pre><p>对于对象：</p>
-<pre><code>l  label for (key , value) in object
-l  select as label for (key ,value) in object
-</code></pre><p>5.引用：更多用法参考链接</p>
-<p>[1].<a href="http://www.cnblogs.com/panda-zhang/p/5290694.html" target="_blank" rel="noopener">http://www.cnblogs.com/panda-zhang/p/5290694.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2327,7 +2301,7 @@ l  select as label for (key ,value) in object
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2340,7 +2314,7 @@ l  select as label for (key ,value) in object
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
