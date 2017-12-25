@@ -3,7 +3,7 @@ title: git
 date: 2017-12-15 20:31:23
 tags:
     - frontend
-    - '构建生态'
+    - '版本控制'
     - git
 ---
 ### git工作流程   

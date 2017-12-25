@@ -264,6 +264,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/25/media-query/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/25/media-query/" itemprop="url">media query</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-25T19:23:28+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/25/media-query/" class="leancloud_visitors" data-flag-title="media query">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-媒体查询（Media-query）"><a href="#1-媒体查询（Media-query）" class="headerlink" title="1.媒体查询（Media query）"></a>1.媒体查询（Media query）</h3><ul>
+<li>原理<br>通过对不同设备（比如屏幕宽度width）设置不同的css样式，达到响应式页面效果。</li>
+<li>使用<br>在css文件：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@media (max-width:670px;) &#123;</div><div class="line"></div><div class="line"> //设置670px像素下的css样式</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width:860px;) &#123;</div><div class="line"></div><div class="line"> //设置在860px屏幕宽度下的css样式</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width:1200px;) &#123;</div><div class="line"></div><div class="line"> //设置1200px屏幕宽度下的css样式</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-媒体查询引用"><a href="#2-媒体查询引用" class="headerlink" title="2.媒体查询引用"></a>2.媒体查询引用</h3><p>在html文件<head>标签里加入以下代码：  </head></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,</span></span></div><div class="line">    initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;//媒体查询引用</div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"main.less"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>参数解释：</p>
+<ul>
+<li><p>width = device-width：宽度等于当前设备的宽度</p>
+</li>
+<li><p>initial-scale：初始的缩放比例（默认设置为1.0）  </p>
+</li>
+<li><p>minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）    </p>
+</li>
+<li><p>maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）   </p>
+</li>
+</ul>
+<h3 id="3-响应式布局小技能"><a href="#3-响应式布局小技能" class="headerlink" title="3.响应式布局小技能"></a>3.响应式布局小技能</h3><ul>
+<li>在响应式布局中，一般设置元素的宽度和高度为百分比值，不建议给元素固定的px值。<h4 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h4></li>
+</ul>
+<p>登录界面中的表单dome.<br>index.html文件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h6</span>&gt;</span>LOGIN QUICK<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form"</span> <span class="attr">placeholder</span>=<span class="string">"E-mail"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form"</span> <span class="attr">placeholder</span>=<span class="string">"Password"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"forget"</span>&gt;</span>Forgot Password?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>css样式(main.less文件)：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">.login &#123;</div><div class="line">    width:26%;//先设置一个初始值，为百分比值</div><div class="line">    margin: 7em auto 9em;</div><div class="line">    h6 &#123;</div><div class="line">        font-size: 1em;</div><div class="line">        margin-top:90px;</div><div class="line">        margin-bottom: 30px;</div><div class="line">        letter-spacing: 4px;</div><div class="line">    &#125;</div><div class="line">    .form &#123;</div><div class="line">        display: block;</div><div class="line">        width:100%;</div><div class="line">        font-size:.9em;</div><div class="line">        border-radius: 40px;</div><div class="line">        margin:15px auto;</div><div class="line">        padding:1em 3em 1em 1em;</div><div class="line">        box-sizing: border-box;</div><div class="line">        border: none;</div><div class="line">        outline: none;</div><div class="line">        letter-spacing: 1px;</div><div class="line">        font-weight: 400;</div><div class="line">        font-family: 'Open Sans', sans-serif;</div><div class="line">        background: rgba(255, 255, 255, 0.85);</div><div class="line">    &#125;</div><div class="line">    .forget &#123;</div><div class="line">        text-align: right;</div><div class="line">        font-size: 14px;</div><div class="line">    &#125;</div><div class="line">    .btn &#123;</div><div class="line">        width: 56%;</div><div class="line">        height: 40px;</div><div class="line">        background-color: #ea2858;</div><div class="line">        border-radius: 40px;</div><div class="line">        border: none;</div><div class="line">        margin:15px 0;</div><div class="line">        color:#fff;</div><div class="line">        font-size: 14px;</div><div class="line">        outline: none;</div><div class="line">        cursor: pointer;</div><div class="line">        // transition: all .1s linear;</div><div class="line">        transition: background-color .5s linear;</div><div class="line">        font-weight: 400;</div><div class="line">        font-family: 'Open Sans', sans-serif;</div><div class="line">        &amp;:hover &#123;</div><div class="line">            color: black;</div><div class="line">            background-color: white;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//利用媒体查询，在不同设备上设置.login的宽度，以达成宽度自适应</div><div class="line">@media screen and (min-width: 900px) and (max-width:1200px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:36%;</div><div class="line">        margin: 6em auto 5.7em;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (max-width: 768px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:42%;</div><div class="line">        margin: 5.4em auto 5em;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width: 736px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:56%;</div><div class="line">        margin: 5em auto 4em;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media screen and(max-width: 375px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:90%;</div><div class="line">        margin: 3.7em auto 4em;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>demo效果图：  </p>
+<p>pc大屏（1366x866）：  </p>
+<p><img src="https://upload.cc/i/QAft45.jpeg" alt="1366x866">  </p>
+<p>移动端：<br>iPhone8:  </p>
+<p><img src="https://upload.cc/i/RDugIJ.jpeg" alt="iPhone8">  </p>
+<p>iPad:  </p>
+<p><img src="https://upload.cc/i/2MRqXS.jpeg" alt="iPad">  </p>
+<p>超小屏（389x866）：  </p>
+<p><img src="https://upload.cc/i/zWod3S.jpeg" alt="389x866"></p>
+<p>备注：如果在这里设置login固定宽度：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.login</span> &#123;</div><div class="line"> <span class="attribute">width</span>:<span class="number">600px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>那么网页显示在小屏幕上就会有问题，无法呈现响应式效果。  </p>
+<ul>
+<li>小结：通过媒体查询，可以实现网页响应式，PC端和移动端渲染是木有问题啦！</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/15/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,7 +487,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -468,7 +636,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -681,7 +849,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -831,7 +999,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -970,7 +1138,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1113,7 +1281,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1248,7 +1416,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1383,7 +1551,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1573,7 +1741,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1659,146 +1827,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/26/BFC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/26/BFC/" itemprop="url">BFC</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-26T19:57:25+08:00">
-                2017-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/26/BFC/" class="leancloud_visitors" data-flag-title="BFC">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h3><p>BFC(Block Formatting Context)块级格式化上下文，也是CSS一种盒模型渲染样式，w3c定义只要满足一下条件之一，就能创建一个BFC：</p>
-<h4 id="1-float属性不为none"><a href="#1-float属性不为none" class="headerlink" title="1.float属性不为none;"></a>1.float属性不为none;</h4><h4 id="2-display属性值不为static和relative"><a href="#2-display属性值不为static和relative" class="headerlink" title="2.display属性值不为static和relative;"></a>2.display属性值不为static和relative;</h4><h4 id="3-display属性为以下之一：table-cell-table-caption-inline-block-flex-inline-flex；"><a href="#3-display属性为以下之一：table-cell-table-caption-inline-block-flex-inline-flex；" class="headerlink" title="3.display属性为以下之一：table-cell,table-caption,inline-block,flex,inline-flex；"></a>3.display属性为以下之一：table-cell,table-caption,inline-block,flex,inline-flex；</h4><h4 id="4-overflow属性不为visible。"><a href="#4-overflow属性不为visible。" class="headerlink" title="4.overflow属性不为visible。"></a>4.overflow属性不为visible。</h4><h3 id="解决了什么问题？"><a href="#解决了什么问题？" class="headerlink" title="解决了什么问题？"></a>解决了什么问题？</h3><p>创建一个BFC很简单，只需包含上文定义中的4点任意一个就OK，来看看能解决什么问题：</p>
-<h4 id="1-解决外边距折叠"><a href="#1-解决外边距折叠" class="headerlink" title="1.解决外边距折叠"></a>1.解决外边距折叠</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub-div"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bfc"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub-div"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.container&#123;</div><div class="line">  background-color:#ccc;</div><div class="line">  height: 200px;</div><div class="line">  width: 100%;</div><div class="line">&#125;</div><div class="line">.sub-div &#123;</div><div class="line">  background-color: red;</div><div class="line">  height:50px;</div><div class="line">  margin：10px 0;</div><div class="line">&#125;</div><div class="line">.bfc &#123;</div><div class="line">  overflow: hidden;//添加overflow属性，创建一个新BFC,从而避免外边距折叠</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2-用于清除浮动"><a href="#2-用于清除浮动" class="headerlink" title="2.用于清除浮动"></a>2.用于清除浮动</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">.container&#123;</div><div class="line">  background-color: #ccc;</div><div class="line">  overflow:hidden;//通过给父元素添加overflow 属性，创建一个BFC,达到清除浮动效果。</div><div class="line">&#125;</div><div class="line">.sub &#123;</div><div class="line">  float: left;</div><div class="line">  height:30px;</div><div class="line">  width:50px;</div><div class="line">  background-color: red;</div><div class="line">  margin:0 10px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="3-多列布局中避免折行显示"><a href="#3-多列布局中避免折行显示" class="headerlink" title="3.多列布局中避免折行显示"></a>3.多列布局中避免折行显示</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sub"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>由于浏览器舍入规则，子元素的宽度可能会超过容器总宽度，将会导致折行：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* &#123;</div><div class="line"> margin:0;</div><div class="line">&#125;</div><div class="line">.container&#123;</div><div class="line">  background-color: #ccc;</div><div class="line">&#125;</div><div class="line">.sub &#123;</div><div class="line">  float: left;</div><div class="line">  height:30px;</div><div class="line">  background-color:green;</div><div class="line">  width:31.33%;</div><div class="line">  margin:0 1%;</div><div class="line">&#125;</div><div class="line">.sub:last-child &#123;//通过给最后一个子元素 创建一个BFC解决折行问题。</div><div class="line">  float:none;</div><div class="line">  overflow:hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>BFC就是通过创建一个新的盒模型，使之脱离原本的布局限制，达到互不影响布局的效果。创建BFC 可以通过以上4种方式达到。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1849,7 +1877,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

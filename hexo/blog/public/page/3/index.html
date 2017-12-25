@@ -264,6 +264,258 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/07/18/webpack-use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/18/webpack-use/" itemprop="url">webpack2简单使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/18/webpack-use/" class="leancloud_visitors" data-flag-title="webpack2简单使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>webpack是一个模块打包器。能够对模块的依赖关系进行静态分析，然后根据指定规则生成静态资源。webpack2在配置文件格式上做了一些变动，比webpack1新增了</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是安装好<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js</a>，<br>全局安装：</p>
+<pre><code>npm install -g webpack
+</code></pre><p>作为项目开发依赖安装：</p>
+<pre><code>npm install --save-dev webpack
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>这里以新建配置文件来执行，项目根目录下新建webpack.config.js文件，配置如下：</p>
+<pre><code>var webpack = require(&apos;webpack&apos;);
+var path = require(&apos;path&apos;);
+
+var config = {
+    entry:&quot;entry.js&quot;,//入口文件路径
+    output:{//输出文件
+        path:path.resolve(__dirname,&apos;build&apos;),
+        filename:&quot;[name].bundle.js&quot;
+    },
+    module:{//模块
+        ...
+    }
+}
+
+module.exports = config;
+</code></pre><p>配置文件的结构大致是以上的结构。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><pre><code>$ webpack
+</code></pre><h2 id="常用xxx-Loader的使用："><a href="#常用xxx-Loader的使用：" class="headerlink" title="常用xxx-Loader的使用："></a>常用xxx-Loader的使用：</h2><h2 id="style-loader和css-loader"><a href="#style-loader和css-loader" class="headerlink" title="style-loader和css-loader"></a>style-loader和css-loader</h2><p>style-loader把js字符串生成为style节点；css-loader是把css转换为js输出。两者经常一起使用。</p>
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev css-loader
+</code></pre><h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
+<pre><code>module:{
+    rules:[{
+        test:/\.css$/,
+        use:[
+          { loader:&quot;stycss-loader&quot; },
+          { loader:&quot;css-loader&quot; }
+        ]
+    }]
+}
+</code></pre><h2 id="html-loader"><a href="#html-loader" class="headerlink" title="html-loader"></a>html-loader</h2><p>html-loader是把html文件转换为js.  </p>
+<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-loader
+</code></pre><h2 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>module:{
+    rules:[{
+        test:/\.html$/,
+        use:[
+            {
+                loader:&quot;html-loader&quot;,
+                option: {
+                    minimize:true
+                }
+            }
+        ]
+    }]
+}
+</code></pre><h2 id="less-loader"><a href="#less-loader" class="headerlink" title="less-loader"></a>less-loader</h2><p>less-loader是把less编译为css.  </p>
+<h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev less-loader
+</code></pre><h2 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：</p>
+<pre><code>module:{
+    rules:[
+        {
+            test:/\.less$/,
+            use:[
+                {
+                    loader:&quot;style-loader&quot;
+                },
+                {
+                    loader:&quot;css-loader&quot;
+                },
+                {
+                    loader:&quot;less-loader&quot;
+                }
+            ]
+        }
+    ]
+}
+</code></pre><h2 id="sass-loader"><a href="#sass-loader" class="headerlink" title="sass-loader"></a>sass-loader</h2><p>sass-loader是将sass编译为css。</p>
+<h2 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev sass-loader
+</code></pre><h2 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>modu:{
+    rules:[
+        {
+            test:/.\scss$/,
+            use:[
+                {
+                    loader:&quot;style-loader&quot;
+                },
+                {
+                    loader:&quot;css-loader&quot;,
+                    option:{ sourceMap:true }
+                },
+                {
+                    loader:&quot;sass-loader&quot;,
+                    option:{ sourceMap:true }
+                }
+            ]
+        }
+    ]
+}
+</code></pre><p>sourceMap:true用于启用CSS的source map  </p>
+<h2 id="插件使用"><a href="#插件使用" class="headerlink" title="插件使用"></a>插件使用</h2><p>想要使用一个插件，你只需要require()它，然后把它添加到plugins数组中。  </p>
+<h2 id="BannerPlugin"><a href="#BannerPlugin" class="headerlink" title="BannerPlugin"></a>BannerPlugin</h2><p>内置插件BannerPlugin，用来给输出的文件头部添加注释信息。</p>
+<h2 id="使用-5"><a href="#使用-5" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：   </p>
+<pre><code>plugins:[
+    new webpack.BannerPlugin(&apos;添加注释信息...&apos;)
+]
+</code></pre><h2 id="HtmlWebpackPlugin"><a href="#HtmlWebpackPlugin" class="headerlink" title="HtmlWebpackPlugin"></a>HtmlWebpackPlugin</h2><p>简化HTML文件的创建，为webpack包提供服务，可以用来生成HTML5文件。</p>
+<h2 id="安装-5"><a href="#安装-5" class="headerlink" title="安装"></a>安装</h2><pre><code>npm install --save-dev html-webpack-plugin
+</code></pre><h2 id="使用-6"><a href="#使用-6" class="headerlink" title="使用"></a>使用</h2><p>在webpack.config.js文件配置如下：  </p>
+<pre><code>var webpack = require(&apos;webpack&apos;);
+var path = require(&apos;path&apos;);
+var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);
+
+var config = {
+    entry:&quot;./entry.js&quot;,
+    output:{
+        path：path.resolve(__path,&apos;build&apos;),
+        filename:&quot;bundle.js&quot;
+    }
+    plugins:[
+        new HtmlWebpackPlugin()
+    ]
+}
+
+module.exports = config;
+</code></pre><p>这将会生成一个包含bundle.js引入信息的HTML文件。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/06/08/ng-option/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,7 +571,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -477,7 +729,7 @@ l  select as label for (key ,value) in object
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -720,7 +972,7 @@ div {
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Views&#58;</span>
+                 <span class="post-meta-item-text">Visitors&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -887,7 +1139,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
