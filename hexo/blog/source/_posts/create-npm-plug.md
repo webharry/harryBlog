@@ -33,7 +33,8 @@ npm publish
 如上，搜搜到插件gulp-px-to-rem,表示已经发布成功！  
 
 ### 发布常见问题
-小坑：注意每次再发布的时候，到package.json文件改下版本号再发布，否则会报错。  
+1.小坑：注意每次再发布的时候，到package.json文件改下版本号再发布，否则会报错。  
+2.从github克隆项目下来后，记得使用npm init初始化项目，npm install 安装项目依赖。
 
 备注：
 为了在GitHub同步代码，可以把每次发布更新到GitHub。只需三步命令：
