@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -264,6 +264,344 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/31/prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/31/prototype/" itemprop="url">浅谈原型链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T20:48:48+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/31/prototype/" class="leancloud_visitors" data-flag-title="浅谈原型链">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="instanceof-简介"><a href="#instanceof-简介" class="headerlink" title="instanceof 简介"></a>instanceof 简介</h3><p>在 JavaScript 中，判断一个变量的类型通常会用 typeof 运算符，在使用 typeof 运算符时采用引用类型存储值会出现一个问题，无论引用的是什么类型的对象，它都返回 “object”。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="built_in">console</span>.log( <span class="keyword">typeof</span> arr ); <span class="comment">// object</span></div></pre></td></tr></table></figure>
+<p>如果想要确定原型和实例之间的关系就需要用到 instanceof 操作符， 例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line"><span class="keyword">var</span> Fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Fn();</div><div class="line"><span class="built_in">console</span>.log( arr <span class="keyword">instanceof</span> <span class="built_in">Array</span> ); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log( arr <span class="keyword">instanceof</span> <span class="built_in">Object</span> ); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log( foo <span class="keyword">instanceof</span> Fn); <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log( foo <span class="keyword">instanceof</span> <span class="built_in">Function</span> ); <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log( foo <span class="keyword">instanceof</span> <span class="built_in">Object</span> ); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<h3 id="Function-instanceof-Function"><a href="#Function-instanceof-Function" class="headerlink" title="Function instanceof Function ?"></a>Function instanceof Function ?</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log( <span class="built_in">String</span> <span class="keyword">instanceof</span> <span class="built_in">String</span> );</div><div class="line"><span class="built_in">console</span>.log( <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> );</div><div class="line"><span class="built_in">console</span>.log( <span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> );</div><div class="line"><span class="built_in">console</span>.log( <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span> );</div><div class="line"><span class="built_in">console</span>.log( <span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span> );</div></pre></td></tr></table></figure>
+<p>要解释这个问题就需要了解 1.JavaScript 语言规范中是如何定义 instanceof 运算符的，2.JavaScript 原型继承机制。</p>
+<h3 id="instanceof-运算符的定义"><a href="#instanceof-运算符的定义" class="headerlink" title="instanceof 运算符的定义"></a><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-instanceofoperator" target="_blank" rel="noopener">instanceof 运算符的定义</a></h3><p>在 ECMAScript-262 中 instanceof 运算符的定义是这样的。</p>
+<blockquote>
+<p>12.9.4 Runtime Semantics: InstanceofOperator(O, C)<br>The abstract operation InstanceofOperator(O, C) implements the generic algorithm for determining if an object O inherits from the inheritance path defined by constructor C. This abstract operation performs the following steps:</p>
+<pre><code>1. If Type(C) is not Object, throw a TypeError exception.
+2. Let instOfHandler be GetMethod(C,@@hasInstance).
+3. ReturnIfAbrupt(instOfHandler).
+4. If instOfHandler is not undefined, then
+  a. Return ToBoolean(Call(instOfHandler, C, «O»)).
+5. If IsCallable(C) is false, throw a TypeError exception.
+6. Return OrdinaryHasInstance(C, O).
+NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript that did not use a @@hasInstance method to define the instanceof operator semantics. If a function object does not define or inherit @@hasInstance it uses the default instanceof semantics.
+</code></pre><p>7.3.19 OrdinaryHasInstance (C, O)<br>The abstract operation OrdinaryHasInstance implements the default algorithm for determining if an object O inherits from the instance object inheritance path provided by constructor C. This abstract operation performs the following steps:</p>
+<pre><code>1. If IsCallable(C) is false, return false.
+2. If C has a [[BoundTargetFunction]] internal slot, then
+    a. Let BC be the value of C’s [[BoundTargetFunction]] internal slot.
+    b. Return InstanceofOperator(O,BC) (see 12.9.4).
+3. If Type(O) is not Object, return false.
+4. Let P be Get(C, &quot;prototype&quot;).
+5. ReturnIfAbrupt(P).
+6. If Type(P) is not Object, throw a TypeError exception.
+7. Repeat
+  a. Let O be `O.[[GetPrototypeOf]]()`.
+  b. ReturnIfAbrupt(O).
+  c. If O is null, return false.
+  d. If SameValue(P, O) is true, return true.
+</code></pre></blockquote>
+<p>官网的定义非常晦涩，上面的翻译成代码大概就是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">instanceOf</span>(<span class="params"> L, R </span>) </span>&#123; <span class="comment">//L 表示左表达式，R 表示右表达式</span></div><div class="line">    <span class="keyword">var</span> P = R.prototype; <span class="comment">// 取 R 的显示原型</span></div><div class="line">    L = L.__proto__; <span class="comment">// 取 L 的隐式原型</span></div><div class="line">    <span class="keyword">while</span> ( <span class="literal">true</span> ) &#123; </div><div class="line">        <span class="keyword">if</span> ( L === <span class="literal">null</span> ) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        <span class="keyword">if</span> ( P === L ) <span class="keyword">return</span> <span class="literal">true</span>; </div><div class="line">        L = L.__proto__; </div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再直接点的表达就是 instanceof 会一直在 obj 的原型链上查找，直到找到右边那个构造函数的 prototype 属性，或者为 null 的时候才停止。</p>
+<p>类似：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">obj.__proto__.__proto__ ... = Obj.prototype</div></pre></td></tr></table></figure></p>
+<p>instanceof 会一直沿着隐式原型链 <code>__proto__</code> 向上查找直到 <code>obj.__proto__.__proto__ ...... === Obj.prototype</code> 为止，如果找到则返回 true，也就是 obj 为 Obj 的一个实例。否则返回 false，obj 不是 Obj 的实例。</p>
+<h3 id="JavaScript-原型继承机制"><a href="#JavaScript-原型继承机制" class="headerlink" title="JavaScript 原型继承机制"></a>JavaScript 原型继承机制</h3><h4 id="原型与原型链"><a href="#原型与原型链" class="headerlink" title="原型与原型链"></a>原型与原型链</h4><p>在 JavaScript 每个函数都有一个 prototype 属性，该属性存储的就是原型对象。JavaScript 构造函数的继承都是通过 prototype 属性， 真正的原型链的实现是通过 <code>__proto__</code> 实现的，<code>__proto__</code>其实是指向‘父类’的 prototype 属性。例如：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo;</div><div class="line"><span class="built_in">console</span>.log(foo.__proto__ === Foo.prototype) <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(Foo.__proto__ === <span class="built_in">Function</span>.prototype) <span class="comment">// true</span></div></pre></td></tr></table></figure></p>
+<h4 id="原型继承"><a href="#原型继承" class="headerlink" title="原型继承"></a>原型继承</h4><p>JavaScript 是单继承的，Object.prototype 是原型链的顶端，所有对象从它继承了包括 valueOf、toString 等等方法和属性。</p>
+<p>Object 本身是构造函数，继承了 Function.prototype。 Function 也是对象，继承了 Object.prototype。</p>
+<p><img src="http://cdn.xieluping.cn/images/n448lo5bi6c3w5no6iggb9.jpg" alt=""></p>
+<h4 id="Object-instanceof-Object"><a href="#Object-instanceof-Object" class="headerlink" title="Object instanceof Object"></a>Object instanceof Object</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ObjectL = <span class="built_in">Object</span>, ObjectR = <span class="built_in">Object</span>; </div><div class="line"></div><div class="line">R = ObjectR.prototype = <span class="built_in">Object</span>.prototype </div><div class="line">L = ObjectL.__proto__ = <span class="built_in">Function</span>.prototype </div><div class="line"></div><div class="line">R != L </div><div class="line"><span class="comment">// 循环查找 L 是否还有 __proto__ </span></div><div class="line">L = <span class="built_in">Function</span>.prototype.__proto__ = <span class="built_in">Object</span>.prototype </div><div class="line"></div><div class="line">R == L </div><div class="line"><span class="comment">// 返回 true</span></div></pre></td></tr></table></figure>
+<h4 id="String-instanceof-String"><a href="#String-instanceof-String" class="headerlink" title="String instanceof String"></a>String instanceof String</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">StringL = <span class="built_in">String</span>, StringR = <span class="built_in">String</span>;</div><div class="line"></div><div class="line">R = StringR.prototype = <span class="built_in">String</span>.prototype</div><div class="line">L = StringL.__proto__ = <span class="built_in">Object</span>.prototype</div><div class="line"></div><div class="line">R != L</div><div class="line"><span class="comment">// 循环查找 L 是否还有 __proto__ </span></div><div class="line">L = <span class="built_in">Object</span>.prototype.__proto__ = <span class="literal">null</span></div><div class="line"><span class="comment">// 返回 false</span></div></pre></td></tr></table></figure>
+<h3 id="一切皆对象？"><a href="#一切皆对象？" class="headerlink" title="一切皆对象？"></a>一切皆对象？</h3><p>常常说 JavaScript 中一切皆对象，那么就有这样一个问题了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'string'</span>.__proto__ === <span class="built_in">String</span>.prototype <span class="comment">// true</span></div><div class="line"><span class="string">'string'</span> <span class="keyword">instanceof</span> <span class="built_in">String</span> <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>按照上面的推导，<code>&#39;string&#39; instanceof String</code> 应该为 <code>true</code>，但是我们得到的却是 <code>false</code>。<br>其实问题的关键在于：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="string">'string'</span>); <span class="comment">// string</span></div></pre></td></tr></table></figure></p>
+<p>‘string’ 并不是一个 object 对象，MDN 上对 instanceof 的定义是：</p>
+<blockquote>
+<p>The instanceof operator tests whether an object in its prototype chain has the prototype property of a constructor.</p>
+</blockquote>
+<p>这样又有一个问题了，既然字符串不是对象那为什么有对象才有的属性和方法呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="string">"string"</span>;</div><div class="line"><span class="keyword">var</span> s2 = s1.substring(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>为了便于操作基本类型值，ECMAScript 还提供了 3 个特殊的引用类型: Boolean、Number 和 String。 实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，从而让我们 能够调用一些方法来操作这些数据。</p>
+<p>《JavaScript高级程序设计》中是这么解释的：</p>
+<blockquote>
+<p>上面的例子其实当第二行代码访问 s1 时，访问过程处于一种读取模式，也就是要 从内存中读取这个字符串的值。而在读取模式中访问字符串时，后台都会自动完成：<br>(1) 创建 String 类型的一个实例;<br>(2) 在实例上调用指定的方法;<br>(3) 销毁这个实例。</p>
+</blockquote>
+<p>可以将以上三个步骤想象成是执行了下列 ECMAScript 代码。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"some text"</span>);</div><div class="line"><span class="keyword">var</span> s2 = s1.substring(<span class="number">2</span>);</div><div class="line">s1 = <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
+<p>《Javascript权威指南》里说：</p>
+<blockquote>
+<p>其实（包装对象）在实现上并不一定创建或销毁这个临时对象，然而整个过程看起来是这样的。</p>
+</blockquote>
+<p>这样 Boolean、Number 是一样的逻辑。还剩下两种基本类型：null 和 undefined。</p>
+<p>undefined 当我们对变量只声明没有初始化时，输出为 undefined，<code>typeof undefined</code> 返回的是 undefined 也不是 object 类型，所以 undefined 并不是任何对象的实例。</p>
+<p>null 表示的是空对象，虽然 <code>typeof null</code> 是 object，但是 null 和 undefined 一样并没有任何属性和方法，在 instanceof 定义中也有判断，如果类型不是 object（这个类型判断并不是跟 typeof 返回值一样），就返回 false。<br><img src="http://cdn.xieluping.cn/images/y560nlqtuhtfe48rpphkt9.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/31/inherit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/31/inherit/" itemprop="url">浅谈ES5，ES6继承</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T19:17:03+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/31/inherit/" class="leancloud_visitors" data-flag-title="浅谈ES5，ES6继承">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天来看下JavaScript中是如何实现继承的？es5和es6在继承实现上有什么区别？带着这两个问题，进入下文。  </p>
+<p>我们都知道，在JavaScript中，继承是通过原型链来实现的。原型链的知识请自行参考文章”从instanceof浅谈原型链”。  </p>
+<h3 id="es5"><a href="#es5" class="headerlink" title="es5"></a>es5</h3><p>在es5中继承是这样定义的：子类的原型是父类的一个实例，以此子类可以继承父类的原型上的属性和方法，即继承是通过原型链实现。看图：<br><img src="https://upload.cc/i/oiYBmQ.png" alt="es5"><br>看代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.property = <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Super.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.property;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//继承了Super</span></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line">Sub.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> Sub();</div><div class="line"><span class="built_in">console</span>.log(instance.getSuperValue());<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>代码中，定义了两个构造函数Super和Sub,以及他们各自的属性和方法。我们注意到一句代码，Sub.prototype = new Super();Sub的原型实际上是Super类型的一个实例，这样Sub就能够使用Super的方法和属性，即实现了继承。    </p>
+<p>它们的关系可以进一步检验：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Sub.prototype.constructor == Sub;<span class="comment">//true</span></div><div class="line">Sub.prototype.__proto__ == Super.prototype;<span class="comment">//true</span></div><div class="line">instance.__proto__ == Sub.prototype;<span class="comment">//true</span></div><div class="line">instance.constructor == Sub;<span class="comment">//true</span></div><div class="line"><span class="string">``</span><span class="string">`  </span></div><div class="line"></div><div class="line">es5中，继承存在的一个问题是，每次子构造函数从父构造函数继承，需要调用多次父构造函数：继承时，父构造函数需要new一个实例，调用一次；当子构造函数调用父的属性方法会调用多次。  </div><div class="line"></div><div class="line">### es6</div><div class="line">在es6中,继承实现和es5是一样的，都是通过原型链实现的。es6中Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</div><div class="line">`<span class="string">``</span>js</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>() </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorPoint</span> <span class="keyword">extends</span> <span class="title">Point</span>() </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(x,y,color) &#123;</div><div class="line">        <span class="keyword">super</span>(x,y);<span class="comment">//调用父类的constructor(x,y)</span></div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    toString() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.color + <span class="string">''</span> + <span class="keyword">super</span>.toString();<span class="comment">//调用父类的toString()</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> ColorPoint(<span class="number">25</span>，<span class="number">8</span>，<span class="string">'red'</span>);</div><div class="line">cp <span class="keyword">instanceof</span> ColorPoint<span class="comment">//ture</span></div><div class="line">cp <span class="keyword">instanceof</span> Point <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>上面代码中，constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。</p>
+<p>子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。</p>
+<p>如果子类没有定义constructor方法，这个方法会被默认添加，也就是说，不管有没有显式定义，任何一个子类都有constructor方法。</p>
+<p>看图：<br><img src="https://upload.cc/i/qYNUJS.png" alt="es6"><br>从图中，很清晰的看到，相比于es5的继承，子类的<strong>proto</strong>属性指向其父类。</p>
+<ul>
+<li>小结：  </li>
+</ul>
+<p>es5的继承，实质是先创造子类的实例对象this,然后再将父类的方法添加到this上面。ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/25/media-query/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +631,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-25T19:23:28+08:00">
                 2017-12-25
@@ -461,7 +799,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T20:31:23+08:00">
                 2017-12-15
@@ -610,7 +948,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-13T17:33:18+08:00">
                 2017-12-13
@@ -823,7 +1161,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T11:23:56+08:00">
                 2017-12-07
@@ -973,7 +1311,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T16:04:53+08:00">
                 2017-12-03
@@ -1112,7 +1450,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-24T18:11:04+08:00">
                 2017-11-24
@@ -1255,7 +1593,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T20:47:22+08:00">
                 2017-10-24
@@ -1390,7 +1728,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-23T15:34:57+08:00">
                 2017-10-23
@@ -1483,350 +1821,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/12/CORS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/12/CORS/" itemprop="url">CORS（cross-origin resourse sharing)跨域资源共享</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T10:30:14+08:00">
-                2017-10-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/10/12/CORS/" class="leancloud_visitors" data-flag-title="CORS（cross-origin resourse sharing)跨域资源共享">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天从同源策略出发，探究跨域问题出现的原因及其原理，以及一些常见解决方法。这篇文章主要讲跨域解决办法1.CORS（cross-origin resourse sharing)跨域资源共享。</p>
-<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>所谓同源，就是比较两个页面的协议、域名、端口是否相同，相同则是同源，有一个不同就视为不同源。</p>
-<blockquote>
-<p>根据MDN给出的例子：<br>下表给出了相对<a href="http://store.company.com/dir/page.html同源检测的示例" target="_blank" rel="noopener">http://store.company.com/dir/page.html同源检测的示例</a>:  </p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th style="text-align:center">结果</th>
-<th style="text-align:right">原因</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a></td>
-<td style="text-align:center">成功</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a></td>
-<td style="text-align:center">成功</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td><a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:right">不同协议 ( https和http )</td>
-</tr>
-<tr>
-<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:right">不同端口 ( 81和80)</td>
-</tr>
-<tr>
-<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a></td>
-<td style="text-align:center">失败</td>
-<td style="text-align:right">不同域名 ( news和store )</td>
-</tr>
-</tbody>
-</table>
-<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>浏览器为了保证信息安全，规定了资源访问使用同源策略。所以，当浏览器访问的资源来自不同源，就会出现跨源资源访问，即跨域问题。 </p>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a>1.CORS（cross-origin resourse sharing)跨域资源共享</h5><p>CORS是浏览器解决跨域问题的一种策略，在CORS中，浏览器把ajax发起的请求分为简单请求和非简单请求，分别对两种请求进行处理，再将ajax请求发往服务器。</p>
-<h5 id="①简单请求就是满足以下条件的："><a href="#①简单请求就是满足以下条件的：" class="headerlink" title="①简单请求就是满足以下条件的："></a>①简单请求就是满足以下条件的：</h5><p>请求方式为这几种：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET,POST,HEAD</div></pre></td></tr></table></figure></p>
-<p>HTTP头信息不超出以下几种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Accept</div><div class="line">Accept-Language</div><div class="line">Content-Language</div><div class="line">Last-Event-ID</div><div class="line">content-type只限于三种：text/plain，multipart/form-data，application/x-www-form-urlencoded</div></pre></td></tr></table></figure>
-<p>对于简单请求，浏览器直接发出CORS请求，在头信息中增加一个字段：Origin,表示请求源域名。例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Accept:*<span class="comment">/*</span></div><div class="line">Accept-Encoding:gzip, deflate, br</div><div class="line">Accept-Language:zh-CN,zh;q=0.8</div><div class="line">Connection:keep-alive</div><div class="line">Host:localhost:3001</div><div class="line">Origin:http://localhost:3000</div></pre></td></tr></table></figure></p>
-<p>Origin:<a href="http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。" target="_blank" rel="noopener">http://localhost:3000字段告诉服务器请求源是http://localhost:3000，服务器就可以做出相应响应。</a> </p>
-<p>如果服务器发现Oringin字段的源不在接受范围，就会发送一个正常HTTP回应，浏览器发现这个回应的头信息中没有包含Accsess-Control-Allow-Origin字段，就抛出一个错误，被XMLHttpRequest的onerror捕获，即跨域问题出现了。</p>
-<p>好了，知道报错原因，我们就可以从以下方法解决跨域问题了：<br>概括为一句话：在服务器设置接受的源信息。</p>
-<h6 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h6><p>客户端请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://localhost:3000'</span>;</div><div class="line"></div><div class="line">xhr.open(<span class="string">'GET'</span>,url);</div><div class="line">xhr.send(<span class="literal">null</span>);</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123; <span class="comment">// 如果请求成功</span></div><div class="line">      text.innerHTML = xhr.response;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>服务器设置（例子用的express）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> test = express();</div><div class="line"></div><div class="line">test.get(<span class="string">'/'</span>,(req,res) =&gt; &#123;</div><div class="line">  res.set(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'http://localhost:3000'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PUT'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Custom-Header'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">  res.send(<span class="string">"hello CORS."</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>如上，服务器对请求的头信息进行设置，<br>Access-Control-Allow-Origin字段表示接受的源，表示接受来自<a href="http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。" target="_blank" rel="noopener">http://localhost:3000这个域名的请求。设置为*表示接受任意域名的请求。</a></p>
-<p>Access-Control-Allow-Methods列举出服务器接受的请求方式。<br>Access-Control-Allow-Headers可以设置允许请求源的header特殊参数。<br>Access-Control-Allow-Credentials该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。  </p>
-<p>如此，就可以实现跨域访问了。</p>
-<h5 id="②非简单请求"><a href="#②非简单请求" class="headerlink" title="②非简单请求"></a>②非简单请求</h5><p>非简单请求，我的理解是排除了以上简单请求的，比如PUT请求。  </p>
-<p>浏览器对于非简单请求，在发送正式请求前，会先发送一个OPTION请求，向服务器询问是否接受请求，称为“预检”请求。<br>如果服务器接受才会发送正式请求，否则就报错。<br>与简单请求一样，服务器无非也就是判断请求的域名、头信息和HTTP动词等是否在允许范围。<br>实例：<br>客户端发送PUT请求：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://localhost:3000'</span>;</div><div class="line">xhr.open(<span class="string">'PUT'</span>,url);</div><div class="line">xhr.setRequestHeader(<span class="string">'X-Custom-Header'</span>, <span class="string">'value'</span>);</div><div class="line">xhr.send();</div><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span>(xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123;</div><div class="line">    text1.innerHTML = xhr.response;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>非简单请求例子中，我设置了特殊头信息“X-Custom-Header”，告知服务器接受这个参数信息。  </p>
-<p>在服务器设置接受信息：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> test = express();</div><div class="line"></div><div class="line"><span class="keyword">var</span> responsePort = <span class="number">3001</span>;<span class="comment">//服务器端口</span></div><div class="line">test.all(<span class="string">'*'</span>, (req, res) =&gt; &#123;</div><div class="line">  res.set(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://localhost:3000'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'GET, POST, PUT'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'X-Custom-Header'</span>);</div><div class="line">  res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</div><div class="line">  res.send(<span class="string">"hello CORS."</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>至此，对于两种请求方式，都可以实现跨域访问了。<br>其他解决方法参看如下：  </p>
-<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享-1"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享-1" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a><a href="https://webharry.github.io/2017/10/24/JSONP/">2.JSONP</a></h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/09/27/slect2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/27/slect2/" itemprop="url">angular+select2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T15:50:45+08:00">
-                2017-09-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/09/27/slect2/" class="leancloud_visitors" data-flag-title="angular+select2">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>select2 是一个jQuery的插件，扩展了select的功能。可以搜索，下面是使用方法:</p>
-<blockquote>
-<p>官网地址：<a href="https://select2.org/" target="_blank" rel="noopener">https://select2.org/</a></p>
-<h3 id="一、引入插件select2"><a href="#一、引入插件select2" class="headerlink" title="一、引入插件select2"></a>一、引入插件select2</h3></blockquote>
-<h4 id="1-访问GitHub下载："><a href="#1-访问GitHub下载：" class="headerlink" title="1.访问GitHub下载："></a>1.访问GitHub下载：</h4><blockquote>
-<p><a href="https://github.com/select2/select2" target="_blank" rel="noopener">https://github.com/select2/select2</a><br>解压后将js和css文件引入你的html文件：</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//select2</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.js'</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">'../select2/select2.min.css'</span>);</div></pre></td></tr></table></figure>
-<h4 id="2-或者通过远程动访问引入文件，在你的html文件引入js和css文件："><a href="#2-或者通过远程动访问引入文件，在你的html文件引入js和css文件：" class="headerlink" title="2.或者通过远程动访问引入文件，在你的html文件引入js和css文件："></a>2.或者通过远程动访问引入文件，在你的html文件引入js和css文件：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h3><p>例子1：给select添加类名:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"tags"</span> <span class="attr">class</span>=<span class="string">"js-example-basic-single"</span> <span class="attr">ng-model</span>=<span class="string">"someValue"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">ng-repeat</span>=<span class="string">"s in arr"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;s.id&#125;&#125;"</span> <span class="attr">on-finish-render-filters</span>&gt;</span>&#123;&#123;s.value&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>在js文件中调用select2的API：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//select2插件实现下拉框的模糊搜索匹配功能</span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="string">'.js-example-basic-multiple'</span>).select2();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="三、select2初始化"><a href="#三、select2初始化" class="headerlink" title="三、select2初始化"></a>三、select2初始化</h3><p>通过在.select2()方法中添加一个对象实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'.js-example-basic-multiple'</span>).select2(&#123;</div><div class="line">  <span class="attr">width</span>:<span class="number">200</span>px,<span class="comment">//设置默认宽度</span></div><div class="line">  <span class="comment">//width: 'resolve', // 需要在html用行内样式重新定义宽度</span></div><div class="line">  multiple: <span class="string">'multiple'</span>,     <span class="comment">// 多选</span></div><div class="line"></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="四、select2事件"><a href="#四、select2事件" class="headerlink" title="四、select2事件"></a>四、select2事件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'#tags'</span>).on(<span class="string">'select2:select'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="comment">//获取select当前选中值得一些信息</span></div><div class="line">      <span class="keyword">var</span> data = e.params.data;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">      $scope.someValue = data.id;</div><div class="line">      </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="五、Data-sources"><a href="#五、Data-sources" class="headerlink" title="五、Data sources"></a>五、Data sources</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"js-data-example-ajax"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">'.js-example-data-ajax'</span>).select2(&#123;</div><div class="line">  <span class="attr">ajax</span>: &#123;</div><div class="line">    <span class="attr">url</span>: <span class="string">'https://api.github.com/search/repositories'</span>,</div><div class="line">    <span class="comment">//dataType: 'json'</span></div><div class="line">    <span class="comment">// Additional AJAX parameters go here; see the end of this chapter for the full code of this example</span></div><div class="line">    data: <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</div><div class="line">      <span class="keyword">var</span> query = &#123;</div><div class="line">        <span class="attr">search</span>: params.term,</div><div class="line">        <span class="attr">type</span>: <span class="string">'public'</span></div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// Query parameters will be ?search=[term]&amp;type=public</span></div><div class="line">      <span class="keyword">return</span> query;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="六、select2提供的event"><a href="#六、select2提供的event" class="headerlink" title="六、select2提供的event"></a>六、select2提供的event</h3><p>摘自网友博客：</p>
-<blockquote>
-<p>$(“#txt_tag”)<br> .on(“change”, function(e) {​})​ // 当 select2 值被改变的時候 ( 改变后触发 )​<br>.on(“select2-opening”,function(){}) // ​当下拉出现时 ( 开启选项下拉前触发)<br>  .on(“select2-open”, function() {}) //当下拉出现时(开启选项下拉后触发)​<br>.on(“select2-close”,function(){}) // 当选项关闭的时候<br>.on(“select2-highlight”,function(e){})// hover 到下拉时<br>.on(“select2-selecting”,function(e){})// 选中选项的时候 (选中前触发 ) ​​<br>.on(“select2-removing”,function(e){}) // 移除选项的时候 ( 选中前触发) ​​<br>.on(“select2-removed”,function(e){}) //移除选项的时候 ( 选中后触发 ) ​​​<br>.on(“select2-loaded”,function(e){}) // load资料的时候 ( Loaded 完成后触发)<br>.on(“select2-focus”,function(e){}) // input 获得焦点的触发<br>.on(“select2-blur”,function(e) {}) // input 失去焦点触发  </p>
-</blockquote>
-<h3 id="七、踩过的坑"><a href="#七、踩过的坑" class="headerlink" title="七、踩过的坑"></a>七、踩过的坑</h3><h4 id="1-在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。"><a href="#1-在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。" class="headerlink" title="1.在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。"></a>1.在angular项目里使用时，select中的ng-model未绑定选中值，看起来似乎失效了。</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"tags"</span> <span class="attr">class</span>=<span class="string">"js-example-basic-single"</span> <span class="attr">ng-model</span>=<span class="string">"someValue"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>请选择<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">ng-repeat</span>=<span class="string">"s in arr"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;s.id&#125;&#125;"</span> <span class="attr">on-finish-render-filters</span>&gt;</span>&#123;&#123;s.value&#125;&#125;<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>解决办法：在调用插件时，添加一个事件，将选中值赋值给变量：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//获取select选中值，赋值给全局变量$scope.someValue</span></div><div class="line">  $(<span class="string">'#tags'</span>).on(<span class="string">'select2:select'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="comment">//获取select当前选中值得一些信息</span></div><div class="line">      <span class="keyword">var</span> data = e.params.data;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">      $scope.someValue = data.id;</div><div class="line">      </div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
-<p>总结：select2提供了很多配置参数，处理事件，可以更具业务需求进行设置。本文主要用到了select2的搜索功能，以及处理与angular同时使用时的问题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1877,8 +1871,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1891,7 +1885,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1950,7 +1944,7 @@
 
 
   <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

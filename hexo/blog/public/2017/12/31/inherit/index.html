@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript,frontend," />
 
 
 
@@ -94,13 +94,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Harry的博客">
-<meta property="og:url" content="https://webharry.github.io/tags/plugin/index.html">
+<meta name="description" content="今天来看下JavaScript中是如何实现继承的？es5和es6在继承实现上有什么区别？带着这两个问题，进入下文。   我们都知道，在JavaScript中，继承是通过原型链来实现的。原型链的知识请自行参考文章”从instanceof浅谈原型链”。   es5在es5中继承是这样定义的：子类的原型是">
+<meta name="keywords" content="JavaScript,frontend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈ES5，ES6继承">
+<meta property="og:url" content="https://webharry.github.io/2017/12/31/inherit/index.html">
 <meta property="og:site_name" content="Harry的博客">
+<meta property="og:description" content="今天来看下JavaScript中是如何实现继承的？es5和es6在继承实现上有什么区别？带着这两个问题，进入下文。   我们都知道，在JavaScript中，继承是通过原型链来实现的。原型链的知识请自行参考文章”从instanceof浅谈原型链”。   es5在es5中继承是这样定义的：子类的原型是父类的一个实例，以此子类可以继承父类的原型上的属性和方法，即继承是通过原型链实现">
 <meta property="og:locale" content="English">
+<meta property="og:image" content="https://upload.cc/i/oiYBmQ.png">
+<meta property="og:image" content="https://upload.cc/i/qYNUJS.png">
+<meta property="og:updated_time" content="2017-12-31T13:22:00.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Harry的博客">
+<meta name="twitter:title" content="浅谈ES5，ES6继承">
+<meta name="twitter:description" content="今天来看下JavaScript中是如何实现继承的？es5和es6在继承实现上有什么区别？带着这两个问题，进入下文。   我们都知道，在JavaScript中，继承是通过原型链来实现的。原型链的知识请自行参考文章”从instanceof浅谈原型链”。   es5在es5中继承是这样定义的：子类的原型是父类的一个实例，以此子类可以继承父类的原型上的属性和方法，即继承是通过原型链实现">
+<meta name="twitter:image" content="https://upload.cc/i/oiYBmQ.png">
 
 
 
@@ -129,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/tags/plugin/"/>
+  <link rel="canonical" href="https://webharry.github.io/2017/12/31/inherit/"/>
 
 
 
 
 
-  <title>Tag: plugin | Harry的博客</title>
+  <title>浅谈ES5，ES6继承 | Harry的博客</title>
   
 
 
@@ -154,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,82 +256,177 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>plugin<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/31/inherit/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/07/ui-select/" itemprop="url">
-              
-                <span itemprop="name">angular+ui-select+select2</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">浅谈ES5，ES6继承</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-07T11:23:56+08:00"
-              content="2017-12-07" >
-          12-07
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T19:17:03+08:00">
+                2017-12-31
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/31/inherit/" class="leancloud_visitors" data-flag-title="浅谈ES5，ES6继承">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/27/slect2/" itemprop="url">
-              
-                <span itemprop="name">angular+select2</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-27T15:50:45+08:00"
-              content="2017-09-27" >
-          09-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>今天来看下JavaScript中是如何实现继承的？es5和es6在继承实现上有什么区别？带着这两个问题，进入下文。  </p>
+<p>我们都知道，在JavaScript中，继承是通过原型链来实现的。原型链的知识请自行参考文章”从instanceof浅谈原型链”。  </p>
+<h3 id="es5"><a href="#es5" class="headerlink" title="es5"></a>es5</h3><p>在es5中继承是这样定义的：子类的原型是父类的一个实例，以此子类可以继承父类的原型上的属性和方法，即继承是通过原型链实现。看图：<br><img src="https://upload.cc/i/oiYBmQ.png" alt="es5"><br>看代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.property = <span class="literal">true</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Super.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.property;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//继承了Super</span></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line">Sub.prototype.getSubValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> Sub();</div><div class="line"><span class="built_in">console</span>.log(instance.getSuperValue());<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<p>代码中，定义了两个构造函数Super和Sub,以及他们各自的属性和方法。我们注意到一句代码，Sub.prototype = new Super();Sub的原型实际上是Super类型的一个实例，这样Sub就能够使用Super的方法和属性，即实现了继承。    </p>
+<p>它们的关系可以进一步检验：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Sub.prototype.constructor == Sub;<span class="comment">//true</span></div><div class="line">Sub.prototype.__proto__ == Super.prototype;<span class="comment">//true</span></div><div class="line">instance.__proto__ == Sub.prototype;<span class="comment">//true</span></div><div class="line">instance.constructor == Sub;<span class="comment">//true</span></div><div class="line"><span class="string">``</span><span class="string">`  </span></div><div class="line"></div><div class="line">es5中，继承存在的一个问题是，每次子构造函数从父构造函数继承，需要调用多次父构造函数：继承时，父构造函数需要new一个实例，调用一次；当子构造函数调用父的属性方法会调用多次。  </div><div class="line"></div><div class="line">### es6</div><div class="line">在es6中,继承实现和es5是一样的，都是通过原型链实现的。es6中Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</div><div class="line">`<span class="string">``</span>js</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>() </span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorPoint</span> <span class="keyword">extends</span> <span class="title">Point</span>() </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(x,y,color) &#123;</div><div class="line">        <span class="keyword">super</span>(x,y);<span class="comment">//调用父类的constructor(x,y)</span></div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    toString() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.color + <span class="string">''</span> + <span class="keyword">super</span>.toString();<span class="comment">//调用父类的toString()</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> ColorPoint(<span class="number">25</span>，<span class="number">8</span>，<span class="string">'red'</span>);</div><div class="line">cp <span class="keyword">instanceof</span> ColorPoint<span class="comment">//ture</span></div><div class="line">cp <span class="keyword">instanceof</span> Point <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>上面代码中，constructor方法和toString方法之中，都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。</p>
+<p>子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。</p>
+<p>如果子类没有定义constructor方法，这个方法会被默认添加，也就是说，不管有没有显式定义，任何一个子类都有constructor方法。</p>
+<p>看图：<br><img src="https://upload.cc/i/qYNUJS.png" alt="es6"><br>从图中，很清晰的看到，相比于es5的继承，子类的<strong>proto</strong>属性指向其父类。</p>
+<ul>
+<li>小结：  </li>
+</ul>
+<p>es5的继承，实质是先创造子类的实例对象this,然后再将父类的方法添加到this上面。ES6 的继承机制完全不同，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/media-query/" rel="next" title="media query">
+                <i class="fa fa-chevron-left"></i> media query
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/31/prototype/" rel="prev" title="浅谈原型链">
+                浅谈原型链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -331,6 +434,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -351,8 +458,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -405,6 +521,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#es5"><span class="nav-number">1.</span> <span class="nav-text">es5</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -535,10 +667,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
