@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -264,6 +264,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/14/plugins-browsersync/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/plugins-browsersync/" itemprop="url">plugins-browsersync</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:25:02+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/14/plugins-browsersync/" class="leancloud_visitors" data-flag-title="plugins-browsersync">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Browsersync浏览器同步测试工具的使用"><a href="#Browsersync浏览器同步测试工具的使用" class="headerlink" title="Browsersync浏览器同步测试工具的使用"></a>Browsersync浏览器同步测试工具的使用</h2><p>Browsersync能够快速响应文件(html、css、js、less、sass等)的更改，试想当你敲代码的同时，浏览器能够快速响应文件更改，免去手动刷新浏览器，对于开发者来说无疑会提高开发效率。</p>
+<p>下面是分别是在gulp和webpack中的安装及使用方法。  </p>
+<h2 id="一、gulp-browser-sync安装"><a href="#一、gulp-browser-sync安装" class="headerlink" title="一、gulp + browser-sync安装"></a>一、gulp + browser-sync安装</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是你已<a href="https://webharry.github.io/2017/07/20/gulp-use/">安装gulp</a><br>这里用Node.js的包管理安装，前提是你已安装<a href="">node.js</a>。<br>全局安装：</p>
+<pre><code>npm install -g browser-sync
+</code></pre><p>作为项目开发依赖安装：</p>
+<pre><code>npm install --save-dev browser-sync
+</code></pre><h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>在gulpfile.js文件配置如下：  </p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var browserSync = require(&apos;browser-sync&apos;).create();
+var reload = browserSync.reload;
+
+gulp.task(&apos;server&apos;,function() {
+    browserSync.init({
+        server: &quot;./dist&quot;//生产目录
+    });
+
+    gulp.watch(&quot;./src/**/*.less&quot;,[&apos;less&apos;]);
+    gulp.watch(&quot;./src/**/*.html&quot;,[&apos;htmlmin&apos;]);
+    gulp.watch(&quot;./dist/**/*.css&quot;).on(&apos;change&apos;,reload);
+    gulp.watch(&quot;./dist/**/*.html&quot;).on(&apos;change&apos;,reload);
+});
+
+gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
+
+});
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/14/angular-file-upload/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +448,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:14:25+08:00">
                 2017-08-14
@@ -609,7 +764,7 @@ return &apos;|doc|docx|jpg|png|pdf|&apos;.indexOf(type) !== -1;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-20T10:05:20+08:00">
                 2017-07-20
@@ -812,7 +967,7 @@ gulp.task(&apos;sass&apos;,function(){
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T20:17:28+08:00">
                 2017-07-18
@@ -1064,7 +1219,7 @@ module.exports = config;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T23:25:27+08:00">
                 2017-06-08
@@ -1222,7 +1377,7 @@ l  select as label for (key ,value) in object
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T14:50:17+08:00">
                 2017-03-11
@@ -1465,7 +1620,7 @@ div {
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-05T07:34:13+08:00">
                 2017-03-05
@@ -1658,8 +1813,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1671,8 +1826,8 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1714,7 +1869,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
 <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1731,7 +1886,7 @@ app.controller(&quot;CtrlName&quot;, function($scope) {
 
 
   <div class="powered-by">
-    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

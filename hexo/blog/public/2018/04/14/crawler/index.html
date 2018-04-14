@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CSS,frontend," />
+  <meta name="keywords" content="frontend,JavaScript,node.js," />
 
 
 
@@ -94,23 +94,18 @@
 
 
 
-<meta name="description" content="1.媒体查询（Media query） 原理通过对不同设备（比如屏幕宽度width）设置不同的css样式，达到响应式页面效果。 使用在css文件：1234567891011121314151617@media (max-width:670px;) &amp;#123; //设置670px像素下的css样式&amp;#1">
-<meta name="keywords" content="CSS,frontend">
+<meta name="description" content="node.js实现简单爬虫工具：cheerio   cheerio 是nodejs特别为服务端定制的，能够快速灵活的对JQuery核心进行实现。它工作于DOM模型上，且解析、操作、呈送都很高效。更多API参看：  https://github.com/cheeriojs/cheerio  我们以慕课网页面为例，爬取每个">
+<meta name="keywords" content="frontend,JavaScript,node.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="media query">
-<meta property="og:url" content="https://webharry.github.io/2017/12/25/media-query/index.html">
+<meta property="og:title" content="crawler">
+<meta property="og:url" content="https://webharry.github.io/2018/04/14/crawler/index.html">
 <meta property="og:site_name" content="Harry的博客">
-<meta property="og:description" content="1.媒体查询（Media query） 原理通过对不同设备（比如屏幕宽度width）设置不同的css样式，达到响应式页面效果。 使用在css文件：1234567891011121314151617@media (max-width:670px;) &amp;#123; //设置670px像素下的css样式&amp;#125;@media (max-width:860px;) &amp;#123; //设置在860px屏幕">
+<meta property="og:description" content="node.js实现简单爬虫工具：cheerio   cheerio 是nodejs特别为服务端定制的，能够快速灵活的对JQuery核心进行实现。它工作于DOM模型上，且解析、操作、呈送都很高效。更多API参看：  https://github.com/cheeriojs/cheerio  我们以慕课网页面为例，爬取每个视频课程的标题和课程对应id,期望结构如下：1234titles = [&amp;#12">
 <meta property="og:locale" content="English">
-<meta property="og:image" content="https://upload.cc/i/QAft45.jpeg">
-<meta property="og:image" content="https://upload.cc/i/RDugIJ.jpeg">
-<meta property="og:image" content="https://upload.cc/i/2MRqXS.jpeg">
-<meta property="og:image" content="https://upload.cc/i/zWod3S.jpeg">
-<meta property="og:updated_time" content="2017-12-25T11:39:18.560Z">
+<meta property="og:updated_time" content="2018-04-14T06:32:26.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="media query">
-<meta name="twitter:description" content="1.媒体查询（Media query） 原理通过对不同设备（比如屏幕宽度width）设置不同的css样式，达到响应式页面效果。 使用在css文件：1234567891011121314151617@media (max-width:670px;) &amp;#123; //设置670px像素下的css样式&amp;#125;@media (max-width:860px;) &amp;#123; //设置在860px屏幕">
-<meta name="twitter:image" content="https://upload.cc/i/QAft45.jpeg">
+<meta name="twitter:title" content="crawler">
+<meta name="twitter:description" content="node.js实现简单爬虫工具：cheerio   cheerio 是nodejs特别为服务端定制的，能够快速灵活的对JQuery核心进行实现。它工作于DOM模型上，且解析、操作、呈送都很高效。更多API参看：  https://github.com/cheeriojs/cheerio  我们以慕课网页面为例，爬取每个视频课程的标题和课程对应id,期望结构如下：1234titles = [&amp;#12">
 
 
 
@@ -139,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://webharry.github.io/2017/12/25/media-query/"/>
+  <link rel="canonical" href="https://webharry.github.io/2018/04/14/crawler/"/>
 
 
 
 
 
-  <title>media query | Harry的博客</title>
+  <title>crawler | Harry的博客</title>
   
 
 
@@ -272,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/25/media-query/">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2018/04/14/crawler/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yangjie">
@@ -289,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">media query</h1>
+          <h1 class="post-title" itemprop="name headline">crawler</h1>
         
 
         <div class="post-meta">
@@ -301,8 +296,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-25T19:23:28+08:00">
-                2017-12-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-14T14:27:24+08:00">
+                2018-04-14
               </time>
             
 
@@ -319,7 +314,7 @@
 
           
           
-             <span id="/2017/12/25/media-query/" class="leancloud_visitors" data-flag-title="media query">
+             <span id="/2018/04/14/crawler/" class="leancloud_visitors" data-flag-title="crawler">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -350,44 +345,16 @@
       
 
       
-        <h3 id="1-媒体查询（Media-query）"><a href="#1-媒体查询（Media-query）" class="headerlink" title="1.媒体查询（Media query）"></a>1.媒体查询（Media query）</h3><ul>
-<li>原理<br>通过对不同设备（比如屏幕宽度width）设置不同的css样式，达到响应式页面效果。</li>
-<li>使用<br>在css文件：<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@media (max-width:670px;) &#123;</div><div class="line"></div><div class="line"> //设置670px像素下的css样式</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width:860px;) &#123;</div><div class="line"></div><div class="line"> //设置在860px屏幕宽度下的css样式</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width:1200px;) &#123;</div><div class="line"></div><div class="line"> //设置1200px屏幕宽度下的css样式</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="2-媒体查询引用"><a href="#2-媒体查询引用" class="headerlink" title="2.媒体查询引用"></a>2.媒体查询引用</h3><p>在html文件<head>标签里加入以下代码：  </head></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,</span></span></div><div class="line">    initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;//媒体查询引用</div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"main.less"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>参数解释：</p>
-<ul>
-<li><p>width = device-width：宽度等于当前设备的宽度</p>
-</li>
-<li><p>initial-scale：初始的缩放比例（默认设置为1.0）  </p>
-</li>
-<li><p>minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）    </p>
-</li>
-<li><p>maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）   </p>
-</li>
-</ul>
-<h3 id="3-响应式布局小技能"><a href="#3-响应式布局小技能" class="headerlink" title="3.响应式布局小技能"></a>3.响应式布局小技能</h3><ul>
-<li>在响应式布局中，一般设置元素的宽度和高度为百分比值，不建议给元素固定的px值。<h4 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h4></li>
-</ul>
-<p>登录界面中的表单dome.<br>index.html文件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h6</span>&gt;</span>LOGIN QUICK<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form"</span> <span class="attr">placeholder</span>=<span class="string">"E-mail"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"form"</span> <span class="attr">placeholder</span>=<span class="string">"Password"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"forget"</span>&gt;</span>Forgot Password?<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>css样式(main.less文件)：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">.login &#123;</div><div class="line">    width:26%;//先设置一个初始值，为百分比值</div><div class="line">    margin: 7em auto 9em;</div><div class="line">    h6 &#123;</div><div class="line">        font-size: 1em;</div><div class="line">        margin-top:90px;</div><div class="line">        margin-bottom: 30px;</div><div class="line">        letter-spacing: 4px;</div><div class="line">    &#125;</div><div class="line">    .form &#123;</div><div class="line">        display: block;</div><div class="line">        width:100%;</div><div class="line">        font-size:.9em;</div><div class="line">        border-radius: 40px;</div><div class="line">        margin:15px auto;</div><div class="line">        padding:1em 3em 1em 1em;</div><div class="line">        box-sizing: border-box;</div><div class="line">        border: none;</div><div class="line">        outline: none;</div><div class="line">        letter-spacing: 1px;</div><div class="line">        font-weight: 400;</div><div class="line">        font-family: 'Open Sans', sans-serif;</div><div class="line">        background: rgba(255, 255, 255, 0.85);</div><div class="line">    &#125;</div><div class="line">    .forget &#123;</div><div class="line">        text-align: right;</div><div class="line">        font-size: 14px;</div><div class="line">    &#125;</div><div class="line">    .btn &#123;</div><div class="line">        width: 56%;</div><div class="line">        height: 40px;</div><div class="line">        background-color: #ea2858;</div><div class="line">        border-radius: 40px;</div><div class="line">        border: none;</div><div class="line">        margin:15px 0;</div><div class="line">        color:#fff;</div><div class="line">        font-size: 14px;</div><div class="line">        outline: none;</div><div class="line">        cursor: pointer;</div><div class="line">        // transition: all .1s linear;</div><div class="line">        transition: background-color .5s linear;</div><div class="line">        font-weight: 400;</div><div class="line">        font-family: 'Open Sans', sans-serif;</div><div class="line">        &amp;:hover &#123;</div><div class="line">            color: black;</div><div class="line">            background-color: white;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//利用媒体查询，在不同设备上设置.login的宽度，以达成宽度自适应</div><div class="line">@media screen and (min-width: 900px) and (max-width:1200px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:36%;</div><div class="line">        margin: 6em auto 5.7em;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@media screen and (max-width: 768px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:42%;</div><div class="line">        margin: 5.4em auto 5em;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media (max-width: 736px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:56%;</div><div class="line">        margin: 5em auto 4em;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@media screen and(max-width: 375px) &#123;</div><div class="line">    .login &#123;</div><div class="line">        width:90%;</div><div class="line">        margin: 3.7em auto 4em;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>demo效果图：  </p>
-<p>pc大屏（1366x866）：  </p>
-<p><img src="https://upload.cc/i/QAft45.jpeg" alt="1366x866">  </p>
-<p>移动端：<br>iPhone8:  </p>
-<p><img src="https://upload.cc/i/RDugIJ.jpeg" alt="iPhone8">  </p>
-<p>iPad:  </p>
-<p><img src="https://upload.cc/i/2MRqXS.jpeg" alt="iPad">  </p>
-<p>超小屏（389x866）：  </p>
-<p><img src="https://upload.cc/i/zWod3S.jpeg" alt="389x866"></p>
-<p>备注：如果在这里设置login固定宽度：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.login</span> &#123;</div><div class="line"> <span class="attribute">width</span>:<span class="number">600px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>那么网页显示在小屏幕上就会有问题，无法呈现响应式效果。  </p>
-<ul>
-<li>小结：通过媒体查询，可以实现网页响应式，PC端和移动端渲染是木有问题啦！</li>
-</ul>
+        <h3 id="node-js实现简单爬虫"><a href="#node-js实现简单爬虫" class="headerlink" title="node.js实现简单爬虫"></a>node.js实现简单爬虫</h3><p>工具：cheerio  </p>
+<p>cheerio 是nodejs特别为服务端定制的，能够快速灵活的对JQuery核心进行实现。它工作于DOM模型上，且解析、操作、呈送都很高效。<br>更多API参看：</p>
+<blockquote>
+<p><a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">https://github.com/cheeriojs/cheerio</a></p>
+</blockquote>
+<p>我们以慕课网页面为例，爬取每个视频课程的标题和课程对应id,期望结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">titles = [&#123;</div><div class="line">  chapterTitle: chapterTitle,</div><div class="line">  id: id</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>第一步，我们用node写一个请求，获取想要爬虫的网站html,这里以慕课网为例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://www.imooc.com/course/list?c=nodejs'</span></div><div class="line"></div><div class="line">http.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> html = <span class="string">''</span></div><div class="line">  </div><div class="line">  res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    html += data</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line">  res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = filterHml(html)</div><div class="line">    print(result)</div><div class="line">  &#125;)</div><div class="line">&#125;).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取数据错误！'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>第二步，我们根据需求来编写过滤HTML的函数，将过滤后的数据打印在控制台。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterChapters</span>(<span class="params">html</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(html)</div><div class="line">    <span class="keyword">var</span> chapters = $(<span class="string">'.course-card-container'</span>)<span class="comment">//以类名获取节点元素</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> titles = []</div><div class="line">    chapters.each(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> chapter = $(<span class="keyword">this</span>)</div><div class="line">        <span class="keyword">var</span> chapterTitle = chapter.find(<span class="string">'h3'</span>).text()</div><div class="line">        <span class="keyword">var</span> id = chapter.find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>).split(<span class="string">'learn/'</span>)[<span class="number">1</span>]</div><div class="line">        titles.push(&#123;</div><div class="line">            <span class="attr">chapterTitle</span>: chapterTitle,</div><div class="line">            <span class="attr">id</span>: id</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> titles</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printCourseInfo</span>(<span class="params">courseData</span>)</span>&#123;</div><div class="line">    courseData.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'【'</span> + item.id + <span class="string">'】'</span> + item.chapterTitle + <span class="string">'\n'</span>)</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>爬虫结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">【935】Vue+Webpack打造todo应用</div><div class="line"></div><div class="line">【882】基于websocket的火拼俄罗斯（单��版）</div><div class="line"></div><div class="line">【861】基于Websocket的火拼俄罗斯（基础）</div><div class="line"></div><div class="line">【866】前端性能优化-通用的缓存SDK</div><div class="line"></div><div class="line">【773】AC2016腾讯前端技术大会</div><div class="line"></div><div class="line">【728】创业公司的Nodejs工程师</div><div class="line"></div><div class="line">【725】Roundtable前端分享专场</div><div class="line"></div><div class="line">【637】进击Node.js基础（二）</div><div class="line"></div><div class="line">【590】阿里D2前端技术论坛——2015融合</div><div class="line"></div><div class="line">【564】去哪儿前端沙龙分享第三期</div><div class="line"></div><div class="line">【556】慕课网技术沙龙之前端专场</div><div class="line"></div><div class="line">【434】去哪儿前端沙龙分享第二期</div><div class="line"></div><div class="line">【367】Qnext前端交互沙龙</div><div class="line"></div><div class="line">【348】进击Node.js基础（一）</div><div class="line"></div><div class="line">【221】D2前端技术论坛——2014绽放</div><div class="line"></div><div class="line">【197】node建站攻略(二期)——网站升级</div><div class="line"></div><div class="line">【75】node+mongodb 建站攻略（一期）</div></pre></td></tr></table></figure></p>
+<p>小结：node.js使得JavaScript代码能够运行在服务端，从而进行一些操作，node.js的更多用法参看后续文章.</p>
 
       
     </div>
@@ -405,9 +372,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CSS/" rel="tag"># CSS</a>
-          
             <a href="/tags/frontend/" rel="tag"># frontend</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
           
         </div>
       
@@ -420,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/15/git/" rel="next" title="git">
-                <i class="fa fa-chevron-left"></i> git
+              <a href="/2017/12/31/prototype/" rel="next" title="浅谈原型链">
+                <i class="fa fa-chevron-left"></i> 浅谈原型链
               </a>
             
           </div>
@@ -429,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/31/inherit/" rel="prev" title="浅谈ES5，ES6继承">
-                浅谈ES5，ES6继承 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +522,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-媒体查询（Media-query）"><span class="nav-number">1.</span> <span class="nav-text">1.媒体查询（Media query）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-媒体查询引用"><span class="nav-number">2.</span> <span class="nav-text">2.媒体查询引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-响应式布局小技能"><span class="nav-number">3.</span> <span class="nav-text">3.响应式布局小技能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例："><span class="nav-number">3.1.</span> <span class="nav-text">实例：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#node-js实现简单爬虫"><span class="nav-number">1.</span> <span class="nav-text">node.js实现简单爬虫</span></a></li></ol></div>
             
 
           </div>

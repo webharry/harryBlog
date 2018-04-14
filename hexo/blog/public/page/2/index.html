@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -264,6 +264,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/23/proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/23/proxy/" itemprop="url">跨域解决方法-proxy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-23T15:34:57+08:00">
+                2017-10-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/10/23/proxy/" class="leancloud_visitors" data-flag-title="跨域解决方法-proxy">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  </p>
+<h4 id="跨域解决方法-proxy"><a href="#跨域解决方法-proxy" class="headerlink" title="跨域解决方法-proxy"></a>跨域解决方法-proxy</h4><h5 id="http-proxy-middleware"><a href="#http-proxy-middleware" class="headerlink" title="http-proxy-middleware"></a>http-proxy-middleware</h5><p>下面在本地开发中复现AJAX跨域请求。<br>本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $.ajax(&#123;</div><div class="line">    <span class="attr">type</span>:<span class="string">"GET"</span>,</div><div class="line">    <span class="attr">url</span>:<span class="string">"./api/....."</span>,<span class="comment">//远程地址</span></div><div class="line">    dataType:<span class="string">"json"</span>,</div><div class="line">    <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>此时浏览器会报错，跨域问题。<br>意思是出现跨域请求错误。</p>
+<h4 id="解决方法一：browser-sync-http-proxy-middleware做代理"><a href="#解决方法一：browser-sync-http-proxy-middleware做代理" class="headerlink" title="解决方法一：browser-sync+http-proxy-middleware做代理"></a>解决方法一：browser-sync+http-proxy-middleware做代理</h4><p>在gulpfile.js文件中做配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).creat();</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> proxy = (<span class="string">'./api'</span>,&#123;</div><div class="line">  <span class="attr">target</span>:<span class="string">"http://echo.websocket.org"</span>,<span class="comment">//远程地址url</span></div><div class="line">  changeOrigin:<span class="literal">true</span>,<span class="comment">//虚拟主机站点需要</span></div><div class="line">  pathRewrite:&#123;</div><div class="line">    <span class="string">'^/api/(.*)'</span>:<span class="string">'/$1'</span>  <span class="comment">//正则匹配，替换api起始的路径</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  browserSync.init(&#123;</div><div class="line">    <span class="attr">server</span>:<span class="string">'./dist'</span>,</div><div class="line">    <span class="attr">notify</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">middleware</span>:[proxy]</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>其他解决方法参看如下：  </p>
+<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a><a href="https://webharry.github.io/2017/10/24/JSONP/">2.JSONP</a></h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/12/CORS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +428,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-12T10:30:14+08:00">
                 2017-10-12
@@ -483,7 +618,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-27T15:50:45+08:00">
                 2017-09-27
@@ -637,7 +772,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-26T19:57:25+08:00">
                 2017-09-26
@@ -777,7 +912,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T20:53:40+08:00">
                 2017-09-12
@@ -909,7 +1044,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-11T20:01:11+08:00">
                 2017-09-11
@@ -1044,7 +1179,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-01T11:31:38+08:00">
                 2017-09-01
@@ -1190,7 +1325,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-30T19:57:31+08:00">
                 2017-08-30
@@ -1341,7 +1476,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-23T14:02:00+08:00">
                 2017-08-23
@@ -1619,7 +1754,7 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T18:20:26+08:00">
                 2017-08-22
@@ -1809,161 +1944,6 @@ gulp.task(&apos;default&apos;,[&apos;serve&apos;]);//default 依赖serve
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/08/14/plugins-browsersync/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/plugins-browsersync/" itemprop="url">plugins-browsersync</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T18:25:02+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/08/14/plugins-browsersync/" class="leancloud_visitors" data-flag-title="plugins-browsersync">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Browsersync浏览器同步测试工具的使用"><a href="#Browsersync浏览器同步测试工具的使用" class="headerlink" title="Browsersync浏览器同步测试工具的使用"></a>Browsersync浏览器同步测试工具的使用</h2><p>Browsersync能够快速响应文件(html、css、js、less、sass等)的更改，试想当你敲代码的同时，浏览器能够快速响应文件更改，免去手动刷新浏览器，对于开发者来说无疑会提高开发效率。</p>
-<p>下面是分别是在gulp和webpack中的安装及使用方法。  </p>
-<h2 id="一、gulp-browser-sync安装"><a href="#一、gulp-browser-sync安装" class="headerlink" title="一、gulp + browser-sync安装"></a>一、gulp + browser-sync安装</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>前提是你已<a href="https://webharry.github.io/2017/07/20/gulp-use/">安装gulp</a><br>这里用Node.js的包管理安装，前提是你已安装<a href="">node.js</a>。<br>全局安装：</p>
-<pre><code>npm install -g browser-sync
-</code></pre><p>作为项目开发依赖安装：</p>
-<pre><code>npm install --save-dev browser-sync
-</code></pre><h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>在gulpfile.js文件配置如下：  </p>
-<pre><code>var gulp = require(&apos;gulp&apos;);
-var browserSync = require(&apos;browser-sync&apos;).create();
-var reload = browserSync.reload;
-
-gulp.task(&apos;server&apos;,function() {
-    browserSync.init({
-        server: &quot;./dist&quot;//生产目录
-    });
-
-    gulp.watch(&quot;./src/**/*.less&quot;,[&apos;less&apos;]);
-    gulp.watch(&quot;./src/**/*.html&quot;,[&apos;htmlmin&apos;]);
-    gulp.watch(&quot;./dist/**/*.css&quot;).on(&apos;change&apos;,reload);
-    gulp.watch(&quot;./dist/**/*.html&quot;).on(&apos;change&apos;,reload);
-});
-
-gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
-
-});
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2014,8 +1994,8 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -2027,8 +2007,8 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -2070,7 +2050,7 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
 <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -2087,7 +2067,7 @@ gulp.task(&apos;default&apos;,[&apos;server&apos;],function() {
 
 
   <div class="powered-by">
-    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>

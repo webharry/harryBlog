@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -264,6 +264,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2018/04/14/crawler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/14/crawler/" itemprop="url">crawler</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-14T14:27:24+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/14/crawler/" class="leancloud_visitors" data-flag-title="crawler">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="node-js实现简单爬虫"><a href="#node-js实现简单爬虫" class="headerlink" title="node.js实现简单爬虫"></a>node.js实现简单爬虫</h3><p>工具：cheerio  </p>
+<p>cheerio 是nodejs特别为服务端定制的，能够快速灵活的对JQuery核心进行实现。它工作于DOM模型上，且解析、操作、呈送都很高效。<br>更多API参看：</p>
+<blockquote>
+<p><a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">https://github.com/cheeriojs/cheerio</a></p>
+</blockquote>
+<p>我们以慕课网页面为例，爬取每个视频课程的标题和课程对应id,期望结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">titles = [&#123;</div><div class="line">  chapterTitle: chapterTitle,</div><div class="line">  id: id</div><div class="line">&#125;]</div></pre></td></tr></table></figure></p>
+<p>第一步，我们用node写一个请求，获取想要爬虫的网站html,这里以慕课网为例<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://www.imooc.com/course/list?c=nodejs'</span></div><div class="line"></div><div class="line">http.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> html = <span class="string">''</span></div><div class="line">  </div><div class="line">  res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    html += data</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line">  res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = filterHml(html)</div><div class="line">    print(result)</div><div class="line">  &#125;)</div><div class="line">&#125;).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'获取数据错误！'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>第二步，我们根据需求来编写过滤HTML的函数，将过滤后的数据打印在控制台。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterChapters</span>(<span class="params">html</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> $ = cheerio.load(html)</div><div class="line">    <span class="keyword">var</span> chapters = $(<span class="string">'.course-card-container'</span>)<span class="comment">//以类名获取节点元素</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> titles = []</div><div class="line">    chapters.each(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> chapter = $(<span class="keyword">this</span>)</div><div class="line">        <span class="keyword">var</span> chapterTitle = chapter.find(<span class="string">'h3'</span>).text()</div><div class="line">        <span class="keyword">var</span> id = chapter.find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>).split(<span class="string">'learn/'</span>)[<span class="number">1</span>]</div><div class="line">        titles.push(&#123;</div><div class="line">            <span class="attr">chapterTitle</span>: chapterTitle,</div><div class="line">            <span class="attr">id</span>: id</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> titles</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printCourseInfo</span>(<span class="params">courseData</span>)</span>&#123;</div><div class="line">    courseData.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'【'</span> + item.id + <span class="string">'】'</span> + item.chapterTitle + <span class="string">'\n'</span>)</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>爬虫结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">【935】Vue+Webpack打造todo应用</div><div class="line"></div><div class="line">【882】基于websocket的火拼俄罗斯（单��版）</div><div class="line"></div><div class="line">【861】基于Websocket的火拼俄罗斯（基础）</div><div class="line"></div><div class="line">【866】前端性能优化-通用的缓存SDK</div><div class="line"></div><div class="line">【773】AC2016腾讯前端技术大会</div><div class="line"></div><div class="line">【728】创业公司的Nodejs工程师</div><div class="line"></div><div class="line">【725】Roundtable前端分享专场</div><div class="line"></div><div class="line">【637】进击Node.js基础（二）</div><div class="line"></div><div class="line">【590】阿里D2前端技术论坛——2015融合</div><div class="line"></div><div class="line">【564】去哪儿前端沙龙分享第三期</div><div class="line"></div><div class="line">【556】慕课网技术沙龙之前端专场</div><div class="line"></div><div class="line">【434】去哪儿前端沙龙分享第二期</div><div class="line"></div><div class="line">【367】Qnext前端交互沙龙</div><div class="line"></div><div class="line">【348】进击Node.js基础（一）</div><div class="line"></div><div class="line">【221】D2前端技术论坛——2014绽放</div><div class="line"></div><div class="line">【197】node建站攻略(二期)——网站升级</div><div class="line"></div><div class="line">【75】node+mongodb 建站攻略（一期）</div></pre></td></tr></table></figure></p>
+<p>小结：node.js使得JavaScript代码能够运行在服务端，从而进行一些操作，node.js的更多用法参看后续文章.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/12/31/prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -293,7 +433,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T20:48:48+08:00">
                 2017-12-31
@@ -487,7 +627,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T19:17:03+08:00">
                 2017-12-31
@@ -631,7 +771,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-25T19:23:28+08:00">
                 2017-12-25
@@ -799,7 +939,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T20:31:23+08:00">
                 2017-12-15
@@ -948,7 +1088,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-13T17:33:18+08:00">
                 2017-12-13
@@ -1161,7 +1301,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-07T11:23:56+08:00">
                 2017-12-07
@@ -1311,7 +1451,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-03T16:04:53+08:00">
                 2017-12-03
@@ -1450,7 +1590,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-24T18:11:04+08:00">
                 2017-11-24
@@ -1593,7 +1733,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T20:47:22+08:00">
                 2017-10-24
@@ -1686,141 +1826,6 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/23/proxy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/23/proxy/" itemprop="url">跨域解决方法-proxy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-23T15:34:57+08:00">
-                2017-10-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/10/23/proxy/" class="leancloud_visitors" data-flag-title="跨域解决方法-proxy">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天尝试使用http-proxy-middleware插件解决本地开发中的跨域问题。这篇文章主要讲的是跨域解决方法6.proxy，使用代理。  </p>
-<h4 id="跨域解决方法-proxy"><a href="#跨域解决方法-proxy" class="headerlink" title="跨域解决方法-proxy"></a>跨域解决方法-proxy</h4><h5 id="http-proxy-middleware"><a href="#http-proxy-middleware" class="headerlink" title="http-proxy-middleware"></a>http-proxy-middleware</h5><p>下面在本地开发中复现AJAX跨域请求。<br>本地开发，需要请求远程服务器资源，使用ajax请求获取远程资源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $.ajax(&#123;</div><div class="line">    <span class="attr">type</span>:<span class="string">"GET"</span>,</div><div class="line">    <span class="attr">url</span>:<span class="string">"./api/....."</span>,<span class="comment">//远程地址</span></div><div class="line">    dataType:<span class="string">"json"</span>,</div><div class="line">    <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(data);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>此时浏览器会报错，跨域问题。<br>意思是出现跨域请求错误。</p>
-<h4 id="解决方法一：browser-sync-http-proxy-middleware做代理"><a href="#解决方法一：browser-sync-http-proxy-middleware做代理" class="headerlink" title="解决方法一：browser-sync+http-proxy-middleware做代理"></a>解决方法一：browser-sync+http-proxy-middleware做代理</h4><p>在gulpfile.js文件中做配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).creat();</div><div class="line"><span class="keyword">var</span> proxyMiddleware = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> proxy = (<span class="string">'./api'</span>,&#123;</div><div class="line">  <span class="attr">target</span>:<span class="string">"http://echo.websocket.org"</span>,<span class="comment">//远程地址url</span></div><div class="line">  changeOrigin:<span class="literal">true</span>,<span class="comment">//虚拟主机站点需要</span></div><div class="line">  pathRewrite:&#123;</div><div class="line">    <span class="string">'^/api/(.*)'</span>:<span class="string">'/$1'</span>  <span class="comment">//正则匹配，替换api起始的路径</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  browserSync.init(&#123;</div><div class="line">    <span class="attr">server</span>:<span class="string">'./dist'</span>,</div><div class="line">    <span class="attr">notify</span>:<span class="literal">false</span>,</div><div class="line">    <span class="attr">middleware</span>:[proxy]</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>其他解决方法参看如下：  </p>
-<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a><a href="https://webharry.github.io/2017/10/24/JSONP/">2.JSONP</a></h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1871,8 +1876,8 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1884,8 +1889,8 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1927,7 +1932,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
 <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1944,7 +1949,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
 
 
   <div class="powered-by">
-    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>
