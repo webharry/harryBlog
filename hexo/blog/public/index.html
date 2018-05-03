@@ -264,6 +264,213 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2018/05/03/Event-Loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yangjie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Harry的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/Event-Loop/" itemprop="url">了解JavaScript执行机制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T09:44:03+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/03/Event-Loop/" class="leancloud_visitors" data-flag-title="了解JavaScript执行机制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小例子"><a href="#小例子" class="headerlink" title="小例子"></a>小例子</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这段代码的输出是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">script start</div><div class="line">promise1</div><div class="line">promise2</div><div class="line">setTimeout</div></pre></td></tr></table></figure></p>
+<p>浏览器兼容性：但是不同的浏览器可能会出现不同的输出顺序。</p>
+<p>　　Microsoft Edge, FireFox 40, iOS Safari 以及 Safari 8.0.8 将会在 ‘promise1’ 和 ‘promise2’ 之前输出 ‘setTimeout’。但是奇怪的是，FireFox 39 和 Safari 8.0.7 却又是按照正确的顺序输出。</p>
+<h2 id="原理深入"><a href="#原理深入" class="headerlink" title="原理深入"></a>原理深入</h2><h3 id="1-同步异步"><a href="#1-同步异步" class="headerlink" title="1.同步异步"></a>1.同步异步</h3><ul>
+<li>javascript是单线程的，js执行依照代码书写顺序向下执行。<br>正因为js是单线程的，js任务只能一个一个顺序执行，前一个任务未完成，后面的任务只能等待。但是，实际情况是，在渲染页面过程中，常常需要请求像图片视频这样的服务器的资源，这样的js任务很耗时且返回时间未知，会导致页面非常卡，那后面js任务就只能一直等这些资源加载回来，这会导致我们的网页体验非常差，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。</li>
+<li>同步任务</li>
+<li>异步任务<br>网页的渲染过程就是一堆同步任务，比如页面的骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。 </li>
+</ul>
+<p>Js怎么处理同步异步任务呢？？？<br>这就要涉及到一个概念，叫Event Loop（事件循环）。</p>
+<h3 id="2-Javascript事件循环Event-Loop"><a href="#2-Javascript事件循环Event-Loop" class="headerlink" title="2.Javascript事件循环Event Loop"></a>2.Javascript事件循环Event Loop</h3><p><img src="https://user-gold-cdn.xitu.io/2017/11/21/15fdd88994142347?imageslim" alt="js任务执行"></p>
+<p>图中要表达的含义是：</p>
+<ul>
+<li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
+<li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
+<li>主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。</li>
+<li>上述过程会不断重复，也就是常说的Event Loop(事件循环)。  </li>
+</ul>
+<p>js引擎存在monitoring process进程，会持续不断的检查主线程执行栈是否为空，一旦为空，就会去Event Queue那里检查是否有等待被调用的函数。</p>
+<p>看个小例子：</p>
+<p>演示：<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D" target="_blank" rel="noopener">loup</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;,<span class="number">5000</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure></p>
+<p>js是单线程的，执行栈先执行同步任务，同步任务执行完毕，才执行异步任务：<br><img src="http://chuantu.biz/t6/299/1525081743x1822611341.jpg" alt="1"><br><img src="http://chuantu.biz/t6/300/1525230876x-1404817515.jpg" alt="2"><br><img src="http://chuantu.biz/t6/300/1525230913x-1404817515.jpg" alt="3"><br>小结：事件循环是js实现异步的一种方法，也是js的执行机制。</p>
+<h3 id="3-宏任务和微任务"><a href="#3-宏任务和微任务" class="headerlink" title="3.宏任务和微任务"></a>3.宏任务和微任务</h3><p>如果将之前的代码改下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="number">1</span>)  <span class="comment">// snippet1</span></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// snippet2</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</div><div class="line">&#125;)</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// snippet3</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// snippet4</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="number">4</span>)</div><div class="line">    &#125;, <span class="number">0</span>)</div><div class="line">&#125;, <span class="number">0</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="number">5</span>) <span class="comment">// snippet5</span></div></pre></td></tr></table></figure></p>
+<p>这段代码的输出顺序是1, 5, 2, 3, 4。<br>这是因为 promise 的 then 方法，被认为是在微任务队列当中。JavaScript宏观的将任务分为两种：</p>
+<ul>
+<li>macro-task（宏任务）：包括整体代码script，setTimeout，setInterval</li>
+<li>micro-task（微任务）：Promise，process.nextTick， MutationObserver</li>
+</ul>
+<p>Microtask微任务 通常来说就是需要在当前 task 执行结束后立即执行的任务，例如需要对一系列的任务做出回应，或者是需要异步的执行任务而又不需要分配一个新的 task，这样便可以减小一点性能的开销。microtask 任务队列是一个与 task 任务队列相互独立的队列，microtask 任务将会在每一个 task 任务执行结束之后执行。每一个 task 中产生的 microtask 都将会添加到 microtask 队列中，microtask 中产生的 microtask 将会添加至当前队列的尾部，并且 microtask 会按序的处理完队列中的所有任务。</p>
+<p>接下来的主要介绍这两个任务的概念和线程表现:<br>1.这两种类型的任务会进入与之对应的Event Queue<br>2.事件循环的顺序，决定JS代码的执行顺序<br>3.先是进入整体代码的宏任务，开始事件循环，然后紧接着执行当前宏任务的微任务<br>4.执行完当前宏任务的微任务后 进入Event Queue里面的下一个宏任务<br><img src="http://chuantu.biz/t6/297/1524834771x-1404775551.jpg" alt="事件循环"></p>
+<p>这段代码的执行过程是：</p>
+<ol>
+<li>snippet1 push 到执行栈，执行完并清空执行栈</li>
+<li>snippet2 的回调 push 到 microtask 队列中</li>
+<li>snippet3 交给 Web Apis，0ms 后将回调 push 到 marcotask 队列</li>
+<li>snippet5 的回调 push 到执行栈，执行完并清空执行栈</li>
+<li>script task 执行完后，将 snippet2 中的回调从 microtask 队列取出，push 到执行栈，执行完并清空执行栈</li>
+<li>snippet3 的回调 push 到执行栈，执行完并清空执行栈，同时将 snippet4 交给 Web Apis，0ms 后将回调 push 到任务队列</li>
+<li>snippet4 的回调 push 到执行栈，执行完并清空执行栈</li>
+</ol>
+<ul>
+<li>微任务执行场景<br>microtask 通常来说就是需要在当前 task 执行结束后立即执行的任务，例如需要对一系列的任务做出回应，或者是需要异步的执行任务而又不需要分配一个新的 task，这样便可以减小一点性能的开销。microtask 任务队列是一个与 task 任务队列相互独立的队列，microtask 任务将会在每一个 task 任务执行结束之后执行。每一个 task 中产生的 microtask 都将会添加到 microtask 队列中，microtask 中产生的 microtask 将会添加至当前队列的尾部，并且 microtask 会按序的处理完队列中的所有任务。microtask 类型的任务目前包括了 MutationObserver 以及 Promise 的回调函数和 node 中的 process.nextTick。</li>
+<li>浏览器支持</li>
+</ul>
+<h4 id="进阶-microtask"><a href="#进阶-microtask" class="headerlink" title="进阶 microtask"></a>进阶 microtask</h4><p>我们来看一段代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> outer = <span class="built_in">document</span>.querySelector(<span class="string">'.outer'</span>);</div><div class="line"><span class="keyword">var</span> inner = <span class="built_in">document</span>.querySelector(<span class="string">'.inner'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 给 outer 添加一个观察者</span></div><div class="line"><span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'mutate'</span>);</div><div class="line">&#125;).observe(outer, &#123;</div><div class="line">  <span class="attr">attributes</span>: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// click 回调函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'click'</span>);</div><div class="line"></div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</div><div class="line">  &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  outer.setAttribute(<span class="string">'data-random'</span>, <span class="built_in">Math</span>.random());</div><div class="line">&#125;</div><div class="line"></div><div class="line">inner.addEventListener(<span class="string">'click'</span>, callback);</div><div class="line">outer.addEventListener(<span class="string">'click'</span>, callback);</div><div class="line"></div><div class="line"><span class="comment">// inner.click();</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.outer</span> &#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">	<span class="attribute">width</span>: <span class="number">400px</span>;</div><div class="line">	<span class="attribute">background</span>: <span class="number">#ccc</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.inner</span> &#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">	<span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background</span>: <span class="number">#ddd</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们看下不同浏览器输出：<br><img src="http://chuantu.biz/t6/301/1525268844x-1404817635.jpg" alt="浏览器运行对比图"><br>按照上面的推导 Chrome 的输出是正确的。</p>
+<blockquote>
+<p>通过上面的例子可以测试出，FireFox 和 Safari 能够正确的执行 microtask 队列，这一点可以通过 MutationObserver 的表现中看出，不过 Promise 被添加至事件队列中的方式好像有些不同。 这一点也是能够理解的，由于 jobs 和 microtasks 的关系以及概念目前还比较模糊，不过人们都普遍的期望他们都能够在两个事件监听器之间执行。这里有 FireFox 和 Safari 的 BUG 记录。（目前 Safari 已经修复了这一 BUG）<br>在 Edge 中我们可以明显的看出其压入 Promise 的方式是错误的，同时其执行 microtask 队列的方式也不正确，它没有在两个事件监听器之间执行，反而是在所有的事件监听器之后执行，所以才会只输出了一次 mutate 。Edge bug ticket （目前已修复）  </p>
+</blockquote>
+<p>接下来，将上面代码最后一行注释去掉，再执行，我们看到输出顺序是这样的：<br><img src="http://chuantu.biz/t6/301/1525272394x-1404775431.jpg" alt="浏览器执行对比图2"></p>
+<blockquote>
+<p>同理在之前的例子中由于我们调用 click()，使得事件监听器的回调函数和当前运行的脚本同步执行，所以当前脚本的执行栈会一直压在 JS 执行栈当中（简单来说就是click的回调并没有加入任务队列中，而是直接执行了）。所以在这个 demo 中 microtask 不会在每一个 click 事件之后执行，而是在两个 click 事件执行完成之后执行。所以在这里我们可以再次的对 microtask 的检查点进行定义：当执行栈(JS Stack)为空时，执行一次 microtask 检查点。这也确保了无论是一个 task 还是一个 microtask 在执行完毕之后都会生成一个 microtask 检查点，也保证了 microtask 队列能够一次性执行完毕。  </p>
+</blockquote>
+<p>mutate只输出一次的原因是，MutationObserver微任务只在微任务队列注册一次，因为第二次执行回调函数callback时，发现微任务队列已经注册了dom变化的监听事件，所以不再注册到微任务队列。</p>
+<h3 id="原理验证–借用插件演示"><a href="#原理验证–借用插件演示" class="headerlink" title="原理验证–借用插件演示"></a>原理验证–借用插件演示</h3><p>推荐一个JS执行的可视化工具<a href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D" target="_blank" rel="noopener">loupe</a>  [lu:p]（备注：暂时不支持微任务演示）</p>
+<h3 id="拓展-setTimeout"><a href="#拓展-setTimeout" class="headerlink" title="拓展-setTimeout"></a>拓展-setTimeout</h3><p>1.setTimeout<br>setTimeout的作用就是让异步任务延迟执行<br>先上一段代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    task();</div><div class="line">&#125;,<span class="number">3000</span>)</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'执行console'</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">task</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'task'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>来推断一下执行结果：setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//执行console</span></div><div class="line"><span class="comment">//task()</span></div></pre></td></tr></table></figure></p>
+<p>我们到验证器里运行一下结果，结果是正确的。<br>在看一段有意思的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//代码1</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'先执行这里'</span>);</div><div class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'执行啦'</span>)</div><div class="line">&#125;,<span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>我们来分析下这段代码，延迟0秒是立即执行的意思吗？显然不是，我们按照js执行机制分析下代码怎么执行的。</p>
+<ul>
+<li>首先，console.log进入执行栈执行</li>
+<li>接下来解析到setTimeout，发现是异步任务，扔到解析API进行处理（比如浏览器webAPI）,解析API延时0秒，把setTimeout的回调函数注册到Event Queue，等到js执行栈为空了，就把Event Queue的任务推入执行栈执行，也就是执行回调函数。  </li>
+</ul>
+<h2 id="检验–两段有意思的代码"><a href="#检验–两段有意思的代码" class="headerlink" title="检验–两段有意思的代码"></a>检验–两段有意思的代码</h2><p>如果你能正确知道这段代码的输出，就说明你真正的理解同步异步了：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> start;</div><div class="line">start = +<span class="keyword">new</span> <span class="built_in">Date</span>(); </div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>,+<span class="keyword">new</span> <span class="built_in">Date</span>() - start);<span class="comment">// part1</span></div><div class="line">&#125;,<span class="number">200</span>);</div><div class="line"><span class="keyword">while</span>(start + <span class="number">2000</span> &gt; +<span class="keyword">new</span> <span class="built_in">Date</span>())&#123;</div><div class="line">  </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>part1打印的时间是多少？？？  </p>
+<p>输出是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setTimeout <span class="number">2003</span></div></pre></td></tr></table></figure></p>
+<p>很明显，part1打印出的时间大于2000毫秒，但不会大于2200毫秒。我们把代码拷贝到控制台运行一下，发现结果是小于2200毫秒的。</p>
+<h3 id="关于同步异步另一段有意思的代码"><a href="#关于同步异步另一段有意思的代码" class="headerlink" title="关于同步异步另一段有意思的代码"></a>关于同步异步另一段有意思的代码</h3><p>先看一段代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'click'</span>)</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure>
+<p>如果我们把js代码改一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'click'</span>)</div><div class="line">&#125;</div><div class="line">btn.click();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure></p>
+<p>这个执行顺序是：<br>script start<br>click<br>script end</p>
+<p>原因是我们调用 .click()，使得事件监听器的回调函数和当前运行的脚本同步执行而不再是异步,简单来说就是click的回调并没有加入任务队列中，而是直接执行了。</p>
+<blockquote>
+<p>参考链接：<br><a href="https://www.cnblogs.com/dong-xu/p/7000139.html" target="_blank" rel="noopener">https://www.cnblogs.com/dong-xu/p/7000139.html</a><br><a href="http://blog.xieluping.cn/2018/03/08/event-loop/" target="_blank" rel="noopener">http://blog.xieluping.cn/2018/03/08/event-loop/</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2018/04/14/crawler/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1691,141 +1898,6 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://webharry.github.io/2017/10/24/jsonp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yangjie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Harry的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/24/jsonp/" itemprop="url">跨域解决方法-JSONP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T20:47:22+08:00">
-                2017-10-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/10/24/jsonp/" class="leancloud_visitors" data-flag-title="跨域解决方法-JSONP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>  之前的文章谈到由于浏览器的同源策略，当请求不同源的资源时就会遇到跨域问题，今天尝试用jsonp来解决跨域问题。</p>
-<h4 id="JSONP是什么"><a href="#JSONP是什么" class="headerlink" title="JSONP是什么"></a>JSONP是什么</h4><p>JSONP(JSON with Padding)是json的一种“使用模式”,可以让网页取得不同源上的资源数据，它不需要使用XMLHttpRequest对象，而是使用script标签来请求不同源的数据资源。<br>使用JSONP的关键是使用回调函数进行服务器和客户端的数据交互。来看下面的实例：</p>
-<h4 id="解决实例"><a href="#解决实例" class="headerlink" title="解决实例"></a>解决实例</h4><p>在客户端，即html文件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>JSONP-demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>test<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="keyword">let</span> p = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'p'</span>)[<span class="number">0</span>];</div><div class="line">    p.innnerHTML = data;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://localhost:3002?callback=test"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!--src里的问号？后的参数（callback=test)可以在3002端口页面中可以通过req.query.callback获取--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>在客户端起一个服务在3000端口（这里用express）：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>); <span class="comment">// 引用express模块</span></div><div class="line"><span class="keyword">var</span> app = express();  <span class="comment">// 创建一个简单的服务器</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> requestPort = <span class="number">3000</span>;</div><div class="line"></div><div class="line">app.use(express.static(__dirname));</div></pre></td></tr></table></figure></p>
-<p>在3002端口页面，即服务器：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line"><span class="keyword">var</span> responsePort = <span class="number">3002</span>;</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> callbackName = req.query.callback;</div><div class="line">  res.send(callbackName + <span class="string">"('hello jsonp!')"</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<h4 id="跨域解决方法"><a href="#跨域解决方法" class="headerlink" title="跨域解决方法"></a>跨域解决方法</h4><h5 id="1-CORS（cross-origin-resourse-sharing-跨域资源共享"><a href="#1-CORS（cross-origin-resourse-sharing-跨域资源共享" class="headerlink" title="1.CORS（cross-origin resourse sharing)跨域资源共享"></a><a href="https://webharry.github.io/2017/10/23/CORS/">1.CORS（cross-origin resourse sharing)跨域资源共享</a></h5><h5 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a><a href="https://webharry.github.io/2017/10/24/JSONP/">2.JSONP</a></h5><h5 id="3-document-domain-iframe"><a href="#3-document-domain-iframe" class="headerlink" title="3.document.domain + iframe"></a>3.document.domain + iframe</h5><h5 id="4-window-name-iframe"><a href="#4-window-name-iframe" class="headerlink" title="4.window.name + iframe"></a>4.window.name + iframe</h5><h5 id="5-postMessage"><a href="#5-postMessage" class="headerlink" title="5.postMessage"></a>5.postMessage</h5><h5 id="6-proxy"><a href="#6-proxy" class="headerlink" title="6.proxy"></a><a href="https://webharry.github.io/2017/10/23/proxy/">6.proxy</a></h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1876,7 +1948,7 @@ NOTE Steps 5 and 6 provide compatibility with previous editions of ECMAScript th
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
